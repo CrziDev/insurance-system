@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <script src="//unpkg.com/alpinejs" defer></script> -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
+</head>
+<body>
+    <div class="flex font-custom-font font-medium text-gray-600 bg-gray-200">
+        @auth
+            <section class="min-w-[230px] bg-dark h-screen text-white/80 pb-10 text-sm">
+                <sidebar class="flex flex-col h-full">
+                    <div class="py-5 mb-5">
+                        <img class="w-[80px] h-[70px] m-auto" src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo">
+                    </div>
+               
+                    <div class="space-y-2">
+                        @if(request()->user()->role == 1)
+                            <x-sidebar-admin></x-sidebar-admin>
+                        @elseif(request()->user()->role == 3)
+                            <x-sidebar-customer></x-sidebar-customer>
+                        @endif
+                        <!-- <x-sidebar-customer></x-sidebar-customer> -->
+                    </div>
+
+                    <div class="mt-auto">
+                        <x-logout-btn>Logout</x-logout-btn>             
+                    </div>
+                </sidebar>
+            </section>
+        @endauth
+
+        <section class="w-full h-screen ">
+            <main class="h-screen overflow-x-auto">
+                {{$slot}}
+            </main>
+        </section>
+        
+    </div>
+
+    @livewireScripts
+</body>
+</html>

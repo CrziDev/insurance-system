@@ -1,0 +1,75 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\customer;
+use App\Models\User;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
+
+class CustomerAdd extends Component
+{
+    #[Validate('required|min:3')]
+    public $username;
+    #[Validate('required|confirmed|min:3')]
+    public $password;
+    #[Validate('required|min:3')]
+    public $password_confirmation;
+    #[Validate('required|min:3')]
+    public $firstName;
+    #[Validate('required|min:3')]
+    public $lastName;
+    #[Validate('required')]
+    public $middleInitial = 'N/A';
+    #[Validate('required')]
+    public $nameExtention = "N/A";
+    #[Validate('required|min:3')]
+    public $phoneNumber;
+    #[Validate('required|email|max:255|unique:users')]
+    public $email;
+    #[Validate('required|min:3')]
+    public $address;
+    #[Validate('required')]
+    public $profession;
+    
+
+    public function save(){
+        $validated = $this->validate();
+
+        $user = User::create($this->mapedUserAttribute($validated));
+        $validated['user_id'] = $user->id;
+        customer::create($this->mapedUserInformation($validated));
+
+        toastr()->success('Customer Added Successfuly!');
+        $this->redirect('/admin/customers');
+    }
+
+    public function render()
+    {
+        return view('livewire.customer-add');
+    }
+
+    public function mapedUserAttribute($data){
+
+        return [
+            'username'=>$data['username'],
+            'password'=>$data['password'],
+            'role'=>3,
+            'email'=>$data['email']
+        ];
+    }
+
+    public function mapedUserInformation($data){
+
+        return [
+            'first_name'=>$data['firstName'],
+            'last_name'=>$data['lastName'],
+            'middle_initial'=>$data['middleInitial'],
+            'name_extention'=>$data['nameExtention'],
+            'phone_number'=>$data['phoneNumber'],
+            'address'=>$data['address'],
+            'profession'=>$data['profession'],
+            'user_id'=>$data['user_id']
+        ];
+    }
+}
