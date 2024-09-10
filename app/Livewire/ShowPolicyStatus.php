@@ -25,7 +25,7 @@ class ShowPolicyStatus extends Component
 
 
     public function boot(){
-        $this->data = NonLifeInsurance::with('nonLifeType')
+        $this->data = NonLifeInsurance::with('Policy')
         ->where('user_id',$this->selectedCustomer->user->id)
         ->where('status',1)
         ->orderBydesc('created_at')->get();

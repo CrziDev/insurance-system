@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\NonLifeInsuranceCustomerAttribute;
 use App\Models\NonLifeInsurance;
-use App\Models\NonLifeType;
+use App\Models\Policy;
 use App\Models\User;
 use Livewire\Component;
 
@@ -22,8 +22,6 @@ class AddNonLifeInsuranceForm extends Component
     public $total = '';
     public $selectedCustomer;
     public $userId;
-
-
 
     public function save(){
         $this->validate();  
@@ -60,13 +58,13 @@ class AddNonLifeInsuranceForm extends Component
         $this->form->address = $user->customer[0]->address;
         $this->selectOptions($policyId);
         $this->userId =  $user->id;
-        $this->policyLists = NonLifeType::all();
+        $this->policyLists = Policy::all();
     }
 
 
     public function selectOptions($id)
     {       
-        $type= NonLifeType::find($id);
+        $type= Policy::find($id);
         if(!$type){
             $this->resetExcept(['policyLists','form']);
             return false;

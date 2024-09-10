@@ -27,8 +27,8 @@
                 <td class="py-3 border border-lime-500 text-center">001</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->date_effect_format}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->date_expiration_format}}</td>
-                <td class="py-3 border border-lime-500 text-center">{{$row->nonLifeType->name}}</td>
-                <td class="py-3 border border-lime-500 text-center">{{$row->nonLifeType->type}}</td>
+                <td class="py-3 border border-lime-500 text-center">{{$row->Policy->name}}</td>
+                <td class="py-3 border border-lime-500 text-center">{{$row->Policy->type}}</td>
                 <td class="py-3 border border-lime-500  text-{{lcfirst($row->status_description)}} text-center">{{$row->status_description}}</td>
                 <td class="py-3 border border-lime-500 text-center">
                     <button class="  w-[100px] text-white bg-amber-600 p-1 font-semibold rounded-md">Renew</button>

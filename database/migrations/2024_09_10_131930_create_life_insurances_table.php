@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('type_id');
-            $table->foreign('type_id')->references('id')->on('non_life_types');
+            $table->foreign('type_id')->references('id')->on('policies');
 
             $table->string('protection_package')->nullable();
             $table->string('allowance_package')->nullable();

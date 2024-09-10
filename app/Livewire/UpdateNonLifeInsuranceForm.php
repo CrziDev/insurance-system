@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\NonLifeInsuranceAdminAttribute;
 use App\Models\NonLifeInsurance;
-use App\Models\NonLifeType;
+use App\Models\Policy;
 use App\Models\User;
 use Livewire\Component;
 
@@ -34,14 +34,14 @@ class UpdateNonLifeInsuranceForm extends Component
 
 
         $this->selectOptions($policyId);
-        $this->policyLists = NonLifeType::all();
+        $this->policyLists = Policy::all();
     }
 
 
     public function selectOptions($id)
     {        
 
-        $type= NonLifeType::find($id);
+        $type= Policy::find($id);
         if(!$type){
             $this->resetExcept(['policyLists','form']);
             return false;

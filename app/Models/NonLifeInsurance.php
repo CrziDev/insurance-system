@@ -61,8 +61,8 @@ class NonLifeInsurance extends Model
        return $statusText[$this->status];
     }
 
-    public function nonLifeType(){
-        return $this->belongsTo(NonLifeType::class,"type_id");
+    public function Policy(){
+        return $this->belongsTo(Policy::class,"type_id");
     }
     
     public function user(){

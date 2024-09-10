@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\NonLifeInsurance;
-use App\Models\NonLifeType;
+use App\Models\Policy;
 use Livewire\Component;
 
 class DashboardCards extends Component
@@ -17,7 +17,7 @@ class DashboardCards extends Component
     {
 
         $this->policyHolder = NonLifeInsurance::where('status',1)->count()??0;
-        $this->remainingPolicies = NonLifeType::all()->sum('quantity')??0;
+        $this->remainingPolicies = Policy::all()->sum('quantity')??0;
         $this->expiringPolicies = NonLifeInsurance::where('status',3)->count()??0;
 
         return view('livewire.dashboard-cards');

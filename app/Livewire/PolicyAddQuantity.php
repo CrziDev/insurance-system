@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\NonLifeType;
+use App\Models\Policy;
 use Livewire\Component;
 
 class PolicyAddQuantity extends Component
@@ -18,7 +18,7 @@ class PolicyAddQuantity extends Component
         'quantity' => 'required|numeric|min:1',
     ];
     public function selectedPolicy($policy){
-        $quantity = NonLifeType::find($policy)->quantity;
+        $quantity = Policy::find($policy)->quantity;
         $this->quantity = $quantity;
         $this->policyId = $policy;
     }       
@@ -26,7 +26,7 @@ class PolicyAddQuantity extends Component
     public function save(){
         $this->validate();
 
-        NonLifeType::find($this->policyId)->update([
+        Policy::find($this->policyId)->update([
             'quantity' => $this->quantity
         ]);
 
@@ -37,7 +37,7 @@ class PolicyAddQuantity extends Component
     public function render()
     {
 
-        $policies = NonLifeType::all();
+        $policies = Policy::all();
         return view('livewire.policy-add-quantity',['policies'=>$policies]);
     }
 }

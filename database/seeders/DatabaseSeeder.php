@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Http\Controllers\Customer\CustomerClaimsController;
 use App\Models\customer;
-use App\Models\NonLifeType;
+use App\Models\Policy;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             
         ]);
 
-        NonLifeType::create([
+        Policy::create([
 
             'name'=> fake()->name(),
             'premium'=> fake()->numberBetween(0,100),
@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        NonLifeType::create([
+        Policy::create([
 
             'name'=> fake()->name(),
             'premium'=> fake()->numberBetween(0,100),

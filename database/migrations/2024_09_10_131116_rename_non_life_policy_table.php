@@ -19,7 +19,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::rename('policies','non_life_type');
+        Schema::rename('policies','non_life_types');
         
     }
 };

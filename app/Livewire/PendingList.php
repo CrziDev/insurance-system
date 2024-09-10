@@ -27,7 +27,7 @@ class PendingList extends Component
     {
         $user = request()->user();
 
-        $query = NonLifeInsurance::with('nonLifeType', 'user.customer')
+        $query = NonLifeInsurance::with('Policy', 'user.customer')
             ->orderByDesc('status');
 
         if ($user->role == 3) {
@@ -36,7 +36,7 @@ class PendingList extends Component
             $searchTerm = '%' . $this->search . '%';
 
             $query->where(function($query) use ($searchTerm) {
-                $query->whereHas('nonLifeType', function($q) use ($searchTerm) {
+                $query->whereHas('Policy', function($q) use ($searchTerm) {
                     $q->where('name', 'like', $searchTerm);
                 })
                 ->orWhereHas('user.customer', function($q) use ($searchTerm) {

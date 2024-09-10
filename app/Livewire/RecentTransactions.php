@@ -17,7 +17,7 @@ class RecentTransactions extends Component
         $user = request()->user();
 
         if($user->role == 3){
-            $nonLifeInsurance = NonLifeInsurance::with('nonLifeType')
+            $nonLifeInsurance = NonLifeInsurance::with('Policy')
             ->with('user.customer')
             ->where('user_id',$user->id)
             ->where('status',4)
@@ -26,7 +26,7 @@ class RecentTransactions extends Component
             $searchTerm = '%'.$this->search.'%';
 
             $nonLifeInsurance = NonLifeInsurance::where(function($query) use ($searchTerm) {
-                    $query->whereHas('nonLifeType', function($q) use ($searchTerm) {
+                    $query->whereHas('Policy', function($q) use ($searchTerm) {
                         $q->where('name', 'like', $searchTerm);
                     })
                     ->orWhereHas('user.customer', function($q) use ($searchTerm) {
@@ -34,7 +34,7 @@ class RecentTransactions extends Component
                     });
                 })
                 ->orderByDesc('updated_at')
-                ->with(['nonLifeType', 'user.customer'])
+                ->with(['Policy', 'user.customer'])
                 ->get();
             
         }

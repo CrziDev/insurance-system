@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\NonLifeType;
+use App\Models\Policy;
 use Livewire\Component;
 
 class PolicyAdd extends Component
@@ -33,7 +33,7 @@ class PolicyAdd extends Component
         if ($this->selectedType === "Non-Life Policy") {
             $this->validate(); // Validate all fields
 
-            NonLifeType::create([
+            Policy::create([
                 'name' => $this->name,
                 'premium' => $this->premium,
                 'docstamp' => $this->docstamp,
@@ -50,7 +50,7 @@ class PolicyAdd extends Component
                 'quantity' => 'required|numeric',
             ]);
 
-            NonLifeType::create([
+            Policy::create([
                 'name' => $this->name,
                 'premium' => 0, // Or default values if necessary
                 'docstamp' => 0,

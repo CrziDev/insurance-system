@@ -14,7 +14,7 @@
         </x-modal>
 
         <x-modal name="life-insure">
-            <x-forms.life-form></x-forms.life-form>
+            <livewire:add-life-insurance-form :userId="request()->user()->id"/>
         </x-modal>
         <!------------->
         <div class="h-[calc(100%-240px-28px)] flex">

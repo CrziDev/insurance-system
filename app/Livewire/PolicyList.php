@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\NonLifeType;
+use App\Models\Policy;
 use Livewire\Component;
 
 class PolicyList extends Component
@@ -23,7 +23,7 @@ class PolicyList extends Component
         
         $searchTerm = '%'.$this->search.'%';
 
-         $data = NonLifeType::where('name', 'like', $searchTerm)
+         $data = Policy::where('name', 'like', $searchTerm)
             ->orWhere('type', 'like', $searchTerm)
             ->orderBy('id')
             ->get();
