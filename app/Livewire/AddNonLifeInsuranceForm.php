@@ -11,6 +11,7 @@ use Livewire\Component;
 class AddNonLifeInsuranceForm extends Component
 {
 
+ 
     public NonLifeInsuranceCustomerAttribute $form;
     public $buttonText = '';
     public $formAction = '';

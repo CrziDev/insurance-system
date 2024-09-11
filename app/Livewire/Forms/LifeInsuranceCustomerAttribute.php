@@ -8,34 +8,39 @@ use Livewire\Form;
 class LifeInsuranceCustomerAttribute extends Form
 {
     #[Validate('required')]
-    public $protection_package;
+    public $protection_package = ['Deluxe'];
     #[Validate('required')]
-    public $allowance_package;
+    public $allowance_package = ['Superior'];
     #[Validate('required')]
-    public $mobile_number;
+    public $mobile_number = 's';
     #[Validate('required')]
-    public $telephone_number;
+    public $telephone_number = 's';
     #[Validate('required')]
-    public $date_of_birth;
+    public $date_of_birth = 's';
     #[Validate('required')]
-    public $place_of_birth;
+    public $place_of_birth = 's';
     #[Validate('required')]
-    public $nationality;
+    public $nationality = 's';
     #[Validate('required')]
-    public $email_address;
+    public $email_address = 's';
     #[Validate('required')]
-    public $name_of_trustee;
+    public $name_of_trustee = 's';
     #[Validate('required')]
-    public $tin;
+    public $name_of_beneficiary = 's';
     #[Validate('required')]
-    public $other_id;
+    public $tin = 's';
     #[Validate('required')]
-    public $gender;
+    public $other_id = 's';
     #[Validate('required')]
-    public $permanent_official_mail_address;
+    public $gender = 'Male';
     #[Validate('required')]
-    public $occupation;
+    public $civil_status = 'Widowed';
     #[Validate('required')]
-    public $source_of_funds;
+    public $permanent_official_mail_address = 's';
+    #[Validate('required')]
+    public $occupation = 's';
+    #[Validate('required')]
+    public $source_of_funds = 's';
+
     
 }

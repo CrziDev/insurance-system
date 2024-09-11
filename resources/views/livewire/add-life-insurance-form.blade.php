@@ -13,12 +13,68 @@
                 <x-slot:title>
                     Total Protection Package
                 </x-slot:title>      
+
+                <div class="flex items-center text-sm space-x-2 justify-center">                  
+                    <div class="flex items-center">
+                        <input 
+                            type="checkbox"
+                            value="Economy" 
+                            wire:change="selectPackage($event.target.value)" 
+                            class="w-[20px] h-[100%] accent-lime-200"
+                            @if(in_array('Economy', $form->protection_package)) checked @endif>
+                            
+                        <label for="" class="">Economy</label>
+                    </div>   
+                    <div class="flex items-center">
+                        <input type="checkbox"
+                            value="Premiere"
+                            wire:change="selectPackage($event.target.value)"
+                            class="w-[20px] h-[100%] accent-lime-200"
+                            @if(in_array('Premiere', $form->protection_package)) checked @endif>
+                            
+                        <label for="" class="">Premiere</label>
+                    </div>     
+                    <div class="flex items-center">
+                        <input type="checkbox" 
+                         value="Deluxe"
+                         wire:change="selectPackage($event.target.value)" 
+                         class="w-[20px] h-[100%] accent-lime-200"
+                         @if(in_array('Deluxe', $form->protection_package)) checked @endif>
+                         
+                        <label for="" class="">Deluxe</label>
+                    </div>                 
+                </div>
+
+                @error('form.protectionPackage')<span class="text-xs text-red-500">Field is required</span>@enderror
+
             
             </x-form-card>
             <x-form-card>
                 <x-slot:title>
                     Total Protection Package
-                </x-slot:title>      
+                </x-slot:title>   
+                
+                
+                <div class="flex items-center text-sm space-x-2 justify-center">                  
+                    <div class="flex items-center">
+                        <input type="checkbox" 
+                            value="Standard" 
+                            wire:change="allowancePackage($event.target.value)" c
+                            class="w-[20px] h-[100%] accent-lime-200"  
+                            @if(in_array('Standard', $form->allowance_package)) checked @endif>
+                        <label for="" class="">Standard</label>
+                    </div>   
+                    <div class="flex items-center">
+                        <input type="checkbox"
+                         value="Superior"
+                          wire:change="allowancePackage($event.target.value)"
+                           class="w-[20px] h-[100%] accent-lime-200"
+                           @if(in_array('Superior', $form->allowance_package)) checked @endif>
+                        <label for="" class="">Superior</label>
+                    </div>                     
+                </div>
+                @error('form.protectionPackage')<span class="text-xs text-red-500">Field is required</span>@enderror
+
             </x-form-card>
         </div>
         <x-form-card>
@@ -36,7 +92,7 @@
             </div>
 
             <div class="grid grid-cols-2 gap-5">
-                <x-form-input-w-label error='form.date_of_birth' wire:model="form.date_of_birth">Date of Birth:</x-form-input-w-label>
+                <x-form-input-w-label type="date" error='form.date_of_birth' wire:model="form.date_of_birth">Date of Birth:</x-form-input-w-label>
                 <x-form-input-w-label error='form.place_of_birth' wire:model="form.place_of_birth">Place of Birth</x-form-input-w-label>
             </div>
 
@@ -56,8 +112,33 @@
                 (SSS/GSIS, if TIN is unavailable)</x-form-input-w-label>
             </div>
             <div class="grid grid-cols-2 gap-5">
-                <x-form-input-w-label error='form.gender' wire:model="form.gender">Gender:</x-form-input-w-label>
-                <x-form-input-w-label error='form.civil_status' wire:model="form.civil_status">Civil Status:</x-form-input-w-label>
+
+                <div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="text-xs font-sm">Gender</label>
+                        <select  wire:model="gender"  class="px-2 py-1 text-xs  border rounded text-gray-500" name="" id="">
+                            <option value="">Select Here</option>  
+                                <option  value="Male" {{($form->gender == 'Male')? 'selected':''}}>Male</option>
+                                <option  value="Female" {{($form->gender == 'Male')? 'selected':''}}>Female</option>   
+                        </select>
+                        @error('form.gender')<span class="text-xs text-red-500">Field is required</span>@enderror
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="text-xs font-sm">Civil status</label>
+                        <select  wire:model="civil_status"  class="px-2 py-1 text-xs  border rounded text-gray-500" name="" id="">
+                            <option value="">Select Here</option>  
+                                <option  value="Single" {{($form->civil_status == 'Single')? 'selected':''}}>Single</option>
+                                <option  value="Widowed" {{($form->civil_status == 'Widowed')? 'selected':''}}>Married</option>
+                                <option  value="Widowed" {{($form->civil_status == 'Widowed')? 'selected':''}}>Widowed</option>   
+                                <option  value="Separated" {{($form->civil_status == 'Separated')? 'selected':''}}>Separated</option>   
+
+                        </select>
+                        @error('form.gender')<span class="text-xs text-red-500">Field is required</span>@enderror
+                    </div>
+                </div>
             </div>
 
 
