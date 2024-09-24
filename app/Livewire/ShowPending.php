@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\NonLifeInsurance;
 use Livewire\Component;
-use Livewire\Attributes\On; 
 class ShowPending extends Component
 {
 

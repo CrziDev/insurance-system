@@ -56,18 +56,19 @@
                 </div>  
             @endforeach         
         
-            <x-modal name="pending-details">
+        
+        </div>    
+
+        <x-modal name="pending-details">
                  @if($selectedRow)
                 <livewire:show-pending :client="$selectedRow"/>
                 @endif
             </x-modal> 
-        
-            <x-modal name="pending-form">   
-                @if($selectedRow)
-                    <livewire:update-non-life-insurance-form :selectedRow="$selectedRow" :policyId="$selectedRow->type_id" />    
-                @endif
-            </x-modal>
-        
-        </div>    
+    
+        <x-modal name="pending-form">   
+            @if($selectedRow)
+                <livewire:update-non-life-insurance-form :selectedRow="$selectedRow" :policyId="$selectedRow->type_id" />    
+            @endif
+        </x-modal>
     </div>
 </div>

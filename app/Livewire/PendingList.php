@@ -13,9 +13,10 @@ class PendingList extends Component
     protected $queryString = ['search', 'status'];
 
     public function selectRow(NonLifeInsurance $selectedRow){
+
         $this->selectedRow = $selectedRow;
-        
-        $this->dispatch('open-modal', ['name' => 'pending-details']);
+    
+        $this->dispatch('open-modal', name:'pending-details');
     }
 
     public function filterStatus($status){

@@ -21,6 +21,8 @@ class UpdateNonLifeInsuranceForm extends Component
     public $others = '';
     public $total = '';
     public $selectedRow;
+    public $policyId;
+
 
     public function mount($policyId = null)
     {
