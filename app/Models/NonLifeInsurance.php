@@ -49,7 +49,6 @@ class NonLifeInsurance extends Model
        
     }
 
-    
     protected function getStatusDescriptionAttribute()
     {
         $statusText = [

@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function nonLifeInsurance(){
         return $this->hasMany(NonLifeInsurance::class,'user_id');
     }
+
+    public function lifeInsurance(){
+        return $this->hasMany(LifeInsurance::class,'user_id');
+    }
 }

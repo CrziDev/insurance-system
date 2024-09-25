@@ -21,12 +21,12 @@
     <div class="h-full overflow-x-auto">
         <div class="w-full flex justify-between flex-col">
             @foreach($data as $row)
-                <div wire:key="$row->id" wire:click="selectRow({{$row->id}})" class="flex items-center border px-3 rounded-md mb-2 py-3 hover:bg-slate-200 cursor-pointer">
+                <div wire:key="$row->id" wire:click="selectRow({{$row}})" class="flex items-center border px-3 rounded-md mb-2 py-3 hover:bg-slate-200 cursor-pointer">
                     <div class="w-full">
                         <div class="flex align-center space-x-2 border-r">
                             <img class="w-[28px] h-[23px]" src="{{Vite::asset('resources/images/insurance1.png')}}" alt="">
                             <div class="flex flex-col space-y-1">
-                                <p class="text-sm font-bold">{{$row->Policy->name}}</p>
+                                <p class="text-sm font-bold">{{ $row->Policy?->name ?? 'Life Policy' }}</p>
                                 <p class="text-xs "> {{$row->user->customer[0]?->full_name}}</p>
                             </div>   
                         </div>
@@ -38,7 +38,14 @@
                             <p class="text-xs "> {{$row->user->email}}</p>
                         </div>   
                     </div>
-                    
+
+                    <div class="w-full border-r">
+                        <div class="flex flex-col space-y-1 ">
+                        <p class="text-sm font-bold text-center">{{ $row->Policy?->type ?? 'Life Policy' }}</p>
+                            <p class="text-xs  text-center">Policy Type</p>
+                        </div>   
+                    </div>
+                                     
                     <div class="w-full border-r">
                         <div class="flex flex-col space-y-1 ">
                             <p class="text-sm font-bold text-center">{{$row->created_at_format}}</p>
@@ -63,7 +70,13 @@
                  @if($selectedRow)
                 <livewire:show-pending :client="$selectedRow"/>
                 @endif
-            </x-modal> 
+        </x-modal> 
+        
+        <x-modal name="show-status-details">
+                @if($selectedRow)
+                    <livewire:show-other-status :client="$selectedRow"/>
+                @endif
+        </x-modal> 
     
         <x-modal name="pending-form">   
             @if($selectedRow)
