@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\NonLifeInsurance;
+use App\Models\Transaction;
 use Livewire\Component;
 
 class RecentEvents extends Component
@@ -13,8 +14,12 @@ class RecentEvents extends Component
     {
         $data = [];
         if(request()->user()->role == 3){
-            $data = NonLifeInsurance::whereIn('status', [1, 2, 3])
+            $data = Transaction::whereIn('status', [1, 2, 3])
             ->where('user_id',request()->user()->id)
+            ->with('user.customer')
+            ->get();
+        }else{
+            $data = Transaction::whereIn('status', [1, 2, 3,4])
             ->with('user.customer')
             ->get();
         }

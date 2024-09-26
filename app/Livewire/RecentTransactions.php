@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\NonLifeInsurance;
+use App\Models\Transaction;
 use Livewire\Component;
 
 class RecentTransactions extends Component
@@ -16,29 +17,32 @@ class RecentTransactions extends Component
 
         $user = request()->user();
 
-        if($user->role == 3){
-            $nonLifeInsurance = NonLifeInsurance::with('Policy')
-            ->with('user.customer')
-            ->where('user_id',$user->id)
-            ->where('status',4)
-            ->orderBydesc('created_at')->get();
-        }else{
-            $searchTerm = '%'.$this->search.'%';
+        $transactions = Transaction::with('policy', 'nonLifeInsurance','lifeInsurance','user')
+        ->orderByDesc('status')->get();
+    
+        // if($user->role == 3){
+        //     $nonLifeInsurance = NonLifeInsurance::with('Policy')
+        //     ->with('user.customer')
+        //     ->where('user_id',$user->id)
+        //     ->where('status',4)
+        //     ->orderBydesc('created_at')->get();
+        // }else{
+        //     $searchTerm = '%'.$this->search.'%';
 
-            $nonLifeInsurance = NonLifeInsurance::where(function($query) use ($searchTerm) {
-                    $query->whereHas('Policy', function($q) use ($searchTerm) {
-                        $q->where('name', 'like', $searchTerm);
-                    })
-                    ->orWhereHas('user.customer', function($q) use ($searchTerm) {
-                        $q->where('first_name', 'like', $searchTerm);
-                    });
-                })
-                ->orderByDesc('updated_at')
-                ->with(['Policy', 'user.customer'])
-                ->get();
+        //     $nonLifeInsurance = NonLifeInsurance::where(function($query) use ($searchTerm) {
+        //             $query->whereHas('Policy', function($q) use ($searchTerm) {
+        //                 $q->where('name', 'like', $searchTerm);
+        //             })
+        //             ->orWhereHas('user.customer', function($q) use ($searchTerm) {
+        //                 $q->where('first_name', 'like', $searchTerm);
+        //             });
+        //         })
+        //         ->orderByDesc('updated_at')
+        //         ->with(['Policy', 'user.customer'])
+        //         ->get();
             
-        }
+        // }
       
-        return view('livewire.recent-transactions',['data'=>$nonLifeInsurance,'user'=> $user ]);
+        return view('livewire.recent-transactions',['data'=>$transactions,'user'=> $user ]);
     }
 }

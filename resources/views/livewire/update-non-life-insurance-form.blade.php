@@ -112,11 +112,12 @@
                 </div>
         </x-form-card>
 
-        @if($selectedRow->status == 4)
+    
+       
         <div class="flex justify-center">
             <x-button>Approve Request</x-button>
         </div>
-        @endif
+    
 
     </form>
 </div>

@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Livewire\Forms\NonLifeInsuranceAdminAttribute;
 use App\Models\NonLifeInsurance;
 use App\Models\Policy;
+use App\Models\Transaction;
 use App\Models\User;
 use Livewire\Component;
 
@@ -20,22 +21,24 @@ class UpdateNonLifeInsuranceForm extends Component
     public $localGovTax = '';
     public $others = '';
     public $total = '';
-    public $selectedRow;
-    public $policyId;
+    public Transaction $selectedRow;
 
 
     public function mount($policyId = null)
     {
-
+     
         $user = User::with('customer')->find($this->selectedRow->user->id);
-
+        $nonLifeType = NonLifeInsurance::find($this->selectedRow->non_life_id);
         $this->form->firstName = $user->customer[0]->first_name;
         $this->form->lastName = $user->customer[0]->last_name;
         $this->form->businessProfession = $user->customer[0]->profession;
         $this->form->address = $user->customer[0]->address;
+        $this->form->model = $nonLifeType->model;
+        $this->form->plateNo = $nonLifeType->plate; 
+        $this->form->make = $nonLifeType->make; 
+        //Continue other field
 
-
-        $this->selectOptions($policyId);
+        $this->selectOptions($this->selectedRow->policy_type_id);
         $this->policyLists = Policy::all();
     }
 
@@ -62,8 +65,14 @@ class UpdateNonLifeInsuranceForm extends Component
 
     public function update(){
         $this->validate();
+  
+        Transaction::findOrFail($this->selectedRow->id)->update([
+            "date_effective"=>$this->form->dateEffective,
+            "expiration"=>$this->form->expiration,
+            "status"=>1,
+        ]);
 
-        NonLifeInsurance::findOrFail($this->selectedRow->id)->update([
+        NonLifeInsurance::findOrFail($this->selectedRow->non_life_id)->update([
             "model"=> $this->form->model,
             "body_type"=> $this->form->typeBody,
             "plate"=> $this->form->plateNo,
@@ -76,9 +85,6 @@ class UpdateNonLifeInsuranceForm extends Component
             "make"=>$this->form->make,
             "limit_liabilty"=>$this->form->limitLiabity,
             "premium_paid"=>$this->form->premiumPaidOnlimit,
-            "date_effective"=>$this->form->dateEffective,
-            "expiration"=>$this->form->expiration,
-            "status"=>1,
         ]);
 
         toastr()->success('Request Approved Successfuly!');

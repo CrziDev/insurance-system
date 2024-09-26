@@ -97,6 +97,8 @@
                     <x-button wire:click="showForm()" class="text-sm">Proccess Application</x-button>
                 </div>
             @endif
+
+            
         </div>
     </div>
 </div>

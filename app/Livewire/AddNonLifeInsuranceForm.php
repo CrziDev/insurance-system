@@ -5,13 +5,12 @@ namespace App\Livewire;
 use App\Livewire\Forms\NonLifeInsuranceCustomerAttribute;
 use App\Models\NonLifeInsurance;
 use App\Models\Policy;
+use App\Models\Transaction;
 use App\Models\User;
 use Livewire\Component;
 
 class AddNonLifeInsuranceForm extends Component
-{
-
- 
+{ 
     public NonLifeInsuranceCustomerAttribute $form;
     public $buttonText = '';
     public $formAction = '';
@@ -26,9 +25,8 @@ class AddNonLifeInsuranceForm extends Component
 
     public function save(){
         $this->validate();  
-        NonLifeInsurance::create([
+        $record = NonLifeInsurance::create([
             'user_id' => $this->userId,
-            'type_id' => $this->form->policyId,
             'model' => $this->form->model,
             'make' => $this->form->make,
             'plate' => $this->form->plateNo,
@@ -38,6 +36,12 @@ class AddNonLifeInsuranceForm extends Component
             'authorize_capacity'  => $this->form->authorizedCapacity,
             'blt_num'  => $this->form->bltFileNo,
             'weight_capacity' => $this->form->weightCapacity,
+        ]);
+
+        Transaction::create([
+            'non_life_id' => $record->id,
+            'policy_type_id' => $this->form->policyId,
+            'user_id' => $this->userId,
         ]);
 
         toastr()->success('Request was successfully submitted!');

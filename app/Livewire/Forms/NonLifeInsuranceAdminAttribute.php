@@ -20,31 +20,31 @@ class NonLifeInsuranceAdminAttribute extends Form
     public $businessProfession;
 
     #[Validate('required')]
-    public $model = 'model' ;
+    public $model = 'test' ;
 
     #[Validate('required')]
-    public $plateNo = 'c' ;
+    public $plateNo = 'test' ;
 
     #[Validate('required')]
-    public $make = 'make' ;
+    public $make = 'test' ;
 
     #[Validate('required')]
-    public $serialChassis = 'serialChassis' ;
+    public $serialChassis = 'test' ;
 
     #[Validate('required')]
-    public $typeBody = 'typeBody';
+    public $typeBody = 'test';
 
     #[Validate('required')]
-    public $color = 'color';
+    public $color = 'test';
 
     #[Validate('required')]
-    public $authorizedCapacity = 'authorizedCapacity';
+    public $authorizedCapacity = 'test';
 
     #[Validate('required')]
-    public $bltFileNo = 'bltFileNo' ;
+    public $bltFileNo = 'test' ;
 
     #[Validate('required')]
-    public $weightCapacity = 'weightCapacity' ;
+    public $weightCapacity = 'test' ;
 
     #[Validate('required')]
     public $policyId;
@@ -56,14 +56,14 @@ class NonLifeInsuranceAdminAttribute extends Form
     public $expiration = '' ;
     
     #[Validate('required')]
-    public $confirmation_no = 'bltFileNo' ;
+    public $confirmation_no = 'test' ;
 
     #[Validate('required')]
-    public $official_receipt = 'weightCapacity' ;
+    public $official_receipt = 'test' ;
 
     #[Validate('required')]
-    public $limitLiabity = 'limitLiabity' ;
+    public $limitLiabity = 'test' ;
 
     #[Validate('required')]
-    public $premiumPaidOnlimit = 'premiumPaidOnlimit' ;
+    public $premiumPaidOnlimit = 'test' ;
 }

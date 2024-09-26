@@ -4,17 +4,18 @@ namespace App\Livewire;
 
 use App\Models\LifeInsurance;
 use App\Models\NonLifeInsurance;
+use App\Models\Transaction;
 use Livewire\Component;
 
 class PendingList extends Component
 {
-    public NonLifeInsurance $selectedRow;
+    public Transaction $selectedRow;
     public $tableTitle;
     public $search;
     public $status = ''; // Add this line
     protected $queryString = ['search', 'status'];
 
-    public function selectRow(NonLifeInsurance $selectedRow)
+    public function selectRow(Transaction $selectedRow)
     {
         
         $this->selectedRow = $selectedRow;
@@ -38,53 +39,57 @@ class PendingList extends Component
     {
         $user = request()->user();
         
-        $query = NonLifeInsurance::with('Policy', 'user.customer')
+        $transactions = Transaction::with('policy', 'nonLifeInsurance','lifeInsurance','user')
         ->orderByDesc('status');
         
-        $query2 = LifeInsurance::with('user.customer')->orderByDesc('status');
+
+        if ($user->role == 3) {
+            $transactions->where('user_id', $user->id);
+        }
+        
+        // $query2 = LifeInsurance::with('user.customer')->orderByDesc('status');
 
 
-        // dd($query2);
+        // // dd($query2);
             
-            if ($user->role == 3) {
-                $query->where('user_id', $user->id);
+        //     if ($user->role == 3) {
+        //         $query->where('user_id', $user->id);
 
-                $query2->where('user_id', $user->id);
-            } else {
-                $searchTerm = '%' . $this->search . '%';
+        //         $query2->where('user_id', $user->id);
+        //     } else {
+        //         $searchTerm = '%' . $this->search . '%';
                 
-                $query->where(function ($query) use ($searchTerm) {
-                    $query->whereHas('Policy', function ($q) use ($searchTerm) {
-                        $q->where('name', 'like', $searchTerm);
-                    })
-                    ->orWhereHas('user.customer', function ($q) use ($searchTerm) {
-                        $q->where('first_name', 'like', $searchTerm);
-                    });
-                });
+        //         $query->where(function ($query) use ($searchTerm) {
+        //             $query->whereHas('Policy', function ($q) use ($searchTerm) {
+        //                 $q->where('name', 'like', $searchTerm);
+        //             })
+        //             ->orWhereHas('user.customer', function ($q) use ($searchTerm) {
+        //                 $q->where('first_name', 'like', $searchTerm);
+        //             });
+        //         });
 
-                $query2->where(function ($query2) use ($searchTerm) {
-                    $query2->WhereHas('user.customer', function ($q2) use ($searchTerm) {
-                        $q2->where('first_name', 'like', $searchTerm);
-                    });
-                });
-            }
+        //         $query2->where(function ($query2) use ($searchTerm) {
+        //             $query2->WhereHas('user.customer', function ($q2) use ($searchTerm) {
+        //                 $q2->where('first_name', 'like', $searchTerm);
+        //             });
+        //         });
+        //     }
             
-            // Apply status filter for NonLifeInsurance
-            if ($this->status) {
-                $query->where('status', $this->status);
-                $query2->where('status', $this->status);
-            }
+        //     // Apply status filter for NonLifeInsurance
+        //     if ($this->status) {
+        //         $query->where('status', $this->status);
+        //         $query2->where('status', $this->status);
+        //     }
             
-            $nonLifeInsurance = $query->get();
-            $lifeInsurance = $query2->get();
+        //     $nonLifeInsurance = $query->get();
+        //     $lifeInsurance = $query2->get();
 
             // dd($lifeInsurance);
 
         // Combine both results
-        $combinedResults = $nonLifeInsurance->merge($lifeInsurance);
+        // $combinedResults = $nonLifeInsurance->merge($lifeInsurance);|
 
-    
 
-        return view('livewire.pending-list', ['data' => $combinedResults, 'user' => $user]);
+        return view('livewire.pending-list', ['data' => $transactions->get(), 'user' => $user]);
     }
 }

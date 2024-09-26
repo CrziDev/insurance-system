@@ -50,7 +50,8 @@ class DatabaseSeeder extends Seeder
             'docstamp'=> fake()->numberBetween(0,100),
             'govtax'=> fake()->numberBetween(0,100),
             'others'=> fake()->numberBetween(0,100),
-
+            'quantity'=>10,
+            'type' => 'Non-life-type'
         ]);
 
         Policy::create([
@@ -60,7 +61,20 @@ class DatabaseSeeder extends Seeder
             'docstamp'=> fake()->numberBetween(0,100),
             'govtax'=> fake()->numberBetween(0,100),
             'others'=> fake()->numberBetween(0,100),
+            'quantity'=>10,
+            'type' => 'Non-life-type'
+        ]);
 
+
+        
+        Policy::create([
+            'name'=> fake()->name(),
+            'premium'=> fake()->numberBetween(0,100),
+            'docstamp'=> fake()->numberBetween(0,100),
+            'govtax'=> fake()->numberBetween(0,100),
+            'others'=> fake()->numberBetween(0,100),
+            'quantity'=>10,
+            'type' => 'Life Policy'
         ]);
 
 

@@ -27,6 +27,7 @@ class PolicyList extends Component
             ->orWhere('type', 'like', $searchTerm)
             ->orderBy('id')
             ->get();
+            
         return view('livewire.policy-list',['data'=>$data]);
     }
 }

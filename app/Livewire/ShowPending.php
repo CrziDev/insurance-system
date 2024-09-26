@@ -3,11 +3,12 @@
 namespace App\Livewire;
 
 use App\Models\NonLifeInsurance;
+use App\Models\Transaction;
 use Livewire\Component;
 class ShowPending extends Component
 {
 
-    public NonLifeInsurance $client;
+    public Transaction $client;
     
 
     public function showForm(){

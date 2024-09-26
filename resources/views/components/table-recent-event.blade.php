@@ -12,17 +12,21 @@
                     </div>   
                 </div>
             </div>
+
             <div class="w-full">
                 <div class="flex flex-col space-y-1">
                     <p class="text-xs  text-{{lcfirst($row->status_description)}} font-sm text-center">{{$row->status_event}}</p>
+                    <p class="text-xs text-center">Status</p>   
                 </div>   
             </div>
+
             <div class="w-full">
                 <div class="flex flex-col space-y-1">
                     <p class="text-xs font-sm text-center">{{$row->updated_format}}</p>
+                    <p class="text-xs text-center">Date</p>   
                 </div>   
             </div>
-    
+
         </div>  
     @endforeach         
 </div>    
