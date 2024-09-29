@@ -23,6 +23,7 @@ class UpdateNonLifeInsuranceForm extends Component
     public $total = '';
     public Transaction $selectedRow;
     public $modal;
+    public $status;
 
     public function mount($policyId = null)
     {
@@ -39,8 +40,8 @@ class UpdateNonLifeInsuranceForm extends Component
         $this->form->serialChassis = $nonLifeType->nonLifeInsurance->serial_chassis; 
         $this->form->typeBody = $nonLifeType->nonLifeInsurance->body_type; 
         $this->form->color = $nonLifeType->nonLifeInsurance->color; 
-        $this->form->authorizedCapacity = $nonLifeType->nonLifeInsurance->make; 
-        $this->form->bltFileNo = $nonLifeType->nonLifeInsurance->authorize_capacity; 
+        $this->form->authorizedCapacity = $nonLifeType->nonLifeInsurance->authorize_capacity; 
+        $this->form->bltFileNo = $nonLifeType->nonLifeInsurance->blt_num; 
         $this->form->weightCapacity = $nonLifeType->nonLifeInsurance->weight_capacity; 
         $this->form->dateEffective = $nonLifeType->date_effective; 
         $this->form->expiration = $nonLifeType->expiration; 
@@ -49,10 +50,10 @@ class UpdateNonLifeInsuranceForm extends Component
         $this->form->limitLiabity = $nonLifeType->nonLifeInsurance->limit_liabilty; 
         $this->form->premiumPaidOnlimit = $nonLifeType->nonLifeInsurance->limit_premium_paid; 
         $this->form->form_endorsement = $nonLifeType->nonLifeInsurance->forms_and_indorsement; 
-
+        $this->form->formNumber = $nonLifeType->nonLifeInsurance->form_id; 
+        $this->status = $nonLifeType->status;
 
         //Continue other field
-
         $this->selectOptions($this->selectedRow->policy_type_id);
         $this->policyLists = Policy::all();
     }
@@ -100,6 +101,10 @@ class UpdateNonLifeInsuranceForm extends Component
             "make"=>$this->form->make,
             "limit_liabilty"=>$this->form->limitLiabity,
             "premium_paid"=>$this->form->premiumPaidOnlimit,
+            "official_receipt_no"=>$this->form->official_receipt,
+            "confirmation_cover_no"=>$this->form->confirmation_no,
+            "forms_and_indorsement"=>$this->form->form_endorsement,
+            "form_id"=>$this->form->formNumber,
         ]);
 
         toastr()->success('Request Approved Successfuly!');

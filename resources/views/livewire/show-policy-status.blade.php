@@ -17,7 +17,6 @@
                 <th class="border border-lime-500 bg-lime-600 text-white">Type</th>
                 <th class="border border-lime-500 bg-lime-600 text-white">Status</th>
                 <th class="border border-lime-500 bg-lime-600 text-white">Action</th>
-                <th class="border border-lime-500 bg-lime-600 text-white">View</th>
             </tr>
         </thead>
 
@@ -30,10 +29,8 @@
                 <td class="py-3 border border-lime-500 text-center">{{$row->Policy->name}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->Policy->type}}</td>
                 <td class="py-3 border border-lime-500  text-{{lcfirst($row->status_description)}} text-center">{{$row->status_description}}</td>
-                <td class="py-3 border border-lime-500 text-center">
+                <td class="py-3 border border-lime-500 text-center flex space-x-1 px-1">
                     <button class="  w-[100px] text-white bg-amber-600 p-1 font-semibold rounded-md">Renew</button>
-                </td>
-                <td class="py-3 border border-lime-500 text-center">
                     <button class="  w-[100px] bg-lime-600 text-white  p-1 font-semibold rounded-md" wire:click="selectRow({{$row}})" >View</button>
                 </td>
             </tr>

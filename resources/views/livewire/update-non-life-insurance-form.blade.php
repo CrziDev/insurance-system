@@ -123,10 +123,11 @@
         </div>
 
     
-       
+        @if($status == 4)
         <div class="flex justify-center">
             <x-button>Approve Request</x-button>
         </div>
+        @endif
     
 
     </form>

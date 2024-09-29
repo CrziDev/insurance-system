@@ -10,12 +10,12 @@ use Livewire\Component;
 class ShowPolicyStatus extends Component
 {
     public customer $selectedCustomer;
-    public NonLifeInsurance $selectedRow;
+    public Transaction $selectedRow;
     public $fullName;
     public $data = [];
     public $addSelected;
 
-    public function selectRow(NonLifeInsurance $selectedRow){
+    public function selectRow(Transaction $selectedRow){
         $this->selectedRow = $selectedRow;  
         $this->dispatch('open-modal-child',name:'view-insurance');
     }
