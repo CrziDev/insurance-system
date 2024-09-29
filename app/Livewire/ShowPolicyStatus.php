@@ -13,6 +13,7 @@ class ShowPolicyStatus extends Component
     public NonLifeInsurance $selectedRow;
     public $fullName;
     public $data = [];
+    public $addSelected;
 
     public function selectRow(NonLifeInsurance $selectedRow){
         $this->selectedRow = $selectedRow;  
@@ -20,6 +21,7 @@ class ShowPolicyStatus extends Component
     }
     
     public function addInsurance($type){
+        $this->addSelected = true;
         if($type == 'non-life'){
             $this->dispatch('open-modal-child',name:'add-insurance');
         }   

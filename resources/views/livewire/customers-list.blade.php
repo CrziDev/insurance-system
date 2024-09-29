@@ -71,7 +71,7 @@
 
     <x-modal name="show-policy">
         @if($selectedCustomer)
-            <livewire:show-policy-status wire:ignore.self :fullName="$fullName" :selectedCustomer="$selectedCustomer" key="{{ $selectedCustomer->id }}">
+            <livewire:show-policy-status :fullName="$fullName" :selectedCustomer="$selectedCustomer" key="{{ $selectedCustomer->id }}">
         @endif
     </x-modal>
     

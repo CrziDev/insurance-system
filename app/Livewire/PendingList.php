@@ -17,7 +17,7 @@ class PendingList extends Component
 
     public function selectRow(Transaction $selectedRow)
     {
-        
+    
         $this->selectedRow = $selectedRow;
 
         if($this->selectedRow->status == 4){

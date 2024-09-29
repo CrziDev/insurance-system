@@ -38,41 +38,42 @@
             <div class="px-5 py-2 flex border-b">
                 <div class="space-y-5 flex-1">
                     <div>
-                        <p class="text-xs">{{$client->model}}</p>
+
+                        <p class="text-xs">{{$client->nonLifeInsurance->model}}</p>
                         <p class="text-xs">Model</p>
                     </div>
                     
                     <div>
-                    <p class="text-xs">{{$client->make}}</p>
-                        <p class="text-xs  ">Make</p>
+                    <p class="text-xs">{{$client->nonLifeInsurance->make}}</p>
+                        <p class="text-xs">Make</p>
                     </div>
                     
                     <div>
-                    <p class="text-xs">{{$client->body_type}}</p>
+                    <p class="text-xs">{{$client->nonLifeInsurance->body_type}}</p>
                         <p class="text-xs  ">Type of body</p>
                     </div>
 
                     
                     <div>
-                        <p class="text-xs">{{$client->color}}</p>
+                        <p class="text-xs">{{$client->nonLifeInsurance->color}}</p>
                         <p class="text-xs  ">Color</p>
                     </div>
 
                     
                     <div>
-                    <p class="text-xs">{{$client->blt_num}}</p>
+                    <p class="text-xs">{{$client->nonLifeInsurance->blt_num}}</p>
                         <p class="text-xs  ">Blt File No</p>
                     </div>
                 </div>
                 
                 <div class="space-y-5 flex-1">
                     <div>
-                    <p class="text-xs">{{$client->plate}}</p>
+                    <p class="text-xs">{{$client->nonLifeInsurance->plate}}</p>
                         <p class="text-xs">Plate No</p>
                     </div>
                     
                     <div>
-                    <p class="text-xs">{{$client->serial_chassis}}</p>
+                    <p class="text-xs">{{$client->nonLifeInsurance->serial_chassis}}</p>
                         <p class="text-xs  ">Serial/Chassis No</p>
                     </div>
                     
@@ -81,11 +82,11 @@
                         <p class="text-xs  ">Motor No</p>
                     </div>
                     <div>
-                    <p class="text-xs">{{$client->authorize_capacity}}</p>
+                    <p class="text-xs">{{$client->nonLifeInsurance->authorize_capacity}}</p>
                         <p class="text-xs  ">Authorize Capacity</p>
                     </div>
                     <div>
-                    <p class="text-xs">{{$client->weight_capacity}}</p>
+                    <p class="text-xs">{{$client->nonLifeInsurance->weight_capacity}}</p>
                         <p class="text-xs  ">Unladen Weight (kgs)</p>
                     </div>
                     

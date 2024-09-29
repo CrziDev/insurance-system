@@ -56,14 +56,18 @@ class NonLifeInsuranceAdminAttribute extends Form
     public $expiration = '' ;
     
     #[Validate('required')]
-    public $confirmation_no = 'test' ;
+    public $confirmation_no = '' ;
 
     #[Validate('required')]
-    public $official_receipt = 'test' ;
+    public $official_receipt = '' ;
 
     #[Validate('required')]
-    public $limitLiabity = 'test' ;
+    public $limitLiabity = '' ;
+    
+    #[Validate('required')]
+    public $formNumber = '' ;
 
     #[Validate('required')]
-    public $premiumPaidOnlimit = 'test' ;
+    public $premiumPaidOnlimit = 'test';
+    public $form_endorsement;
 }

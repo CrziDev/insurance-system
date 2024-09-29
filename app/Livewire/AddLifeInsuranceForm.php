@@ -11,11 +11,12 @@ class AddLifeInsuranceForm extends Component
 {
     public LifeInsuranceCustomerAttribute $form;
     public $userId;
-
+    public $modal;
 
     public function mount($policyId = null)
     {
-    
+
+        dd($this->modal);
         $user = User::with('customer')->find($this->userId);
         $this->userId =  $user->id;
     }

@@ -22,9 +22,11 @@ class AddNonLifeInsuranceForm extends Component
     public $total = '';
     public $selectedCustomer;
     public $userId;
+    public $modal;
 
     public function save(){
         $this->validate();  
+    
         $record = NonLifeInsurance::create([
             'user_id' => $this->userId,
             'model' => $this->form->model,
@@ -36,6 +38,9 @@ class AddNonLifeInsuranceForm extends Component
             'authorize_capacity'  => $this->form->authorizedCapacity,
             'blt_num'  => $this->form->bltFileNo,
             'weight_capacity' => $this->form->weightCapacity,
+            'limit_premium_paid' => $this->form->premiumPaidOnlimit,
+            'limit_liabilty' => $this->form->limitLiabity,      
+            'forms_and_indorsement' => $this->form->form_endorsement,
         ]);
 
         Transaction::create([
@@ -53,7 +58,7 @@ class AddNonLifeInsuranceForm extends Component
         }
     }
 
-    public function mount($policyId = null)
+    public function mount()
     {
     
         $user = User::with('customer')->find($this->userId);
@@ -61,8 +66,10 @@ class AddNonLifeInsuranceForm extends Component
         $this->form->lastName = $user->customer[0]->last_name;
         $this->form->businessProfession = $user->customer[0]->profession;
         $this->form->address = $user->customer[0]->address;
-        $this->selectOptions($policyId);
-        $this->userId =  $user->id;
+     
+        $this->userId = $user->id;
+        
+     
         $this->policyLists = Policy::all();
     }
 

@@ -65,7 +65,6 @@
             @endforeach         
       
         </div>    
-
         
         <x-modal name="show-status-details">
                 @if($selectedRow)

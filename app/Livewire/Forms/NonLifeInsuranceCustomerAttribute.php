@@ -17,7 +17,7 @@ class NonLifeInsuranceCustomerAttribute extends Form
     public $address = 'address' ;
 
     #[Validate('required')]
-    public $businessProfession = 'businessProfession' ;
+    public $businessProfession = 'test' ;
 
     #[Validate('required')]
     public $model = 'test' ;
@@ -29,7 +29,7 @@ class NonLifeInsuranceCustomerAttribute extends Form
     public $make = 'test' ;
 
     #[Validate('required')]
-    public $serialChassis = 'serialChassis' ;
+    public $serialChassis = 'test' ;
 
     #[Validate('required')]
     public $typeBody = 'test';
@@ -38,7 +38,7 @@ class NonLifeInsuranceCustomerAttribute extends Form
     public $color = 'test';
 
     #[Validate('required')]
-    public $authorizedCapacity = 'authorizedCapacity';
+    public $authorizedCapacity = 'test';
 
     #[Validate('required')]
     public $bltFileNo = 'test' ;
@@ -48,5 +48,10 @@ class NonLifeInsuranceCustomerAttribute extends Form
 
     #[Validate('required')]
     public $policyId;
+
+    public $premiumPaidOnlimit;
+    public $limitLiabity;
+
+    public $form_endorsement;
 
 }

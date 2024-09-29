@@ -108,9 +108,19 @@
                     <x-form-input-w-label type="date" error='form.expiration' wire:model="form.expiration">Effective Until</x-form-input-w-label>
                     <x-form-input-w-label error='form.confirmation_no' wire:model="form.confirmation_no">Confirmation of Cover No.</x-form-input-w-label>
                     <x-form-input-w-label error='form.official_receipt' wire:model="form.official_receipt">Official Receipt No.</x-form-input-w-label>            
-
+                </div>
+                <div class="grid grid-cols-1">
+                    <x-form-input-w-label type="text" error='form.formNumber' wire:model="form.formNumber">Form ID</x-form-input-w-label>
                 </div>
         </x-form-card>
+        <div class="grid grid-cols-1 mb-5">
+            <div>
+                <div class="mb-2">
+                    <x-form-input-label  class="mr-1">Forms and Endorsements Made Part of this Policy at time of Issue</x-form-input-label>
+                    <x-form-input error='form.form_endorsement' wire:model="form.form_endorsement"></x-form-input>
+                </div>
+            </div>
+        </div>
 
     
        

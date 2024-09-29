@@ -5,8 +5,8 @@
         class="overflow-x-auto relative"
 
         >
-        <span class="mb-5 font-2lg text-xl block text-center ">Non-life Insurance Policy Application</span>
-        <x-close-modal-icon class="absolute right-0 top-0"/>
+        <span class="mb-5 font-2lg text-xl block text-center ">Non-life Insurance Policy Applications</span>
+        <x-close-modal-icon :modal="$modal" class="absolute right-0 top-0"/>
         <x-form-card>
             <x-slot:title>
                 Personal Information
@@ -101,7 +101,14 @@
             </div>
         </x-form-card>
         <x-form-input hidden wire:model="userId"></x-form-input>
-
+        <div class="grid grid-cols-1">
+                <div>
+                    <div class="mb-2">
+                        <x-form-input-label  class="mr-1">Forms and Endorsements Made Part of this Policy at time of Issue</x-form-input-label>
+                        <x-form-input error='form.form_endorsement' wire:model="form.form_endorsement"></x-form-input>
+                    </div>
+                </div>
+        </div>
             
         <div class="flex justify-center">
             <x-button>Submit Request</x-button>

@@ -55,7 +55,6 @@
       </div>  
     </div>   
 
-
     <x-modal-child name="view-insurance">   
         @if($transactions)
             <livewire:update-non-life-insurance-form modal="-child" :selectedRow="$transactions" :policyId="$transactions->type_id" />    

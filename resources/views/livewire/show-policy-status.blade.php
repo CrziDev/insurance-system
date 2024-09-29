@@ -60,7 +60,9 @@
         @endif
     </x-modal-child>
 
-    <x-modal-child name="add-insurance">      
-            <livewire:add-non-life-insurance-form :userId="$selectedCustomer->user->id"/>    
+    <x-modal-child name="add-insurance">    
+        @if($addSelected)  
+            <livewire:add-non-life-insurance-form modal="-child" :userId="$selectedCustomer->user->id"/>    
+        @endif
     </x-modal-child>
 </div>
