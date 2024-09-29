@@ -45,7 +45,7 @@
             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="mainButton">
                 <button id="nonLifeBtn" wire:click="addInsurance('non-life')" class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">Non-Life
                     Policy</button>
-                <button id="lifePolicyBtn" class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">Life
+                <button id="lifePolicyBtn"wire:click="addInsurance('life')"  class="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">Life
                     Policy</button>
             </div>
         </div>
@@ -57,9 +57,10 @@
         @endif
     </x-modal-child>
 
-    <x-modal-child name="add-insurance">    
-        @if($addSelected)  
+    <x-modal-child name="add-non-life-insurance">    
             <livewire:add-non-life-insurance-form modal="-child" :userId="$selectedCustomer->user->id"/>    
-        @endif
+    </x-modal-child>
+    <x-modal-child name="add-life-insurance">    
+            <livewire:add-life-insurance-form modal="-child" :userId="$selectedCustomer->user->id"/>    
     </x-modal-child>
 </div>

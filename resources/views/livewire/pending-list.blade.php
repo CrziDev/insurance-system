@@ -66,20 +66,30 @@
         </div>    
 
         <x-modal name="pending-details">
-                 @if($selectedRow)
-                <livewire:show-pending :client="$selectedRow"  key="{{ $selectedRow->id }}"/>
+                @if($selectedRow)
+                    @if($this->selectedRow->policy->type == "Non-life-type")
+                    <livewire:show-pending :client="$selectedRow"  key="{{ $selectedRow->id }}"/>
+                    @endif
+
+                    @if($this->selectedRow->policy->type == "Life Policy")
+                        <livewire:update-life-insurance-form :selectedRow="$selectedRow" key="{{ $selectedRow->id }}"/>
+                    @endif
                 @endif
         </x-modal> 
         
         <x-modal name="show-status-details">
                 @if($selectedRow)
+                    @if($this->selectedRow->policy->type == "Non-life-type")
                     <livewire:show-other-status :selected="$selectedRow"  key="{{ $selectedRow->id }}"/>
+                    @endif
                 @endif
         </x-modal> 
     
         <x-modal name="pending-form">   
             @if($selectedRow)
-                <livewire:update-non-life-insurance-form :selectedRow="$selectedRow" />    
+                @if($this->selectedRow->policy->type == "Non-life-type")
+                <livewire:update-non-life-insurance-form :selectedRow="$selectedRow" />
+                @endif    
             @endif
         </x-modal>
     </div>

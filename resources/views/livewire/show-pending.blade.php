@@ -4,7 +4,7 @@
     
     <div class="flex justify-between">
         <p class="text-{{lcfirst($client->status_description)}} tex-sm mb-5" >{{$client->status_description}} Application</p>
-        <x-close-modal-icon></x-close-modal-icon>
+        <x-close-modal-icon ></x-close-modal-icon>
     </div>
             
     <div class="flex">

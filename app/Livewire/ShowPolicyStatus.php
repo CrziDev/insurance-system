@@ -13,7 +13,7 @@ class ShowPolicyStatus extends Component
     public Transaction $selectedRow;
     public $fullName;
     public $data = [];
-    public $addSelected;
+
 
     public function selectRow(Transaction $selectedRow){
         $this->selectedRow = $selectedRow;  
@@ -21,9 +21,12 @@ class ShowPolicyStatus extends Component
     }
     
     public function addInsurance($type){
-        $this->addSelected = true;
         if($type == 'non-life'){
-            $this->dispatch('open-modal-child',name:'add-insurance');
+            $this->dispatch('open-modal-child',name:'add-non-life-insurance');
+        } 
+        
+        if($type == 'life'){
+            $this->dispatch('open-modal-child',name:'add-life-insurance');
         }   
     }
 

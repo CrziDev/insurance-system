@@ -8,9 +8,9 @@ use Livewire\Form;
 class LifeInsuranceAdminAttribute extends Form
 {
     #[Validate('required')]
-    public $protection_package;
+    public $protection_package = [];
     #[Validate('required')]
-    public $allowance_package;
+    public $allowance_package = [];
     #[Validate('required')]
     public $full_name;
     #[Validate('required')]
@@ -45,9 +45,4 @@ class LifeInsuranceAdminAttribute extends Form
     #[Validate('required')]
     public $source_of_funds;
 
-
-    #[Validate('required')]
-    public $date_effective = '' ;
-    #[Validate('required')]
-    public $expiration = '' ;
 }

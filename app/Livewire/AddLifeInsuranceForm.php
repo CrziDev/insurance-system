@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\LifeInsuranceCustomerAttribute;
 use App\Models\LifeInsurance;
+use App\Models\Policy;
+use App\Models\Transaction;
 use App\Models\User;
 use Livewire\Component;
 
@@ -13,15 +15,16 @@ class AddLifeInsuranceForm extends Component
     public $userId;
     public $modal;
 
-    public function mount($policyId = null)
-    {
 
-        dd($this->modal);
+    public function mount()
+    {
         $user = User::with('customer')->find($this->userId);
         $this->userId =  $user->id;
+        $this->form->full_name = $user->customer[0]->full_name;
+        $this->form->mobile_number = $user->customer[0]->phone_number;
+        $this->form->email_address = $user->email;
+
     }
-
-
 
     public function selectPackage($value) {
         if (!in_array($value, $this->form->protection_package )) {
@@ -49,14 +52,29 @@ class AddLifeInsuranceForm extends Component
     }
 
     public function save(){
-       $data = $this->validate();
+        $data = $this->validate();
     
         $data['protection_package'] = json_encode($data['protection_package']);
         $data['allowance_package'] = json_encode($data['allowance_package']);
         $data['user_id'] = $this->userId;
         
 
-        LifeInsurance::create( $data );
+        $record = LifeInsurance::create( $data );
+
+        $policy= Policy::where('type','Life policy')->first();
+        Transaction::create([
+            'life_id' => $record->id,
+            'policy_type_id' => $policy->id,
+            'user_id' => $this->userId,
+        ]);
+
+        toastr()->success('Request was successfully submitted!');
+
+        if(request()->user()->role == 3){
+            $this->redirect('/customer/dashboard');
+        }else{
+            $this->redirect('/admin/request');
+        }
     }
 
 

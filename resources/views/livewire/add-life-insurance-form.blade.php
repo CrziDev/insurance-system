@@ -82,12 +82,12 @@
                 Personal Information
             </x-slot:title>
             <div class="grid grid-cols-2 gap-5">
-                <x-form-input-w-label error='form.full_name' wire:model="form.full_name">Full name</x-form-input-w-label>
-                <x-form-input-w-label error='form.mobile_number' wire:model="form.mobile_number">Mobile number</x-form-input-w-label>
+                <x-form-input-w-label readonly error='form.full_name' wire:model="form.full_name">Full name</x-form-input-w-label>
+                <x-form-input-w-label readonly error='form.mobile_number' wire:model="form.mobile_number">Mobile number</x-form-input-w-label>
             </div>
 
             <div class="grid grid-cols-2 gap-5">
-                <x-form-input-w-label error='form.email_address' wire:model="form.email_address">Email Address</x-form-input-w-label>
+                <x-form-input-w-label readonly error='form.email_address' wire:model="form.email_address">Email Address</x-form-input-w-label>
                 <x-form-input-w-label error='form.telephone_number' wire:model="form.telephone_number">Telephone Number.</x-form-input-w-label>
             </div>
 
@@ -97,9 +97,8 @@
             </div>
 
 
-            <div class="grid grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 gap-5">
                 <x-form-input-w-label error='form.nationality' wire:model="form.nationality">Nationality:</x-form-input-w-label>
-                <x-form-input-w-label error='form.telephone_number' wire:model="form.telephone_number">Email Address:</x-form-input-w-label>
             </div>
 
             <div class="grid grid-cols-2 gap-5">
