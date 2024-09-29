@@ -49,7 +49,7 @@ class AddNonLifeInsuranceForm extends Component
         if(request()->user()->role == 3){
             $this->redirect('/customer/dashboard');
         }else{
-            $this->redirect('/admin/transactions');
+            $this->redirect('/admin/request');
         }
     }
 

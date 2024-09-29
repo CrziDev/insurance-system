@@ -67,13 +67,13 @@
 
         <x-modal name="pending-details">
                  @if($selectedRow)
-                <livewire:show-pending :client="$selectedRow"/>
+                <livewire:show-pending :client="$selectedRow"  key="{{ $selectedRow->id }}"/>
                 @endif
         </x-modal> 
         
         <x-modal name="show-status-details">
                 @if($selectedRow)
-                    <livewire:show-other-status :client="$selectedRow"/>
+                    <livewire:show-other-status :selected="$selectedRow"  key="{{ $selectedRow->id }}"/>
                 @endif
         </x-modal> 
     

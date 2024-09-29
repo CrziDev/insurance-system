@@ -13,12 +13,16 @@ class Transaction extends Model
 
     protected function getCreatedAtFormatAttribute()
     {
-       return $this->created_at->format('M d, Y');
+
+        return $this->created_at ? $this->created_at->format('M d, Y') : null;
     }
 
     protected function getDateEffectFormatAttribute()
     {
-        return  Carbon::createFromFormat('Y-m-d',$this->date_effective)->format('M d, Y');
+
+        return !is_null($this->date_effective) ? 
+        Carbon::createFromFormat('Y-m-d', $this->date_effective)->format('M d, Y') : 
+        null;
        
     }
 
@@ -53,7 +57,9 @@ class Transaction extends Model
 
     protected function getDateExpirationFormatAttribute()
     {
-        return  Carbon::createFromFormat('Y-m-d',$this->expiration)->format('M d, Y');
+        return !is_null($this->expiration) ? 
+        Carbon::createFromFormat('Y-m-d', $this->expiration)->format('M d, Y') : 
+        null;
        
     }
 

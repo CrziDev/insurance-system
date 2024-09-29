@@ -22,7 +22,7 @@ class UpdateNonLifeInsuranceForm extends Component
     public $others = '';
     public $total = '';
     public Transaction $selectedRow;
-
+    public $modal;
 
     public function mount($policyId = null)
     {
@@ -88,7 +88,7 @@ class UpdateNonLifeInsuranceForm extends Component
         ]);
 
         toastr()->success('Request Approved Successfuly!');
-        $this->redirect('/admin/transactions');
+        $this->redirect('/admin/request');
     }
     
     public function render()

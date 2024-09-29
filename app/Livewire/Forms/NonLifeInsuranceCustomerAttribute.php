@@ -20,31 +20,31 @@ class NonLifeInsuranceCustomerAttribute extends Form
     public $businessProfession = 'businessProfession' ;
 
     #[Validate('required')]
-    public $model = 'model' ;
+    public $model = 'test' ;
 
     #[Validate('required')]
-    public $plateNo = 'c' ;
+    public $plateNo = 'test' ;
 
     #[Validate('required')]
-    public $make = 'make' ;
+    public $make = 'test' ;
 
     #[Validate('required')]
     public $serialChassis = 'serialChassis' ;
 
     #[Validate('required')]
-    public $typeBody = 'typeBody';
+    public $typeBody = 'test';
 
     #[Validate('required')]
-    public $color = 'color';
+    public $color = 'test';
 
     #[Validate('required')]
     public $authorizedCapacity = 'authorizedCapacity';
 
     #[Validate('required')]
-    public $bltFileNo = 'bltFileNo' ;
+    public $bltFileNo = 'test' ;
 
     #[Validate('required')]
-    public $weightCapacity = 'weightCapacity' ;
+    public $weightCapacity = 'test' ;
 
     #[Validate('required')]
     public $policyId;

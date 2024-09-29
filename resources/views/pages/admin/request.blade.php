@@ -11,8 +11,4 @@
         </section> 
     </div>
 
-
-    
-    
-
 </x-layout>

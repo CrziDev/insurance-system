@@ -39,7 +39,7 @@ class PendingList extends Component
     {
         $user = request()->user();
         
-        $transactions = Transaction::whereIn('status',[1,2,3,4])->with('policy', 'nonLifeInsurance','lifeInsurance','user')
+        $transactions = Transaction::whereIn('status',[1,4])->with('policy', 'nonLifeInsurance','lifeInsurance','user')
         ->orderByDesc('status');
         
 

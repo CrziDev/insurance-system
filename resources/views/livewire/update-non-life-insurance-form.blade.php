@@ -5,7 +5,7 @@
         class="overflow-x-auto relative"
         >
         <span class="mb-5 font-2lg text-xl block text-center ">Non-life Insurance Policy Application</span>
-        <x-close-modal-icon class="absolute right-0 top-0"/>
+        <x-close-modal-icon :modal="$modal" class="absolute right-0 top-0"/>
         
         <x-form-card>
             <x-slot:title>
