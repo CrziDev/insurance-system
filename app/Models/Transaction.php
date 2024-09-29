@@ -22,9 +22,38 @@ class Transaction extends Model
        
     }
 
+    protected function getDurationAttribute()
+    {
+        $effectiveDate = Carbon::parse($this->date_effective);
+        $expiringDate = Carbon::parse($this->expiration);
+        $diff = $effectiveDate->diff($expiringDate);
+        
+        $years = $diff->y;
+        $months = $diff->m;
+        $days = $diff->d;
+        
+        $result = '';
+        
+        if ($years > 0) {
+            $result .= $years . ' year' . ($years > 1 ? 's' : '') . ', ';
+        }
+        if ($months > 0) {
+            $result .= $months . ' month' . ($months > 1 ? 's' : '') . ', ';
+        }
+        if ($days > 0) {
+            $result .= $days . ' day' . ($days > 1 ? 's' : '');
+        }
+        
+        // Trim any trailing commas and spaces
+        $result = rtrim($result, ', ');
+        
+        return  $result ?: '0 days'; 
+       
+    }
+
     protected function getDateExpirationFormatAttribute()
     {
-        return  Carbon::createFromFormat('Y-m-d',$this->date_effective)->format('M d, Y');
+        return  Carbon::createFromFormat('Y-m-d',$this->expiration)->format('M d, Y');
        
     }
 
@@ -36,14 +65,13 @@ class Transaction extends Model
 
     protected function getStatusEventAttribute()
     {
-
-
         $statusMessage = [
             1 => "Request Has been approved",
             2 => "Expired Insurance",
             3 => "Expiring Insurance",
             4 => "Request Has been submitted",
-            5 => "Insurance Has been Claimed",
+            5 => "Insurance claim has been requested",
+            6 => "Insurance claim Has been Approved",
         ];
         return  $statusMessage[$this->status];
        
@@ -56,7 +84,8 @@ class Transaction extends Model
             2 => "Expired",
             3 => "Expiring",
             4 => "Pending",
-            5 => "Claimed",
+            5 => "Requested",
+            6 => "Claimed",
         ];
        return $statusText[$this->status];
     }

@@ -38,16 +38,28 @@
                         </div>
                         <div class="flex align-center text-center space-x-2 justify-evenly py-4">
                             <div class="w-[30%] border-r ">
+                                <p class="text-sm mb-1">Customer</p>
+                                <p class="text-xl font-semibold">{{$row->user->customer[0]->full_name}}</p>
+                            </div>
+                            <div class="w-[30%] border-r ">
                                 <p class="text-sm mb-1">Premium</p>
                                 <p class="text-xl font-semibold">₱250/month</p>
                             </div>
                             <div class="w-[40%] border-r">
                                 <p class="text-sm mb-1">Duration</p>
-                                <p class="font-semibold">11 months and 20 days</p>
+                                <p class="font-semibold">{{$row->duration}}</p>
                             </div>
                             <div class="w-[30%] mt-auto">
-                                @if($row->status == 5)
-                                    <x-button class="bg-blue-500" wire:click="selectClaim({{$row}})">Claimed</x-button>
+                                @if($row->status == 5 || $row->status == 6)
+                                    @if(request()->user()->role == 3)
+                                        <x-button class="bg-{{lcfirst($row->status_description)}}" wire:click="selectClaim({{$row}})">{{$row->status_description}}</x-button>
+                                    @else
+                                        @if($row->status == 6)
+                                        <x-button class="bg-{{lcfirst($row->status_description)}}" wire:click="selectClaim({{$row}})">{{$row->status_description}}</x-button>
+                                        @else
+                                        <x-button class="bg-{{lcfirst($row->status_description)}}" wire:click="selectClaim({{$row}})">Check Files</x-button>
+                                        @endif
+                                    @endif
                                 @else
                                     <x-button wire:click="selectClaim({{$row}})">Claim</x-button>
                                 @endif
@@ -65,4 +77,9 @@
         @endif
     </x-modal> 
 
+    <x-modal name="claim-check-file">
+        @if($transaction)
+            <livewire:claim-check-file :transaction="$transaction"/>
+        @endif
+    </x-modal> 
 </div>

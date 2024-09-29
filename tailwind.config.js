@@ -17,6 +17,8 @@ export default {
       expired: "#F44336" ,
       expiring: "#FFC107",
       pending: "#2196F3",
+      claimed: "#4CAF50",
+      requested: "#2196F3"
     },
     fontFamily: {
       'custom-font': ['Montserrat'],     
@@ -28,6 +30,11 @@ safelist: [
   'text-expired',
   'text-expiring',
   'text-pending',
+  'text-claimed',
+  'text-requested',
+  'bg-requested',
+  'bg-claimed'
+
   // Add more classes as needed
 ],
   plugins: [],

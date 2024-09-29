@@ -6,7 +6,7 @@
         </div>
         <div class="border-dashed border-4 w-full h-[330px] flex flex-col justify-center space-y-2 items-center">
             @if ($photos) 
-                <div class="flex justify-start space-x-5">
+            <div class="flex justify-start space-x-5 overflow-x-scroll w-[95%]">
                     @foreach($photos as $photo)
                         <img class="rounded w-[150px] h-[150px] mt-5 block cursor-pointer" 
                              src="{{ $photo->temporaryUrl() }}" 
@@ -22,7 +22,7 @@
                         class="border bg-sky-500 text-white px-3 py-1 mt-2 mb-5 rounded-md">Browse</button>
             </div>
         </div>
-        <div class="w-full flex justify-end items-end gap-3">
+        <div class="w-full flex justify-center  items-end gap-3">
             <button wire:click="fileUpload()" class="px-3 py-1 mt-2 rounded-md bg-lime-500 text-white border">Submit</button>
             <button class="px-3 py-1 mt-2 rounded-md bg-red-500 text-white border">Cancel</button>
         </div>

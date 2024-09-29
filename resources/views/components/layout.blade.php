@@ -18,7 +18,7 @@
                         <img class="w-[80px] h-[70px] m-auto" src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo">
                     </div>
                
-                    <div class="space-y-2">
+                    <div class="text-sm">
                         @if(request()->user()->role == 1)
                             <x-sidebar-admin></x-sidebar-admin>
                         @elseif(request()->user()->role == 3)

@@ -7,6 +7,6 @@ use App\Models\NonLifeInsurance;
 class AdminTransactionController
 {
     public function index(){
-        return view('pages.admin.transactions');
+        return view('pages.admin.request');
     }
 }

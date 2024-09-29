@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminCustomerController;
 use App\Http\Controllers\Admin\AdminReportsController;
 use App\Http\Controllers\Admin\AdminStaffController;
 use App\Http\Controllers\Admin\AdminTransactionController;
+use App\Http\Controllers\Admin\AdminExpiringController;
 use App\Http\Controllers\Admin\AdminPoliciesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -22,7 +23,9 @@ Route::middleware(['auth'])->group(function ()
     Route::group((['prefix'=>'admin','middleware'=>'role:admin']),function ()
         {
             Route::resource('dashboard',AdminDashboardController::class);
-            Route::resource('transactions',AdminTransactionController::class);
+            Route::resource('request',AdminTransactionController::class);
+            Route::resource('expiring',AdminExpiringController::class);
+
             Route::resource('customers',AdminCustomerController::class);
             Route::resource('staff',AdminStaffController::class);
             Route::resource('claims',AdminClaimsController::class);

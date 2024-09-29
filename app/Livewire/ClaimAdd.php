@@ -19,10 +19,10 @@ class ClaimAdd extends Component
     public function fileUpload()
     {
         foreach ($this->photos as $photo) {
-            $path = $photo->store(path: 'photos');
+            $path = $photo->store(path: 'public/photos');
             
             $this->transaction->attachment()->create([
-                'attachment_url' => $path, 
+                'attachment_url' => basename($path), 
             ]);  
         }
         $this->transaction->update([

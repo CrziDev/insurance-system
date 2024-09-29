@@ -28,7 +28,7 @@ class ShowPolicyStatus extends Component
     public function boot(){
         $this->data = Transaction::with('Policy')
         ->where('user_id',$this->selectedCustomer->user->id)
-        // ->where('status',1)
+        ->whereIn('status',[1,2,3])
         ->orderBydesc('created_at')->get();
     }
 

@@ -13,7 +13,14 @@ class ClaimList extends Component
     public function selectClaim(Transaction $claim)
     {      
         $this->transaction = $claim;
-        $this->dispatch('open-modal', name: 'claim-add');
+        if($claim->status == 1){
+            $this->dispatch('open-modal', name: 'claim-add');
+        }
+
+        if($claim->status == 5 || $claim->status == 6){
+
+            $this->dispatch('open-modal', name: 'claim-check-file');
+        }
     }
 
     public function render()
@@ -22,12 +29,16 @@ class ClaimList extends Component
         $user = request()->user();
         
         
-        $claims = Transaction::whereIn('status',[1,3,5])->with('policy', 'nonLifeInsurance','lifeInsurance','user')
+        $claims = Transaction::with('policy', 'nonLifeInsurance','lifeInsurance','user')
         ->orderByDesc('status');
 
         if ($user->role == 3) {
-            $claims->where('user_id', $user->id);
+            $claims->whereIn('status',[1,3,5,6])->where('user_id', $user->id);
+        }else{
+            $claims->whereIn('status',[5,6]);
         }
+
+        
 
         return view('livewire.claim-list',['data' => $claims->get()]);
     }
