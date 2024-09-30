@@ -45,7 +45,7 @@
                     </div>                 
                 </div>
 
-                @error('form.protectionPackage')<span class="text-xs text-red-500">Field is required</span>@enderror
+                @error('form.protection_package')<span class="text-xs text-red-500">Field is required</span>@enderror
 
             
             </x-form-card>
@@ -73,7 +73,7 @@
                         <label for="" class="">Superior</label>
                     </div>                     
                 </div>
-                @error('form.protectionPackage')<span class="text-xs text-red-500">Field is required</span>@enderror
+                @error('form.allowance_package')<span class="text-xs text-red-500">Field is required</span>@enderror
 
             </x-form-card>
         </div>

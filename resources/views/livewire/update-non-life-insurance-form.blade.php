@@ -123,7 +123,7 @@
         </div>
 
     
-        @if($status == 4)
+        @if($status == 4 || $status == 2)
         <div class="flex justify-center">
             <x-button>Approve Request</x-button>
         </div>

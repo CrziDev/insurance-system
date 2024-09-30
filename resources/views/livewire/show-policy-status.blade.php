@@ -23,15 +23,20 @@
         <tbody id="transactionTableBody">
             @foreach($data as $row)
             <tr wire:key="$row->id">
-                <td class="py-3 border border-lime-500 text-center">001</td>
+                <td class="py-3 border border-lime-500 text-center">{{$row->id}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->date_effect_format}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->date_expiration_format}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->Policy->name}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->Policy->type}}</td>
                 <td class="py-3 border border-lime-500  text-{{lcfirst($row->status_description)}} text-center">{{$row->status_description}}</td>
-                <td class="py-3 border border-lime-500 text-center flex space-x-1 px-1">
-                    <button class="  w-[100px] text-white bg-amber-600 p-1 font-semibold rounded-md">Renew</button>
-                    <button class="  w-[100px] bg-lime-600 text-white  p-1 font-semibold rounded-md" wire:click="selectRow({{$row}})" >View</button>
+                <td class="py-3 border border-lime-500 text-center flex justify-center space-x-1 px-1">
+                    @if($row->status == 2)
+                    <button class="w-[100px] text-white bg-amber-600 p-1 font-semibold rounded-md " wire:click="selectRow({{$row}})">Renew</button>
+                    @endif
+
+                    @if($row->status != 2)
+                        <button class="w-[100px] bg-lime-600 text-white  p-1 font-semibold rounded-md" wire:click="selectRow({{$row}})" >View</button>
+                    @endif
                 </td>
             </tr>
             @endforeach
@@ -53,7 +58,15 @@
     
     <x-modal-child name="view-insurance">   
         @if($selectedRow)
-            <livewire:update-non-life-insurance-form :selectedRow="$selectedRow" :policyId="$selectedRow->type_id" />    
+        
+            @if($this->selectedRow->policy->type == "Non-life-type")
+                    <livewire:update-non-life-insurance-form modal="-child" :selectedRow="$selectedRow" :policyId="$selectedRow->type_id" key="{{ $selectedRow->id }}"/>  
+            @endif
+
+            @if($this->selectedRow->policy->type == "Life Policy")
+                <livewire:update-life-insurance-form modal="-child" :selectedRow="$selectedRow" key="{{ $selectedRow->id }}"/>   
+            @endif
+
         @endif
     </x-modal-child>
 

@@ -19,6 +19,7 @@ class UpdateLifeInsuranceForm extends Component
     public $dateEffective;
     #[Validate('required')]
     public $expiration;
+    public $status;
 
 
     public function mount()
@@ -28,16 +29,14 @@ class UpdateLifeInsuranceForm extends Component
         $this->form->full_name = $user->customer[0]->full_name;
         $this->form->mobile_number = $user->customer[0]->phone_number;
         $this->form->email_address = $user->email;
+        $this->status = $lifeType->status;
 
         $lifeInsuranceData = $lifeType->lifeInsurance->toArray();
-
         foreach ($lifeInsuranceData as $key => $value) {
-
             if (property_exists($this->form, $key)) {
                 if($key == "protection_package"||$key == "allowance_package"){
-              
-                   $value =  json_decode($value);
-                
+             
+                   $value =  json_decode($value);             
                 }
                 $this->form->{$key} = $value;
             }

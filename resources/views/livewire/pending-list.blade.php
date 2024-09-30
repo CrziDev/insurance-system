@@ -79,9 +79,9 @@
         
         <x-modal name="show-status-details">
                 @if($selectedRow)
-                    @if($this->selectedRow->policy->type == "Non-life-type")
+               
                     <livewire:show-other-status :selected="$selectedRow"  key="{{ $selectedRow->id }}"/>
-                    @endif
+                    
                 @endif
         </x-modal> 
     

@@ -25,7 +25,7 @@ class UpdateNonLifeInsuranceForm extends Component
     public $modal;
     public $status;
 
-    public function mount($policyId = null)
+    public function mount()
     {
      
         $user = User::with('customer')->find($this->selectedRow->user->id);
