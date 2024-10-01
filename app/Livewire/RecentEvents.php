@@ -12,6 +12,7 @@ class RecentEvents extends Component
     public $tableLink;
     public function render()
     {
+        
         if (request()->user()->role == 3) {
             $data = Transaction::whereIn('status', [1, 2, 3, 5, 6])
                 ->where('user_id', request()->user()->id)

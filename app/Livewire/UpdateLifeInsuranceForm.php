@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Events\InsuranceApproved;
 use App\Livewire\Forms\LifeInsuranceAdminAttribute;
 use App\Models\LifeInsurance;
 use App\Models\Transaction;
@@ -84,6 +85,8 @@ class UpdateLifeInsuranceForm extends Component
 
         toastr()->success('Request Approved Successfuly!');
         $this->redirect('/admin/request');
+
+        InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
     }
 
     public function render()

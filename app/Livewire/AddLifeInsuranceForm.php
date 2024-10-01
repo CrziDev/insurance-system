@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Events\InsuranceCreated;
 use App\Livewire\Forms\LifeInsuranceCustomerAttribute;
 use App\Models\LifeInsurance;
 use App\Models\Policy;
@@ -62,7 +63,9 @@ class AddLifeInsuranceForm extends Component
         $record = LifeInsurance::create( $data );
 
         $policy= Policy::where('type','Life policy')->first();
-        Transaction::create([
+
+        $user = User::find($this->userId);
+        $transaction = Transaction::create([
             'life_id' => $record->id,
             'policy_type_id' => $policy->id,
             'user_id' => $this->userId,
@@ -75,6 +78,7 @@ class AddLifeInsuranceForm extends Component
         }else{
             $this->redirect('/admin/request');
         }
+        InsuranceCreated::dispatch($transaction,$user);
     }
 
 

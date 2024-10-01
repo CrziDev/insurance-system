@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Events\InsuranceCreated;
 use App\Livewire\Forms\NonLifeInsuranceCustomerAttribute;
 use App\Models\NonLifeInsurance;
 use App\Models\Policy;
@@ -43,24 +44,25 @@ class AddNonLifeInsuranceForm extends Component
             'forms_and_indorsement' => $this->form->form_endorsement,
         ]);
 
-        Transaction::create([
+        $user = User::find($this->userId);
+        $transaction = Transaction::create([
             'non_life_id' => $record->id,
             'policy_type_id' => $this->form->policyId,
             'user_id' => $this->userId,
         ]);
 
         toastr()->success('Request was successfully submitted!');
-
+        
         if(request()->user()->role == 3){
             $this->redirect('/customer/dashboard');
         }else{
             $this->redirect('/admin/request');
         }
+        InsuranceCreated::dispatch($transaction,$user);
     }
 
     public function mount()
     {
-    
         $user = User::with('customer')->find($this->userId);
         $this->form->firstName = $user->customer[0]->first_name;
         $this->form->lastName = $user->customer[0]->last_name;
@@ -69,8 +71,7 @@ class AddNonLifeInsuranceForm extends Component
      
         $this->userId = $user->id;
         
-     
-        $this->policyLists = Policy::all();
+        $this->policyLists = Policy::where('type','Non-life-type')->get();
     }
 
 

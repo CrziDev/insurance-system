@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
 
         Policy::create([
 
-            'name'=> fake()->name(),
+            'name'=> "Private Car Policy",
             'premium'=> fake()->numberBetween(0,100),
             'docstamp'=> fake()->numberBetween(0,100),
             'govtax'=> fake()->numberBetween(0,100),
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
 
         Policy::create([
 
-            'name'=> fake()->name(),
+            'name'=> 'Motorcycle Policy',
             'premium'=> fake()->numberBetween(0,100),
             'docstamp'=> fake()->numberBetween(0,100),
             'govtax'=> fake()->numberBetween(0,100),
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
 
         
         Policy::create([
-            'name'=> fake()->name(),
+            'name'=> 'Life Policy',
             'premium'=> fake()->numberBetween(0,100),
             'docstamp'=> fake()->numberBetween(0,100),
             'govtax'=> fake()->numberBetween(0,100),
