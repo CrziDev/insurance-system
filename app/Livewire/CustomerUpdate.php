@@ -42,7 +42,6 @@ class CustomerUpdate extends Component
         $this->profession = $this->selectedCustomer->profession;
         $this->phoneNumber = $this->selectedCustomer->phone_number;
 
-
     }
 
     public function update(){
