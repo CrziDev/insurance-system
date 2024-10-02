@@ -1,7 +1,9 @@
 <nav class="flex justify-between items-center px-5 py-3 border-b border-black/10 shadow-md bg-white">
     <div class="text-md font-semiboldflex space-x-1">
-        <span class="font-semibold">Good After-Noon,</span>
-        <span >Bughao</span>
+        <span class="font-semibold">
+            {{auth()->user()->greeting}},
+        </span>
+        <span >{{auth()->user()->username}}</span>
     </div>
 
     <div class="flex items-center space-x-5">

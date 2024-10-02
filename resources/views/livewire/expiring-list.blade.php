@@ -6,10 +6,8 @@
         <div class="text-xs pr-2 flex space-x-2">
            <select wire:model="status"  wire:change="filterStatus($event.target.value)" class="px-2 py-1 text-xs  border rounded text-gray-500 border-lime-600" name="" id="">
                 <option value="" selected>All</option>
-                <option value="1">Approved</option>
                 <option value="2">Expired</option>
                 <option value="3">Expiring</option>
-                <option value="4">Pending</option>
             </select>
            <div class="border-2 border-lime-600 rounded-md flex justify-between items-center pr-2">         
                 <input  wire:model.live="search" id="searchBar" type="text" placeholder="Search here.."

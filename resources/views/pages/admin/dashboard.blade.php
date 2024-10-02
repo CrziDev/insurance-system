@@ -15,7 +15,7 @@
         </section> -->
         <div class="h-[calc(100%-160px-28px)] flex">
             <section class="w-[70%] mr-4 bg-white rounded-lg p-5 overflow-hidden max-h-full">
-                <livewire:recent-events tableTitle="Recent Events" tableLink="/admin/transactions"/>
+                <livewire:recent-events tableTitle="Recent Events" tableLink="/admin/request"/>
             </section>  
             
             <section class="w-[30%]  bg-white rounded-lg p-5 overflow-hidden max-h-full">

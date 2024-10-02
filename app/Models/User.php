@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -39,6 +41,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getGreetingAttribute() {
+        $hour = now()->timezone('Asia/Manila')->format('h A');
+
+        if ($hour >= '08 PM') {
+            $greetings = "Good Evening";
+        } elseif ($hour > '05 PM') {
+            $greetings = "Good Evening";
+        } elseif ($hour > '11 AM') {
+            $greetings = "Good Afternoon";
+        } else {
+            $greetings = "Good Morning";
+        }
+        return $greetings;
     }
     
     public function customer(){
