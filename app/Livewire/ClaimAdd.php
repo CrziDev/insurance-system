@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Events\ClaimInsurance;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -31,6 +33,7 @@ class ClaimAdd extends Component
 
         toastr()->success('Insurance Claimed Successfuly!');
         $this->redirect('/customer/claims');
+        ClaimInsurance::dispatch($this->transaction,Auth::user());
     }
     
     public function render()

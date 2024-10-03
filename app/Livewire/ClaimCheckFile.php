@@ -2,8 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Events\ApprovedClaim;
 use App\Models\Transaction;
-use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -26,6 +27,8 @@ class ClaimCheckFile extends Component
 
         toastr()->success('Insurance Claim Approved Successfuly!');
         $this->redirect('/admin/claims');
+
+        ApprovedClaim::dispatch($this->transaction,$this->transaction->user()->first());
     }
  
     public function render()
