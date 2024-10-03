@@ -59,7 +59,6 @@ class AddLifeInsuranceForm extends Component
         $data['allowance_package'] = json_encode($data['allowance_package']);
         $data['user_id'] = $this->userId;
         
-
         $record = LifeInsurance::create( $data );
 
         $policy= Policy::where('type','Life policy')->first();
@@ -70,6 +69,13 @@ class AddLifeInsuranceForm extends Component
             'policy_type_id' => $policy->id,
             'user_id' => $this->userId,
         ]);
+
+
+        $policy = $transaction->policy; 
+        $policy->update([
+            'quantity' => (intval($policy->quantity)-1)
+        ]);
+
 
         toastr()->success('Request was successfully submitted!');
 

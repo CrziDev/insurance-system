@@ -27,6 +27,8 @@ class AddNonLifeInsuranceForm extends Component
 
     public function save(){
         $this->validate();  
+
+
     
         $record = NonLifeInsurance::create([
             'user_id' => $this->userId,
@@ -44,6 +46,8 @@ class AddNonLifeInsuranceForm extends Component
             'forms_and_indorsement' => $this->form->form_endorsement,
         ]);
 
+
+
         $user = User::find($this->userId);
         $transaction = Transaction::create([
             'non_life_id' => $record->id,
@@ -51,6 +55,13 @@ class AddNonLifeInsuranceForm extends Component
             'user_id' => $this->userId,
         ]);
 
+        $policy = $transaction->policy; 
+
+        $policy->update([
+            'quantity' => (intval($policy->quantity)-1)
+        ]);
+
+        
         toastr()->success('Request was successfully submitted!');
         
         if(request()->user()->role == 3){
