@@ -7,7 +7,7 @@
     </div>
 
     <div class="flex items-center space-x-5">
-        <div x-data="{isOpen:true}" class="relative">
+        <div x-data="{isOpen:false}" class="relative">
             <div>
                 <img @click="isOpen = !isOpen" class="w-5 h-5 relative" src="{{Vite::asset('resources/images/bell.png')}}" alt="">
                 <span class="absolute top-0 right-[-3.5px] text-red-600 font-bold text-[10px]">{{auth()->user()->notifications->count()}}</span>

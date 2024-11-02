@@ -8,6 +8,6 @@ class AdminReportsController
 {
     public function index(){
 
-        return view('pages.admin.report');
+        return view('pages.admin.reports');
     }
 }

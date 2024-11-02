@@ -6,6 +6,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <script src="//unpkg.com/alpinejs" defer></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @stack('scripts')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -17,7 +19,6 @@
                     <div class="py-5 mb-5">
                         <img class="w-[80px] h-[70px] m-auto" src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo">
                     </div>
-               
                     <div class="text-sm">
                         @if(request()->user()->role == 1)
                             <x-sidebar-admin></x-sidebar-admin>
@@ -26,7 +27,6 @@
                         @endif
                         <!-- <x-sidebar-customer></x-sidebar-customer> -->
                     </div>
-
                     <div class="mt-auto">
                         <x-logout-btn>Logout</x-logout-btn>             
                     </div>

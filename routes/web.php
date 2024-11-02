@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Customer\CustomerClaimsController;
 use App\Http\Controllers\Customer\CustomerDashboardontroller;
 use App\Http\Controllers\Customer\CustomerInsuranceController;
+use App\Http\Controllers\ReportsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -42,6 +43,13 @@ Route::middleware(['auth'])->group(function ()
             Route::resource('insurance',CustomerInsuranceController::class);
         }
     );
+
+    Route::group((['prefix'=>'report']),function ()
+        {
+            Route::get('/sales',[ReportsController::class,'printSales']);
+        }
+    );
+
 });
 
 Route::get('/login',[LoginController::class,'create'])->name('login')->middleware('checkAuth');

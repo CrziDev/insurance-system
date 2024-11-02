@@ -56,7 +56,6 @@ class AddNonLifeInsuranceForm extends Component
         ]);
 
         $policy = $transaction->policy; 
-
         $policy->update([
             'quantity' => (intval($policy->quantity)-1)
         ]);
