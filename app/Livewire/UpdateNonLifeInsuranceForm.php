@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Action\PrintForm;
 use App\Events\InsuranceApproved;
 use App\Livewire\Forms\NonLifeInsuranceAdminAttribute;
 use App\Models\NonLifeInsurance;
@@ -108,9 +109,17 @@ class UpdateNonLifeInsuranceForm extends Component
             "form_id"=>$this->form->formNumber,
         ]);
 
-        toastr()->success('Request Approved Successfuly!');
-        $this->redirect('/admin/request');
         InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
+        $pdf = new PrintForm($this->selectedRow->non_life_id);
+        
+        $pdf->generatePdf();
+        $pdf->output('F','pdfs/generatedForm.pdf');
+
+        $this->dispatch('close-modal', name:'pending-form');
+        toastr()->success('Request Approved Successfuly!');
+        return response()->download( 'pdfs/generatedForm.pdf');
+
+        
     }
     
     public function render()

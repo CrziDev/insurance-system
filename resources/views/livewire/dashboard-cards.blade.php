@@ -6,7 +6,7 @@
                     <div class="flex justify-around items-center w-full mt-5 px-2">
                         <div>
                             <p class="font-normal text-[15px] tracking-wide">Income</p>
-                            <p class="font-medium text-[28px] tracking-wider">₱ 0.00</p>
+                            <p class="font-medium text-[28px] tracking-wider">₱{{$income[0]}}</p>
                         </div>
                         <div class="h-[25px] w-[25px]">
                             <span><i class="fa-solid fa-peso-sign text-[40px]"></i></span>

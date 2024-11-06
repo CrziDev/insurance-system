@@ -20,7 +20,7 @@ class CustomerReports extends Component
         $this->month = $month;
         if($month){
             $this->data = Transaction::with('user','policy')
-                ->where('status',3)
+                ->where('status',1)
                 ->whereMonth('created_at','=',$month)
                 ->get();
             return;

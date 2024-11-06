@@ -19,16 +19,36 @@
                     <x-form-input wire:model="email"  ></x-form-input>
                     <x-error error="email"/>
                 </div>       
-                <div class="mb-2 flex flex-col">
+                <div x-data="{ passwordShow: false }" class="mb-4 flex flex-col">
+                    <!-- Password Input -->
                     <x-form-input-label>Password</x-form-input-label>
-                    <x-form-input type="password" wire:model="password" ></x-form-input>
-                    <x-error type="password" error="password"/>
+                    <div class="relative">
+                        <input wire:model="password" :type="passwordShow ? 'text' : 'password'" 
+                            class="py-2 px-3 w-full text-xs border rounded text-gray-500 border-gray-300 focus:ring-2 focus:ring-blue-500"
+                            wire:model="password" type="password" placeholder="Enter password">
+                        <x-error type="password" error="password"/>
+                        <button type="button" @click="passwordShow = !passwordShow" 
+                            class="absolute text-xs right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none">
+                            <span x-text="passwordShow ? 'Hide' : 'Show'"></span>
+                        </button>
+                    </div>
                 </div>
-                <div class="mb-2 flex flex-col" >
+
+                <div x-data="{ passwordShow: false }" class="mb-4 flex flex-col">
+                    <!-- Confirm Password Input -->
                     <x-form-input-label>Confirm Password</x-form-input-label>
-                    <x-form-input type="password" wire:model="password_confirmation" ></x-form-input>
-                    <x-error error="password_confirmation"/>
+                    <div class="relative">
+                        <input wire:model="password_confirmation" :type="passwordShow ? 'text' : 'password'" 
+                            class="py-2 px-3 w-full  text-xs border rounded text-gray-500 border-gray-300 focus:ring-2 focus:ring-blue-500"
+                            wire:model="password_confirmation" type="password" placeholder="Confirm your password">
+                        <x-error type="password" error="password_confirmation"/>
+                        <button type="button" @click="passwordShow = !passwordShow" 
+                            class="absolute text-xs right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none">
+                            <span x-text="passwordShow ? 'Hide' : 'Show'"></span>
+                        </button>
+                    </div>
                 </div>
+
             </div>
         </div>
         <div class="border border-gray-300 w-full my-5"></div>
@@ -83,7 +103,7 @@
         </div>
  
         <div class="flex justify-center mt-2">
-            <x-button>Add</x-button>
+            <x-button>Register</x-button>
         </div>
 
     </form>

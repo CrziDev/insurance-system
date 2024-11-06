@@ -63,6 +63,10 @@ class NonLifeInsurance extends Model
     public function Policy(){
         return $this->belongsTo(Policy::class,"type_id");
     }
+
+    public function transaction(){
+        return $this->belongsTo(Transaction::class,'id',"non_life_id");
+    }
     
     public function user(){
         return $this->belongsTo(User::class,'user_id');

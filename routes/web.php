@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function ()
 
 });
 
+Route::get('/',[LoginController::class,'create'])->name('login')->middleware('checkAuth');
 Route::get('/login',[LoginController::class,'create'])->name('login')->middleware('checkAuth');
 Route::post('/login',[LoginController::class,'store']);
 Route::post('/logout',[LoginController::class,'destroy']);

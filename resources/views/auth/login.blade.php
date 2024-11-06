@@ -22,7 +22,21 @@
                                 @enderror
                             <div class="mb-[15px] space-y-4">
                                 <x-form-input-w-label error="username" class="border-2 rounded-md px-2 py-1 " name="username">Username</x-form-input-w-label>
-                                <x-form-input-w-label error="password" class="border-2 rounded-md px-2 py-1 " name="password">Password</x-form-input-w-label>                         
+
+                                <div x-data="{ passwordShow: false }" class="mb-4 flex flex-col">
+                                    <!-- Password Input -->
+                                    <x-form-input-label>Password</x-form-input-label>
+                                    <div class="relative">
+                                        <input wire:model="password" :type="passwordShow ? 'text' : 'password'" 
+                                            class="w-full border-gray-300 focus:none px-2 py-2 text-xs  border-2 rounded-md text-gray-500"
+                                            name="password" type="password" placeholder="Enter password">
+                                        <x-error type="password" error="password"/>
+                                        <button type="button" @click="passwordShow = !passwordShow" 
+                                            class="absolute text-xs right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none">
+                                            <span x-text="passwordShow ? 'Hide' : 'Show'"></span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="flex justify-between text-[12px] mb-[25px]">
                                 <div class="flex flex-row items-center gap-2">

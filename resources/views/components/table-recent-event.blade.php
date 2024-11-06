@@ -7,8 +7,8 @@
                 <div class="flex align-center space-x-2">
                     <img class="w-[28px] h-[23px]" src="{{Vite::asset('resources/images/insurance1.png')}}" alt="">
                     <div class="flex flex-col space-y-1">
+                        <p class="text-xs font-bold">{{$row->user->customer[0]?->full_name}}</p>
                         <p class="text-xs font-semibold">{{$row->Policy->name}}</p>
-                        <p class="text-xs font-semibold">{{$row->user->customer[0]?->full_name}}</p>
                     </div>   
                 </div>
             </div>
