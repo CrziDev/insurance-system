@@ -1,9 +1,21 @@
 <nav class="flex justify-between items-center px-5 py-3 border-b border-black/10 shadow-md bg-white">
-    <div class="text-md font-semiboldflex space-x-1">
-        <span class="font-semibold">
-            {{auth()->user()->greeting}},
-        </span>
-        <span >{{auth()->user()->username}}</span>
+    <div>
+        <div class="text-md font-semibold flex space-x-1">
+            <span class="font-semibold">
+                {{auth()->user()->greeting}},
+            </span>
+            <span >{{auth()->user()->username}}</span>
+        </div>
+    
+        <div>
+            @php
+                if(request()->user()->role == 2){
+                    echo 'Staff';
+                }else{
+                    echo 'Admin';
+                }
+            @endphp
+        </div>
     </div>
 
     <div class="flex items-center space-x-5">

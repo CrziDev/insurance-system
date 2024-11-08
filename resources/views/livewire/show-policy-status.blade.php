@@ -23,7 +23,7 @@
         <tbody id="transactionTableBody">
             @foreach($data as $row)
             <tr wire:key="$row->id">
-                <td class="py-3 border border-lime-500 text-center">{{$row->id}}</td>
+                <td class="py-3 border border-lime-500 text-center">{{$row->nonLifeInsurance?->form_id}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->date_effect_format}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->date_expiration_format}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->Policy->name}}</td>

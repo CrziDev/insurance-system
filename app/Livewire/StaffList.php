@@ -26,9 +26,8 @@ class StaffList extends Component
 
         $searchTerm = '%'.$this->search.'%';
 
-        $user = User::where("status",2);
 
-        $user = User::where('username', 'like', $searchTerm)
+        $user = User::where('role',2)->where('username', 'like', $searchTerm)
         ->get();
 
         return view('livewire.staff-list',['staff'=>$user]);
