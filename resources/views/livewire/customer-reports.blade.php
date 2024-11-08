@@ -1,9 +1,21 @@
 <div class="h-[100%]">
-   <div class="flex justify-between items-center mb-4 border-b">
+   <div class="flex justify-between items-center mb-4 border-b pb-2">
         <x-table-title class="text-sm">{{$tableTitle}}</x-table-title>
-        <div class="p-2 bg-white items-center mb-2 text-sm">
+        <div class="pl-2 bg-white items-center  text-xs">
             <div >
-                <select wire:change="optionSelect($event.target.value)" class="focus:outline-none reportsApprovedTable" name="selectedMonth" >
+                <select wire:model='year' wire:change="yearSelect($event.target.value)"  class="focus:outline-none" name="" id="">
+                        <option value="">Select Here</option>  
+                        <option value="2020">2020</option>
+                        <option value="2021" >2021</option>
+                        <option value="2022" >2022</option>
+                        <option value="2023" >2023</option>
+                        <option value="2024" >2024</option>    
+                </select>
+            </div>
+        </div>
+        <div class=" bg-white items-center  text-xs">
+            <div >
+                <select wire:change="monthSelect($event.target.value)" class="focus:outline-none reportsApprovedTable" name="selectedMonth" >
                 <option value="" >All</option>
                 <option value="1" >January</option>
                 <option value="2" >February</option>

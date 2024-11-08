@@ -10,27 +10,42 @@ class CustomerReports extends Component
 {
     public $tableTitle;
     public $data = [];
-    public $month = "All";
+    public $month = "all";
+    public $year;
 
     public function mount(){
+        $this->year = now()->format('Y');
         $this->data = Transaction::with('user','policy')->where('status',3)->get();
+
     }
 
-    public function optionSelect($month){
+    public function monthSelect($month){
         $this->month = $month;
-        if($month){
+        $this->renderFunction();
+    }
+
+    public function yearSelect($year){
+        $this->year = $year;
+        $this->renderFunction();
+    }
+
+
+    public function renderFunction(){
+        if($this->month){
+
             $this->data = Transaction::with('user','policy')
-                ->where('status',1)
-                ->whereMonth('created_at','=',$month)
+                ->whereIn('status',[3,1])
+                ->whereYear('created_at',$this->year)
+                ->whereMonth('created_at','=',$this->month)
                 ->get();
+
             return;
         }
 
-        $this->data = Transaction::with('user','policy')->where('status',3)->get();
+        $this->data = Transaction::with('user','policy')->whereIn('status',[3,1])->whereYear('created_at',$this->year)->get();
     }
 
     public function printSales(){
-            
         $pdf = new FPDF();
 
         $pdf->AddPage();
@@ -40,7 +55,7 @@ class CustomerReports extends Component
 
         $marginLeft = 5;  
         $marginRight = 5;
-        $marginTop = 25;
+        $marginTop = 33;
         $marginBottom = 216;
         $pageWidth = $pdf->GetPageWidth();
         $pageHeight = $pdf->GetPageHeight();
@@ -59,8 +74,11 @@ class CustomerReports extends Component
         $pdf->SetFont( "Arial", "b", 12 );
 
         $monthDisplay = $this->month;
-        $pdf->SetXY($rectX,$marginTop-8);
+        $pdf->SetXY($rectX,$marginTop-16);
         $pdf->Cell($rectWidth*.30,8,'Month: '.$monthDisplay,0,0,'l');
+
+        $pdf->SetXY($rectX,$marginTop-9);
+        $pdf->Cell($rectWidth*.30,8,'Prepared by: '.request()->user()->username,0,0,'l');
 
         $pdf->SetFont( "Arial", "b", 7 );
         $pdf->Rect($rectX, $marginTop , $rectWidth*.30, 8);
@@ -70,7 +88,6 @@ class CustomerReports extends Component
         $pdf->Rect($rectX + $rectWidth*.30, $marginTop , $rectWidth*.20, 8);
         $pdf->SetXY($rectX + $rectWidth*.30,$marginTop);
         $pdf->Cell($rectWidth*.20,8,'Date Requested ',0,0,'C');
-
 
         $pdf->Rect($rectX + $rectWidth*.50, $marginTop , $rectWidth*.50, 8);
         $pdf->SetXY($rectX + $rectWidth*.50,$marginTop);
