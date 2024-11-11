@@ -22,6 +22,8 @@
                     <div class="text-sm">
                         @if(request()->user()->role == 1)
                             <x-sidebar-admin></x-sidebar-admin>
+                        @elseif(request()->user()->role == 2)
+                            <x-sidebar-staff></x-sidebar-staff>
                         @elseif(request()->user()->role == 3)
                             <x-sidebar-customer></x-sidebar-customer>
                         @endif

@@ -36,6 +36,21 @@ Route::middleware(['auth'])->group(function ()
         }
     );
 
+    Route::group((['prefix'=>'staff','middleware'=>'role:staff']),function ()
+    {
+        Route::resource('dashboard',AdminDashboardController::class);
+        Route::resource('request',AdminTransactionController::class);
+        Route::resource('expiring',AdminExpiringController::class);
+
+        Route::resource('customers',AdminCustomerController::class);
+        Route::resource('staff',AdminStaffController::class);
+        Route::resource('claims',AdminClaimsController::class);
+        Route::resource('reports',AdminReportsController::class);
+        Route::resource('policies',AdminPoliciesController::class);
+
+    }
+);
+
     Route::group((['prefix'=>'customer','middleware'=>'role:customer']),function ()
         {
             Route::resource('dashboard',CustomerDashboardontroller::class);
