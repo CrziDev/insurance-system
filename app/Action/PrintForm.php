@@ -53,7 +53,7 @@ class PrintForm extends Fpdf
 
         parent::__construct(); // Call the parent constructor (Fpdf)
     
-        $this->fullName = $data->customer[0]->fullname ?? '';  // If no full name, set to empty string
+        $this->fullName = $data->customer[0]->full_name ?? 'name';  // If no full name, set to empty string
         $this->address = $data->user->customer[0]->address ?? '';  // Assuming the address is in customer
         $this->profession = $data->user->customer[0]->profession ?? '';  // Assuming profession is in customer
         $this->conf_cover = $data->confirmation_cover_no ?? '';  // 'endorsement' field from database
@@ -160,8 +160,8 @@ class PrintForm extends Fpdf
         $this->Rect(($rectX),$marginTop,($rectWidth*.50),48);
         $this->SetFont( "Arial", "B", 10);
         $this->Cell(($rectWidth*.50),36,$this->fullName,0,0,'C');
-        $this->SetXY(($rectX),($marginTop + 5));
-        $this->Cell(($rectWidth*.50),36,$this->address ,0,1,'C');
+        $this->SetXY(($rectX),($marginTop + 20));
+        $this->MultiCell(($rectWidth*.50),4,$this->address ,0,'C',false);
         
         //BUSINESS PROFESSION
         $this->Rect(($rectX+$rectWidth*.50),$marginTop,($rectWidth*.25),12);
@@ -526,7 +526,7 @@ class PrintForm extends Fpdf
         
         $this->SetXY(($rectX),($marginTop + 234));
         $this->SetFont("Arial", "", 10);
-        $this->Multicell(($rectWidth),4.5,"IN WITNESS WHEREOF, the Company has caused this policy to be signed by its duly authorized office/reprentative at ___________________. Philippines, this ____________ day of ____________",0,'l');
+        $this->Multicell(($rectWidth),4.5,"IN WITNESS WHEREOF, the Company has caused this policy to be signed by its duly authorized office/representative at ___________________. Philippines, this ____________ day of ____________",0,'l');
         $this->SetXY(($rectX+$rectWidth*.35),($marginTop + 235));
         $this->SetFont("Arial", "B", 10);
         $this->Cell(20,12,$this->dateDay,0,0,'C');
@@ -535,7 +535,7 @@ class PrintForm extends Fpdf
         $this->SetFont("Arial", "B", 10);
         $this->Cell(20,12,$this->dateYear,0,0,'C');
         
-        $this->SetXY(($rectX+8),($marginTop + 235));
+        $this->SetXY(($rectX+12),($marginTop + 235));
         $this->SetFont("Arial", "B", 10);
         $this->Cell(20,12,"Panabo City, DDN.",0,0,'C');
               

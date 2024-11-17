@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function ()
         Route::resource('expiring',AdminExpiringController::class);
 
         Route::resource('customers',AdminCustomerController::class);
-        Route::resource('staff',AdminStaffController::class);
+        // Route::resource('staff',AdminStaffController::class);
         Route::resource('claims',AdminClaimsController::class);
         Route::resource('reports',AdminReportsController::class);
         Route::resource('policies',AdminPoliciesController::class);

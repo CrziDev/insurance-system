@@ -11,7 +11,6 @@ class StaffList extends Component
     public User $selectedStaff;
     protected $queryString = ['search'];
 
-
     public function selectStaff(User $staff){
         $this->selectedStaff = $staff;
         $this->dispatch("open-modal",name:"staff-update");
@@ -25,7 +24,6 @@ class StaffList extends Component
     {
 
         $searchTerm = '%'.$this->search.'%';
-
 
         $user = User::where('role',2)->where('username', 'like', $searchTerm)
         ->get();

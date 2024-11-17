@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Http\Controllers\fpdf186\FPDF;
+use Fpdf\Fpdf;
 use App\Models\Transaction;
 use Livewire\Component;
 
@@ -47,19 +47,26 @@ class CustomerReports extends Component
 
     public function printSales(){
         $pdf = new FPDF();
+        $path = base_path('\resources\images\logo.png');
 
+        // dd($path);
+        
         $pdf->AddPage();
         $pdf->SetFont('Times','B',14);
+        $pdf->ln(25);
         $pdf->cell(0,0,'Approved Applicants',0,0, 'C');
         $pdf->ln(5);
-
+        
+        
         $marginLeft = 5;  
         $marginRight = 5;
-        $marginTop = 33;
+        $marginTop = 50;
         $marginBottom = 216;
         $pageWidth = $pdf->GetPageWidth();
         $pageHeight = $pdf->GetPageHeight();
-
+        
+        $imageWidth = 30;
+        $pdf->Image($path, ($pageWidth/2)-17, 0,$imageWidth,30);
 
 
         $rectWidth = $pageWidth - $marginLeft - $marginRight;
@@ -74,11 +81,8 @@ class CustomerReports extends Component
         $pdf->SetFont( "Arial", "b", 12 );
 
         $monthDisplay = $this->month;
-        $pdf->SetXY($rectX,$marginTop-16);
+        $pdf->SetXY($rectX,$marginTop-8);
         $pdf->Cell($rectWidth*.30,8,'Month: '.$monthDisplay,0,0,'l');
-
-        $pdf->SetXY($rectX,$marginTop-9);
-        $pdf->Cell($rectWidth*.30,8,'Prepared by: '.request()->user()->username,0,0,'l');
 
         $pdf->SetFont( "Arial", "b", 7 );
         $pdf->Rect($rectX, $marginTop , $rectWidth*.30, 8);
@@ -111,9 +115,12 @@ class CustomerReports extends Component
             $i++;
         }
 
+        $pdf->SetFont( "Arial", "b", 12 );
+        $pdf->SetXY(($rectX+$rectWidth*.65),($marginTop + 210));
+        $pdf->Cell($rectWidth*.30,8,'Prepared by: '.request()->user()->username,0,0,'l');
 
         $pdf->output('F','pdfs/approveInsurance.pdf');
-         return response()->download( 'pdfs/approveInsurance.pdf');
+        return response()->download( 'pdfs/approveInsurance.pdf');
     }
 
     public function render()
