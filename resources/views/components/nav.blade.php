@@ -11,6 +11,8 @@
             @php
                 if(request()->user()->role == 2){
                     echo 'Staff';
+                }elseif(request()->user()->role == 3){
+                    echo 'Customer';
                 }else{
                     echo 'Admin';
                 }

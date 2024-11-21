@@ -83,19 +83,26 @@ class ChartSales extends Component
     }
 
     public function printSales(){
-        $pdf = new Fpdf();
+        $pdf = new FPDF();
+        $path = base_path('\resources\images\logo.png');
+
 
         $pdf->AddPage();
         $pdf->SetFont('Times','B',14);
+        $pdf->ln(25);
         $pdf->cell(0,0,'Yearly Sales Reports',0,0, 'C');
         $pdf->ln(5);
 
         $marginLeft = 5;  
         $marginRight = 5;
-        $marginTop = 25;
+        $marginTop = 50;
         $marginBottom = 216;
         $pageWidth = $pdf->GetPageWidth();
         $pageHeight = $pdf->GetPageHeight();
+
+        $imageWidth = 30;
+        $pdf->Image($path, ($pageWidth/2)-17, 0,$imageWidth,30);
+
 
         $rectWidth = $pageWidth - $marginLeft - $marginRight;
         $rectHeight = $pageHeight - $marginTop - $marginBottom;
@@ -162,6 +169,9 @@ class ChartSales extends Component
 
         }
 
+        $pdf->SetFont( "Arial", "b", 12 );
+        $pdf->SetXY(($rectX+$rectWidth*.65),($marginTop + 210));
+        $pdf->Cell($rectWidth*.30,8,'Prepared by: '.request()->user()->username,0,0,'l');
 
         $pdf->output('F','pdfs/sales.pdf');
             return response()->download( 'pdfs/sales.pdf');

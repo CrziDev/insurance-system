@@ -26,10 +26,21 @@ class ClaimCheckFile extends Component
         ]);
 
         toastr()->success('Insurance Claim Approved Successfuly!');
-        $this->redirect('/admin/claims');
+        
+        if(request()->user()->role == 1){
+            $this->redirect('/admin/request');
+        }elseif(request()->user()->role == 2){
+            $this->redirect('/staff/request');
+        }
 
         ApprovedClaim::dispatch($this->transaction,$this->transaction->user()->first());
     }
+
+    public function cancelClaim()
+    {
+        $this->dispatch('close-modal', name: 'claim-add');
+    }
+ 
  
     public function render()
     {

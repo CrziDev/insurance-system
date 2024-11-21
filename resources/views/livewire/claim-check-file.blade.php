@@ -1,4 +1,4 @@
-<div x-data="{ open: false, imageUrl: '' }" class="absolute px-4 py-3 inset-x-0 mx-auto mt-[50px] max-w-2xl border bg-white rounded-lg">
+<div  @click.outside="show = false" x-data="{ open: false, imageUrl: '' }" class="absolute px-4 py-3 inset-x-0 mx-auto mt-[50px] max-w-2xl border bg-white rounded-lg">
     <div class="h-full flex flex-col items-center justify-between text-center">
         <div>
             <p class="text-[28px] text-gray-500">Provided Proofs</p>
@@ -16,10 +16,10 @@
                 <i class="fa-solid fa-cloud-arrow-up text-[100px] text-gray-500"></i>
             @endif 
         </div>
-        @if($transaction->status == 5 && auth()->user()->role == 1)
+        @if($transaction->status == 5 && (auth()->user()->role == 1 || auth()->user()->role == 2))
             <div class="w-full flex justify-center items-end gap-3">
                 <button wire:click="approveClaim()" class="px-3 py-1 mt-2 rounded-md bg-lime-500 text-white border">Approve</button>
-                <button class="px-3 py-1 mt-2 rounded-md bg-red-500 text-white border">Cancel</button>
+                <button wire:click="cancelClaim()" class="px-3 py-1 mt-2 rounded-md bg-red-500 text-white border">Cancel</button>
             </div>
         @endif
     </div>

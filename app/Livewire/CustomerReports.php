@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Fpdf\Fpdf;
 use App\Models\Transaction;
+use DateTime;
 use Livewire\Component;
 
 class CustomerReports extends Component
@@ -15,7 +16,7 @@ class CustomerReports extends Component
 
     public function mount(){
         $this->year = now()->format('Y');
-        $this->data = Transaction::with('user','policy')->where('status',3)->get();
+        $this->data = Transaction::with('user','policy')->whereIn('status',[3,1])->get();
 
     }
 
@@ -60,7 +61,7 @@ class CustomerReports extends Component
         
         $marginLeft = 5;  
         $marginRight = 5;
-        $marginTop = 50;
+        $marginTop = 60;
         $marginBottom = 216;
         $pageWidth = $pdf->GetPageWidth();
         $pageHeight = $pdf->GetPageHeight();
@@ -78,11 +79,28 @@ class CustomerReports extends Component
         // $pdf->Rect($rectX, $marginTop , $rectWidth, $rectHeight);
 
         
-        $pdf->SetFont( "Arial", "b", 12 );
-
-        $monthDisplay = $this->month;
-        $pdf->SetXY($rectX,$marginTop-8);
-        $pdf->Cell($rectWidth*.30,8,'Month: '.$monthDisplay,0,0,'l');
+        $pdf->SetFont( "Arial", "b", 10 );
+        $month = $this->month; // Example month (could be 'all')
+        $year = $this->year; // Example year
+        
+        if ($month === 'all') {
+            // When month is 'all', just display the year
+            $monthDisplay = 'All Months';
+            $yearDisplay = $year; // Display the selected year
+        } else {
+            // When month is specified, create a DateTime object for that month and year
+            $date = new DateTime("$year-$month-01");
+        
+            // Format the month and year separately
+            $monthDisplay = $date->format('F'); // Get the full month name (e.g., "May")
+            $yearDisplay = $year; // Display the selected year
+        }
+        
+        // Update the PDF output
+        $pdf->SetXY($rectX, $marginTop - 15);  // Adjust vertical position for the year display
+        $pdf->Cell($rectWidth * 0.30, 8, 'Year: ' . $yearDisplay, 0, 0, 'l');
+        $pdf->SetXY($rectX, $marginTop - 10);
+        $pdf->Cell($rectWidth * 0.30, 8, 'Month: ' . $monthDisplay, 0, 0, 'l');
 
         $pdf->SetFont( "Arial", "b", 7 );
         $pdf->Rect($rectX, $marginTop , $rectWidth*.30, 8);
@@ -116,7 +134,7 @@ class CustomerReports extends Component
         }
 
         $pdf->SetFont( "Arial", "b", 12 );
-        $pdf->SetXY(($rectX+$rectWidth*.65),($marginTop + 210));
+        $pdf->SetXY(($rectX+$rectWidth*.65),($marginTop + 200));
         $pdf->Cell($rectWidth*.30,8,'Prepared by: '.request()->user()->username,0,0,'l');
 
         $pdf->output('F','pdfs/approveInsurance.pdf');
