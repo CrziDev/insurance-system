@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\NonLifeInsurance;
+use App\Models\LifeInsurance;
+
 
 class Policy extends Model
 {
@@ -11,6 +14,7 @@ class Policy extends Model
 
 
     protected $guarded = [];
+
     public function nonLifeInsurance(){
         return $this->hasMany(NonLifeInsurance::class,'type_id');
     }

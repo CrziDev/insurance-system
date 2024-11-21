@@ -5,6 +5,13 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Policy;
+use App\Models\NonLifeInsurance;
+use App\Models\LifeInsurance;
+use App\Models\User;
+use App\Models\TransactionAttachment;
+
+
 
 class Transaction extends Model
 {

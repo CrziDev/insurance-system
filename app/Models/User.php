@@ -7,6 +7,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\customer;
+use App\Models\NonLifeInsurance;
+use App\Models\LifeInsurance;
+
 
 class User extends Authenticatable
 {
@@ -59,7 +63,7 @@ class User extends Authenticatable
     }
     
     public function customer(){
-        return $this->hasMany(Customer::class,'user_id');
+        return $this->hasMany(customer::class,'user_id');
     }
     
     public function nonLifeInsurance(){
