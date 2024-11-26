@@ -107,6 +107,7 @@ class UpdateNonLifeInsuranceForm extends Component
             "confirmation_cover_no"=>$this->form->confirmation_no,
             "forms_and_indorsement"=>$this->form->form_endorsement,
             "form_id"=>$this->form->formNumber,
+            "paid"=>$this->total,
         ]);
 
         InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
