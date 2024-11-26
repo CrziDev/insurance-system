@@ -84,7 +84,7 @@ class ChartSales extends Component
 
     public function printSales(){
         $pdf = new FPDF();
-        $path = base_path('\resources\images\logo.png');
+        $path = base_path('/resources/images/logo.png');
 
 
         $pdf->AddPage();
