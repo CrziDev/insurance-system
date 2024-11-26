@@ -32,10 +32,10 @@ class ChartSales extends Component
             ->groupBy('pol.name', 'month')
             ->get();
 
-           // Transaction 2: Life insurances (no paid column)
+        //    Transaction 2: Life insurances (no paid column)
     $transactions2 = DB::table('transactions as tr')
     ->select(
-        DB::raw('100000 as total_paid'), // Default value for life insurance
+        DB::raw('300 as total_paid'), // Default value for life insurance
         'pol.name as type',
         DB::raw('DATE_FORMAT(li.created_at, "%m") AS month') // Assuming 'created_at' exists for life insurances
     )
@@ -50,7 +50,6 @@ class ChartSales extends Component
                 
             $typeData = [];
             
-            // dd($transactions);
             $transactions->each(function ($item) use (&$typeData) {
                 if (!isset($typeData[$item->type])) {
                     $typeData[$item->type] = array_fill(0, 12, 0); 
@@ -61,29 +60,29 @@ class ChartSales extends Component
                 $monthIndex = (int)$item->month - 1;
                 $typeData[$item->type][$monthIndex] += $item->total_paid;
             });
-
-          
+            
+            
             
             $this->data = collect($typeData)->map(function($item, $key) {
                 // Function to generate a random RGB color
-        $randomColor = function() {
-                            $r = rand(0, 255);
+                $randomColor = function() {
+                    $r = rand(0, 255);
                             $g = rand(0, 255);
                             $b = rand(0, 255);
                             return "rgba($r, $g, $b, 0.2)";
                         };
-            
-                return [
-                    'type' => 'bar',
-                    'label' => $key,
-                    'data' => $item, 
-                    'backgroundColor' => $randomColor(),
-                    'borderColor' => "rgba(54, 162, 235, 1)", 
-                    'borderWidth' => 1,
-                    'stack' => 'combined',
-                ];
-            })->values();
-            
+                        
+                        return [
+                            'type' => 'bar',
+                            'label' => $key,
+                            'data' => $item, 
+                            'backgroundColor' => $randomColor(),
+                            'borderColor' => "rgba(54, 162, 235, 1)", 
+                            'borderWidth' => 1,
+                            'stack' => 'combined',
+                        ];
+                    })->values();
+
         }
 
     public function selectOptions($year)
