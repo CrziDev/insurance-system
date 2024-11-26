@@ -36,13 +36,15 @@ class CheckTransaction extends Command
                 // Get the current date
                 $currentDate = Carbon::now();
                 
-                // Check if the current date is 3 months before the expiration date
-                if ($currentDate->isAfter($expirationDate->copy()->subMonths(3))) {
-                    // If it's 3 months before expiration, change status to 3
-                    $transaction->status = 3;
-                } elseif ($currentDate->isAfter($expirationDate)) {
+               // Check if the current date has passed the expiration date
+                if ($currentDate->isAfter($expirationDate)) {
                     // If the current date has passed the expiration, change status to 2
                     $transaction->status = 2;
+                } 
+                // Check if the current date is 3 months before the expiration date
+                elseif ($currentDate->isAfter($expirationDate->copy()->subMonths(3))) {
+                    // If it's 3 months before expiration, change status to 3
+                    $transaction->status = 3;
                 }
                 
                 // Save the transaction after changing the status
