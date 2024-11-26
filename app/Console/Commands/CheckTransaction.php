@@ -39,10 +39,10 @@ class CheckTransaction extends Command
                 // Check if the current date is 3 months before the expiration date
                 if ($currentDate->isAfter($expirationDate->copy()->subMonths(3))) {
                     // If it's 3 months before expiration, change status to 3
-                    $transaction->status = 2;
+                    $transaction->status = 3;
                 } elseif ($currentDate->isAfter($expirationDate)) {
                     // If the current date has passed the expiration, change status to 2
-                    $transaction->status = 3;
+                    $transaction->status = 2;
                 }
                 
                 // Save the transaction after changing the status
