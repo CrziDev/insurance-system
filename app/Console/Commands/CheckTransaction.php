@@ -27,7 +27,7 @@ class CheckTransaction extends Command
      */
     public function handle()
     {
-            $transactions = Transaction::whereIn('status', [1,2,3,4])->get();
+            $transactions = Transaction::whereIn('status', [1,2,3])->get();
 
             foreach ($transactions as $transaction) {
                 // Get the expiration date of the transaction
