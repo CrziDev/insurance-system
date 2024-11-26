@@ -48,18 +48,18 @@ class User extends Authenticatable
     }
 
     public function getGreetingAttribute() {
-        $hour = now()->timezone('Asia/Manila')->format('h A');
+        // $hour = now()->timezone('Asia/Manila')->format('h A');
 
-        if ($hour >= '08 PM') {
-            $greetings = "Good Evening";
-        } elseif ($hour > '05 PM') {
-            $greetings = "Good Evening";
-        } elseif ($hour > '11 AM') {
-            $greetings = "Good Afternoon";
-        } else {
-            $greetings = "Good Morning";
-        }
-        return $greetings;
+        // if ($hour >= '08 PM') {
+        //     $greetings = "Good Evening";
+        // } elseif ($hour > '05 PM') {
+        //     $greetings = "Good Evening";
+        // } elseif ($hour > '11 AM') {
+        //     $greetings = "Good Afternoon";
+        // } else {
+        //     $greetings = "Good Morning";
+        // }
+        return 'Good Day';
     }
     
     public function customer(){
