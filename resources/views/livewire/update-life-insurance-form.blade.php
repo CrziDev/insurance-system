@@ -165,11 +165,18 @@
 
 
         
-        @if($status == 4 || $status == 2)
+        @if($status == 2)
         <div class="flex justify-center">
-            <x-button>Approve Request</x-button>
+            <x-button>Renew Insurance</x-button>
         </div>
         @endif
 
+
+        @if($status == 4)
+        <div class="flex justify-center">
+            <x-button>Approve Insurance</x-button>
+        </div>
+        @endif
+    
     </form>
 </div>

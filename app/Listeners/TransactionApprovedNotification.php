@@ -26,6 +26,6 @@ class TransactionApprovedNotification
         $type = $event->transaction->policy->type;
 
         $user = $event->user;
-        $user->notify(new TransactionApproveNotification($requestor,$type));
+        $user->notify(new TransactionApproveNotification($requestor,$type,$event->renew));
     }
 }

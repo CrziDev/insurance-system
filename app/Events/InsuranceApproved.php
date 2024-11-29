@@ -21,10 +21,12 @@ class InsuranceApproved
      */
     public $transaction;
     public $user;
-    public function __construct(Transaction $transaction,User $user)
+    public $renew;
+    public function __construct(Transaction $transaction,User $user,$renew = false)
     {
         $this->transaction = $transaction;
         $this->user = $user;
+        $this->renew = $renew;
 
     }
 

@@ -110,14 +110,21 @@ class UpdateNonLifeInsuranceForm extends Component
             "paid"=>$this->total,
         ]);
 
-        InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
+      
         $pdf = new PrintForm($this->selectedRow->non_life_id);
         
         $pdf->generatePdf();
         $pdf->output('F','pdfs/generatedForm.pdf');
 
         $this->dispatch('close-modal', name:'pending-form');
-        toastr()->success('Request Approved Successfuly!');
+
+        if ($this->status == 2) {
+            toastr()->success('Insurance Renewed Successfully!');
+            InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first(),true);
+        } elseif ($this->status == 4) {
+            toastr()->success('Insurance Approved Successfully!');
+            InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
+        } 
         return response()->download( 'pdfs/generatedForm.pdf');
 
         

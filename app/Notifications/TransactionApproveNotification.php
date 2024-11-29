@@ -12,13 +12,15 @@ class TransactionApproveNotification extends Notification
     use Queueable;
     public $requestor;
     public $type;
+    public $renew;
     /**
      * Create a new notification instance.
      */
-    public function __construct($requestor,$type)
+    public function __construct($requestor,$type,$renew)
     {
         $this->requestor = $requestor;
         $this->type = $type;
+        $this->renew = $renew;
     }
 
     /**
@@ -49,11 +51,21 @@ class TransactionApproveNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        return [
-            'event' => 'Request was Approved by admin',
-            'date' => now(),
-            'type' => $this->type,
-            'requestor' => $this->requestor
-        ];
+
+        if($this->renew){
+            return [
+                'event' => 'Request was Renew by admin',
+                'date' => now(),
+                'type' => $this->type,
+                'requestor' => $this->requestor
+            ];
+        }else{
+            return [
+                'event' => 'Request was Approved by admin',
+                'date' => now(),
+                'type' => $this->type,
+                'requestor' => $this->requestor
+            ];
+        }
     }
 }
