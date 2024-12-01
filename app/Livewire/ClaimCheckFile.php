@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Events\ApprovedClaim;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Twilio\Rest\Client;
@@ -58,11 +59,18 @@ class ClaimCheckFile extends Component
 
     private function sendMessage($message, $recipients)
     {
-        $account_sid = getenv("TWILIO_SID");
-        $auth_token = getenv("TWILIO_AUTH_TOKEN");
-        $twilio_number = getenv("TWILIO_NUMBER");
-        $client = new Client($account_sid, $auth_token);
-        $client->messages->create($recipients, 
-                ['from' => $twilio_number, 'body' => $message] );
+        try {
+            $account_sid = getenv("TWILIO_SID");
+            $auth_token = getenv("TWILIO_AUTH_TOKEN");
+            $twilio_number = getenv("TWILIO_NUMBER");
+    
+            $client = new Client($account_sid, $auth_token);
+            $client->messages->create($recipients, 
+                ['from' => $twilio_number, 'body' => $message]);
+    
+        } catch (\Exception $e) {
+            // Log the error and continue
+            Log::error("Error sending SMS: " . $e->getMessage());
+        }
     }
 }

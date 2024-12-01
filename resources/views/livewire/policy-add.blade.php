@@ -30,7 +30,7 @@
 
                 <div class="mb-2 flex flex-col">
                     <x-form-input-label class="text-sm mb-1">Quantity</x-form-input-label>
-                    <x-form-input wire:model="quantity"  ></x-form-input>
+                    <x-form-input wire:model="quantity"></x-form-input>
                     <x-error error="quantity"/>
                 </div>       
             </div>
