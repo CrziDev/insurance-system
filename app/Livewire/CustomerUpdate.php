@@ -21,7 +21,7 @@ class CustomerUpdate extends Component
     public $middleInitial = 'N/A';
     #[Validate('required')]
     public $nameExtention = "N/A";
-    #[Validate('required|regex:/^\+63\d{9}$/')]
+    #[Validate('required|regex:/^\+63\d{10}$/')]
     public $phoneNumber;
     #[Validate('required|email|max:255')]
     public $email;
