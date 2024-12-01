@@ -22,7 +22,7 @@
                     <label class="text-xs font-sm">Policy Type</label>
                     <select  error='form.policyId' wire:model='policyType'  wire:change="selectPolicyType($event.target.value)"  class="px-2 py-1 text-xs  border rounded text-gray-500 border-gray-300" name="" id="">
                         <option value="">Select Here</option>  
-                        <option value="Non-Life Policy">Non-Life Policy</option> 
+                        <option value="Non-life-type">Non-Life Policy</option> 
                         <!-- <option value="Life Policy">Life Policy</option>             -->
                     </select>
                     <x-error error="policyType"/>
