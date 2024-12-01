@@ -10,6 +10,7 @@ use App\Models\Policy;
 use App\Models\Transaction;
 use App\Models\User;
 use Livewire\Component;
+use Twilio\Rest\Client;
 
 class UpdateNonLifeInsuranceForm extends Component
 {
@@ -117,12 +118,23 @@ class UpdateNonLifeInsuranceForm extends Component
         $pdf->output('F','pdfs/generatedForm.pdf');
 
         $this->dispatch('close-modal', name:'pending-form');
-
+        $user =  $this->selectedRow->user()->with('customer')->first();
         if ($this->status == 2) {
             toastr()->success('Insurance Renewed Successfully!');
+
+            $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been Renewed . Please review your policy documents for full details. Thank you for trusting us!";
+    
+    
+            $this->sendMessage($message,$user->customer[0]->phone_number);
+    
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first(),true);
         } elseif ($this->status == 4) {
             toastr()->success('Insurance Approved Successfully!');
+
+            $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been successfully approved . Please review your policy documents for full details. Thank you for trusting us!";
+    
+            $this->sendMessage($message,$user->customer[0]->phone_number);
+    
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
         } 
         return response()->download( 'pdfs/generatedForm.pdf');
@@ -134,4 +146,15 @@ class UpdateNonLifeInsuranceForm extends Component
     {
         return view('livewire.update-non-life-insurance-form');
     }
+
+    
+    private function sendMessage($message, $recipients)
+        {
+            $account_sid = getenv("TWILIO_SID");
+            $auth_token = getenv("TWILIO_AUTH_TOKEN");
+            $twilio_number = getenv("TWILIO_NUMBER");
+            $client = new Client($account_sid, $auth_token);
+            $client->messages->create($recipients, 
+                    ['from' => $twilio_number, 'body' => $message] );
+        }
 }

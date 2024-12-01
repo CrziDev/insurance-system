@@ -52,7 +52,7 @@
           
             <div class="grid grid-cols-2 space-x-2">
                 <div class="mb-2 flex flex-col">
-                    <x-form-input-label>Phone Number</x-form-input-label>
+                    <x-form-input-label>Phone Number (format +69XXXXXXXX)</x-form-input-label>
                     <x-form-input wire:model="phoneNumber"  ></x-form-input>
                     <x-error error="phoneNumber"/>
                 </div>     

@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Twilio\Rest\Client;
 
 class UpdateLifeInsuranceForm extends Component
 {
@@ -71,6 +72,7 @@ class UpdateLifeInsuranceForm extends Component
         $this->form->allowance_package = array_values($this->form->allowance_package);
     }
     public function update(){
+        dd($this->selectedRow->user()->first());
         $data = $this->validate();
        
         unset($data['dateEffective'], $data['expiration']);
@@ -84,6 +86,14 @@ class UpdateLifeInsuranceForm extends Component
         LifeInsurance::findOrFail($this->selectedRow->life_id)->update($data);
 
         toastr()->success('Request Approved Successfuly!');
+
+        $user =  $this->selectedRow->user()->with('customer')->first();
+
+        
+        $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been successfully approved . Please review your policy documents for full details. Thank you for trusting us!";
+
+        $this->sendMessage($message,$user->customer[0]->phone_number);
+
         $this->redirect('/admin/request');
 
         InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
@@ -93,4 +103,14 @@ class UpdateLifeInsuranceForm extends Component
     {
         return view('livewire.update-life-insurance-form');
     }
+
+    private function sendMessage($message, $recipients)
+        {
+            $account_sid = getenv("TWILIO_SID");
+            $auth_token = getenv("TWILIO_AUTH_TOKEN");
+            $twilio_number = getenv("TWILIO_NUMBER");
+            $client = new Client($account_sid, $auth_token);
+            $client->messages->create($recipients, 
+                    ['from' => $twilio_number, 'body' => $message] );
+        }
 }

@@ -31,7 +31,7 @@ class ClaimAdd extends Component
             "status"=>5,
         ]);
 
-        toastr()->success('Insurance Requested!');
+        toastr()->success('Claim Requested!');
         $this->redirect('/customer/claims');
         ClaimInsurance::dispatch($this->transaction,Auth::user());
         

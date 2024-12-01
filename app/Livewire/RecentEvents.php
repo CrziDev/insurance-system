@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\NonLifeInsurance;
 use App\Models\Transaction;
 use Livewire\Component;
+use Twilio\Rest\Client;
 
 class RecentEvents extends Component
 {
@@ -12,7 +13,9 @@ class RecentEvents extends Component
     public $tableLink;
     public function render()
     {
-        
+
+        // $this->sendMessage('User registration successful!!', $phoneNumber);
+
         if (request()->user()->role == 3) {
             $data = Transaction::whereIn('status', [1, 2, 3, 4, 5, 6])
                 ->where('user_id', request()->user()->id)
@@ -29,4 +32,5 @@ class RecentEvents extends Component
         // dd($data);
         return view('livewire.recent-events',['data'=> $data]);
     }
+
 }
