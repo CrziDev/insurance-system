@@ -52,8 +52,7 @@ class PrintForm extends Fpdf
         $data = NonLifeInsurance::with('user.customer','transaction.policy')->find($insuranceData);
 
         parent::__construct(); // Call the parent constructor (Fpdf)
-    
-        $this->fullName = $data->customer[0]->full_name ?? 'name';  // If no full name, set to empty string
+        $this->fullName = $data->user->customer[0]->full_name ?? 'name';  // If no full name, set to empty string
         $this->address = $data->user->customer[0]->address ?? '';  // Assuming the address is in customer
         $this->profession = $data->user->customer[0]->profession ?? '';  // Assuming profession is in customer
         $this->conf_cover = $data->confirmation_cover_no ?? '';  // 'endorsement' field from database
@@ -159,6 +158,7 @@ class PrintForm extends Fpdf
         // NAME AND ADDRESS OF INSURED
         $this->Rect(($rectX),$marginTop,($rectWidth*.50),48);
         $this->SetFont( "Arial", "B", 10);
+        $this->SetXY(($rectX),($marginTop - 5));
         $this->Cell(($rectWidth*.50),36,$this->fullName,0,0,'C');
         $this->SetXY(($rectX),($marginTop + 20));
         $this->MultiCell(($rectWidth*.50),4,$this->address ,0,'C',false);

@@ -73,7 +73,7 @@ class UpdateLifeInsuranceForm extends Component
         $this->form->allowance_package = array_values($this->form->allowance_package);
     }
     public function update(){
-        dd($this->selectedRow->user()->first());
+
         $data = $this->validate();
        
         unset($data['dateEffective'], $data['expiration']);
