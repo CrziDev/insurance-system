@@ -31,7 +31,7 @@
                </div>
                <div class="w-[30%] border-r ">
                   <p class="text-sm mb-1">Premium</p>
-                  <p class="text-xl font-semibold">₱250/month</p>
+                  <p class="text-xl font-semibold">{{$transactions->policy->yearly_cost}}/Year</p>
                </div>
                <div class="w-[40%] border-r">
                   <p class="text-sm mb-1">Duration</p>

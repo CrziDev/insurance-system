@@ -51,7 +51,6 @@ class ClaimCheckFile extends Component
         $this->dispatch('close-modal', name: 'claim-add');
     }
  
- 
     public function render()
     {
         return view('livewire.claim-check-file');

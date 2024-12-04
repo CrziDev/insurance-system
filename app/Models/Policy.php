@@ -19,4 +19,8 @@ class Policy extends Model
     public function LifeInsurance(){
         return $this->hasMany(LifeInsurance::class,'type_id');
     }
+
+    public function getyearlyCostAttribute(){
+        return ($this->premium + $this->docstamp + $this->govtax + $this->others) * 12;
+    }
 }
