@@ -21,6 +21,6 @@ class Policy extends Model
     }
 
     public function getyearlyCostAttribute(){
-        return ($this->premium + $this->docstamp + $this->govtax + $this->others) * 12;
+        return ($this->premium + $this->docstamp + $this->govtax + $this->others);
     }
 }
