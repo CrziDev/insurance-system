@@ -9,6 +9,7 @@ class ClaimList extends Component
 {
     public $tableTitle;
     public $transaction;
+    public $status = ''; 
 
     public function selectClaim(Transaction $claim)
     {      
@@ -23,6 +24,11 @@ class ClaimList extends Component
         }
     }
 
+    public function filterStatus($status)
+    {
+        $this->status = $status;
+    }
+
     public function render()
     {
 
@@ -34,6 +40,10 @@ class ClaimList extends Component
 
         if ($user->role == 3) {
             $claims->whereIn('status',[1,3,5,6])->where('user_id', $user->id);
+
+            if ($this->status) {
+                $claims->where('status', $this->status);
+            }
         }else{
             $claims->whereIn('status',[5,6]);
         }
