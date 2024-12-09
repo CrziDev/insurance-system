@@ -7,6 +7,7 @@ use App\Events\InsuranceApproved;
 use App\Livewire\Forms\NonLifeInsuranceAdminAttribute;
 use App\Models\NonLifeInsurance;
 use App\Models\Policy;
+use App\Models\RenewedHistory;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
@@ -28,6 +29,7 @@ class UpdateNonLifeInsuranceForm extends Component
     public Transaction $selectedRow;
     public $modal;
     public $status;
+    public $oldExpiration;
 
     public function mount()
     {
@@ -85,7 +87,9 @@ class UpdateNonLifeInsuranceForm extends Component
 
     public function update(){
         $this->validate();
-  
+        $transaction = Transaction::findOrFail($this->selectedRow->id);
+
+        $this->oldExpiration = $transaction->expiration;
         Transaction::findOrFail($this->selectedRow->id)->update([
             "date_effective"=>$this->form->dateEffective,
             "expiration"=>$this->form->expiration,
@@ -123,9 +127,14 @@ class UpdateNonLifeInsuranceForm extends Component
         if ($this->status == 2) {
             toastr()->success('Insurance Renewed Successfully!');
 
+            RenewedHistory::create([
+                'transaction_id' => $this->selectedRow->id,
+                'date_expired' =>   $this->oldExpiration,
+                'date_renewed' => now()
+            ]);
+
             $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been Renewed . Please review your policy documents for full details. Thank you for trusting us!";
-    
-    
+
             $this->sendMessage($message,$user->customer[0]->phone_number);
     
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first(),true);

@@ -1,3 +1,4 @@
 <x-nav-link href="/customer/dashboard" iconImage="dashboard.png" :active="request()->is('customer/dashboard')">Dashboard</x-nav-link>
 <x-nav-link href="/customer/insurance"  iconLink="fa-file-contract" :active="request()->is('customer/insurance')">Insurance</x-nav-link>
 <x-nav-link href="/customer/claims" iconLink="fa-person-circle-exclamation" :active="request()->is('customer/claims')">Claims</x-nav-link>
+<x-nav-link href="/customer/history" iconLink="fa-solid fa-pen-to-square" :active="request()->is('customer/history')">History</x-nav-link>

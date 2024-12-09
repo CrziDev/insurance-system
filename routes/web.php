@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Customer\CustomerClaimsController;
 use App\Http\Controllers\Customer\CustomerDashboardontroller;
 use App\Http\Controllers\Customer\CustomerInsuranceController;
+use App\Http\Controllers\Customer\CustomerRenewedController;
 use App\Http\Controllers\ReportsController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,7 @@ Route::middleware(['auth'])->group(function ()
             Route::resource('dashboard',CustomerDashboardontroller::class);
             Route::resource('claims',CustomerClaimsController::class);
             Route::resource('insurance',CustomerInsuranceController::class);
+            Route::resource('history',CustomerRenewedController::class);
         }
     );
 
