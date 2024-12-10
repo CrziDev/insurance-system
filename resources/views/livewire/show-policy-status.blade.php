@@ -28,7 +28,7 @@
                 <td class="py-3 border border-lime-500 text-center">{{$row->date_expiration_format}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->Policy->name}}</td>
                 <td class="py-3 border border-lime-500 text-center">{{$row->Policy->type}}</td>
-                <td class="py-3 border border-lime-500  text-{{lcfirst($row->status_description)}} text-center">{{$row->status_description}}</td>
+                <td class="py-3 border border-lime-500  text-{{lcfirst($row->status_description)}} text-center">{{($row->status_description == 'Approved')?'Active':$row->status_description}}</td>
                 <td class="py-3 border border-lime-500 text-center flex justify-center space-x-1 px-1">
                     @if($row->status == 2)
                     <button class="w-[100px] text-white bg-amber-600 p-1 font-semibold rounded-md " wire:click="selectRow({{$row}})">Renew</button>

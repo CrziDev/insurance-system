@@ -23,7 +23,11 @@
             </div>
         </div>
         <div class="w-full flex justify-center  items-end gap-3">
-            <button wire:click="fileUpload()" class="px-3 py-1 mt-2 rounded-md bg-lime-500 text-white border">Submit</button>
+            <button wire:click="fileUpload()" 
+                    class="px-3 py-1 mt-2 rounded-md bg-lime-500 text-white border" 
+                    :disabled="!@this.photos.length">
+                Submit
+            </button>
             <button class="px-3 py-1 mt-2 rounded-md bg-red-500 text-white border">Cancel</button>
         </div>
     </div>
