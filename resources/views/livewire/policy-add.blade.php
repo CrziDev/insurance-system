@@ -38,8 +38,21 @@
 
             <div class="border border-gray-300 w-full my-5"></div>
 
-            @if($selectedType == 'Non-Life Policy')
+            @if($selectedType == 'Non-life-type')
             <div>
+
+                <div class="grid grid-cols-2 space-x-2">
+                    <div class="mb-2 flex flex-col">
+                        <x-form-input-label class="text-sm mb-1">Limit Liability</x-form-input-label>
+                        <x-form-input wire:model="limitLiability"  ></x-form-input>
+                        <x-error error="limitLiability"/>
+                    </div>     
+                    <div class="mb-2  flex flex-col">
+                        <x-form-input-label class="text-sm mb-1">Premium Paid</x-form-input-label>
+                        <x-form-input wire:model="premiumPaid"  ></x-form-input>
+                        <x-error error="premiumPaid"/>
+                    </div>
+                </div>
             
                 <div class="grid grid-cols-2 space-x-2">
                     <div class="mb-2 flex flex-col">

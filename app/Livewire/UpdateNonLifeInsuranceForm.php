@@ -22,6 +22,8 @@ class UpdateNonLifeInsuranceForm extends Component
     public $formAction = '';
     public $policyLists = [];
     public $premiumPaid= '';
+    public $premium= '';
+    public $limitLiability= '';
     public $docstamp = '';
     public $localGovTax = '';
     public $others = '';
@@ -49,8 +51,21 @@ class UpdateNonLifeInsuranceForm extends Component
         $this->form->authorizedCapacity = $nonLifeType->nonLifeInsurance->authorize_capacity; 
         $this->form->bltFileNo = $nonLifeType->nonLifeInsurance->blt_num; 
         $this->form->weightCapacity = $nonLifeType->nonLifeInsurance->weight_capacity; 
-        $this->form->dateEffective = $nonLifeType->date_effective; 
-        $this->form->expiration = $nonLifeType->expiration; 
+       
+        if (!isset($nonLifeType->date_effective)) {
+            $this->form->dateEffective = date('Y-m-d'); // Current date
+        } else {
+            $this->form->dateEffective = $nonLifeType->date_effective;
+        }
+        
+        if (!isset($nonLifeType->expiration)) {
+            // Set expiration to 1 year from now
+            $this->form->expiration = date('Y-m-d', strtotime('+1 year'));
+        } else {
+            $this->form->expiration = $nonLifeType->expiration;
+        }
+
+
         $this->form->confirmation_no = $nonLifeType->nonLifeInsurance->confirmation_cover_no; 
         $this->form->official_receipt = $nonLifeType->nonLifeInsurance->official_receipt_no; 
         $this->form->limitLiabity = $nonLifeType->nonLifeInsurance->limit_liabilty; 
@@ -77,8 +92,13 @@ class UpdateNonLifeInsuranceForm extends Component
     }
 
     public function populatepolicyFields($type,$id){
+
+        $this->limitLiability= $type->limit_liability;
+        $this->premiumPaid = $type->premium_paid;
+
+
         $this->form->policyId = $id;
-        $this->premiumPaid= $type->premium;
+        $this->premium= $type->premium;
         $this->docstamp = $type->docstamp;
         $this->localGovTax = $type->govtax;
         $this->others = $type->others;
@@ -107,8 +127,8 @@ class UpdateNonLifeInsuranceForm extends Component
             "weight_capacity"=>$this->form->weightCapacity,
             "authorize_capacity"=>$this->form->authorizedCapacity,
             "make"=>$this->form->make,
-            "limit_liabilty"=>$this->form->limitLiabity,
-            "premium_paid"=>$this->form->premiumPaidOnlimit,
+            "limit_liabilty"=>$this->limitLiability,
+            "premium_paid"=>$this->premiumPaid,
             "official_receipt_no"=>$this->form->official_receipt,
             "confirmation_cover_no"=>$this->form->confirmation_no,
             "forms_and_indorsement"=>$this->form->form_endorsement,
@@ -120,7 +140,8 @@ class UpdateNonLifeInsuranceForm extends Component
         $pdf = new PrintForm($this->selectedRow->non_life_id);
         
         $pdf->generatePdf();
-        $pdf->output('F','pdfs/generatedForm.pdf');
+        $pdf->SetTitle('Zilka Life Insurance Form');
+        $pdf->output('f','pdfs/zilkaPdf.pdf');
 
         $this->dispatch('close-modal', name:'pending-form');
         $user =  $this->selectedRow->user()->with('customer')->first();

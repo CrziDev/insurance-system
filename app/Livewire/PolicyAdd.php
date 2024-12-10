@@ -15,6 +15,9 @@ class PolicyAdd extends Component
     public $quantity;
     public $policyType;
     public $selectedType;
+    public $premiumPaid;
+    public $limitLiability;
+
 
     // Validation rules
     protected $rules = [
@@ -25,12 +28,14 @@ class PolicyAdd extends Component
         'others' => 'required|numeric|min:3',
         'quantity' => 'required|numeric|min:3',
         'policyType' => 'required',
+        'premiumPaid' => 'required',
+        'limitLiability' => 'required',
     ];
 
     public function save()
     {
         // Validate based on selected policy type
-        if ($this->selectedType === "Non-Life Policy") {
+        if ($this->selectedType === "Non-life-type") {
             $this->validate(); // Validate all fields
 
             Policy::create([
@@ -41,6 +46,8 @@ class PolicyAdd extends Component
                 'others' => $this->others,
                 'quantity' => $this->quantity,
                 'type' => $this->policyType,
+                'limit_liability' => $this->premiumPaid,
+                'premium_paid' => $this->limitLiability,
             ]);
         } else {
             // Custom validation for the else case

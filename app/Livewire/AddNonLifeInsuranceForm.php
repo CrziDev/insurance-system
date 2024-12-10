@@ -17,6 +17,8 @@ class AddNonLifeInsuranceForm extends Component
     public $formAction = '';
     public $policyLists = [];
     public $premiumPaid= '';
+    public $premium= '';
+    public $limitLiability= '';
     public $docstamp = '';
     public $localGovTax = '';
     public $others = '';
@@ -41,8 +43,8 @@ class AddNonLifeInsuranceForm extends Component
             'authorize_capacity'  => $this->form->authorizedCapacity,
             'blt_num'  => $this->form->bltFileNo,
             'weight_capacity' => $this->form->weightCapacity,
-            'limit_premium_paid' => $this->form->premiumPaidOnlimit,
-            'limit_liabilty' => $this->form->limitLiabity,      
+            'limit_premium_paid' => $this->premiumPaid,
+            'limit_liabilty' => $this->limitLiability,      
             'forms_and_indorsement' => $this->form->form_endorsement,
         ]);
 
@@ -100,8 +102,11 @@ class AddNonLifeInsuranceForm extends Component
     }
 
     public function populatepolicyFields($type,$id){
+        $this->limitLiability= $type->limit_liability;
+        $this->premiumPaid = $type->premium_paid;
+
         $this->form->policyId = $id;
-        $this->premiumPaid= $type->premium;
+        $this->premium= $type->premium;
         $this->docstamp = $type->docstamp;
         $this->localGovTax = $type->govtax;
         $this->others = $type->others;
