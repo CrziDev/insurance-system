@@ -33,17 +33,17 @@ class ChartSales extends Component
             ->get();
 
         //    Transaction 2: Life insurances (no paid column)
-    $transactions2 = DB::table('transactions as tr')
-    ->select(
-        DB::raw('300 as total_paid'), // Default value for life insurance
-        'pol.name as type',
-        DB::raw('DATE_FORMAT(li.created_at, "%m") AS month') // Assuming 'created_at' exists for life insurances
-    )
-    ->join('life_insurances as li', 'li.id', '=', 'tr.life_id')
-    ->join('policies as pol', 'pol.id', '=', 'tr.policy_type_id')
-    ->whereYear('tr.created_at', $this->year)
-    ->groupBy('pol.name', 'month')
-    ->get();
+        $transactions2 = DB::table('transactions as tr')
+        ->select(
+            DB::raw('300 as total_paid'), // Default value for life insurance
+            'pol.name as type',
+            DB::raw('DATE_FORMAT(li.created_at, "%m") AS month') // Assuming 'created_at' exists for life insurances
+        )
+        ->join('life_insurances as li', 'li.id', '=', 'tr.life_id')
+        ->join('policies as pol', 'pol.id', '=', 'tr.policy_type_id')
+        ->whereYear('tr.created_at', $this->year)
+        ->groupBy('pol.name', 'month')
+        ->get();
     
             // Merge both transaction sets
             $transactions = $transactions->merge($transactions2);
@@ -60,7 +60,6 @@ class ChartSales extends Component
                 $monthIndex = (int)$item->month - 1;
                 $typeData[$item->type][$monthIndex] += $item->total_paid;
             });
-            
             
             
             $this->data = collect($typeData)->map(function($item, $key) {
