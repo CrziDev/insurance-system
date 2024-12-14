@@ -18,16 +18,18 @@ class PolicyAddQuantity extends Component
         'quantity' => 'required|numeric|min:1',
     ];
     public function selectedPolicy($policy){
-        $quantity = Policy::find($policy)->quantity;
-        $this->quantity = $quantity;
+        // $quantity = Policy::find($policy)->quantity;
+        // // $this->quantity = $quantity;
         $this->policyId = $policy;
     }       
 
     public function save(){
         $this->validate();
 
-        Policy::find($this->policyId)->update([
-            'quantity' => $this->quantity
+        $policy = Policy::find($this->policyId);
+
+        $policy->update([
+            'quantity' => (int) $this->quantity + (int)$policy->quantity,
         ]);
 
         toastr()->success('Updated Successfully!');

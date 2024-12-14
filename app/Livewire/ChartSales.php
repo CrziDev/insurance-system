@@ -8,96 +8,49 @@ use Livewire\Component;
 
 class ChartSales extends Component
 {   
-    public $data = [];
+
+    public $saleChartData = [];
+    public $saleChartLabel = [];
+    public $tableTitle = '';
     public $year;
-    public $tableTitle;
-
+    
     public function mount() {
-        $this->year = now()->format('Y');
+        $this->year = 2024;
         $this->loadData();
-
     }
+        
+    public function loadData(){
 
-    public function loadData()
-        {
-            $transactions = DB::table('transactions as tr')
-            ->select(
-                DB::raw('SUM(nI.paid) as total_paid'),
-                'pol.name as type',
-                DB::raw('DATE_FORMAT(nI.created_at, "%m") AS month')
-            )
+        $transactions = DB::table('transactions as tr')
             ->join('non_life_insurances as nI', 'nI.id', '=', 'tr.non_life_id')
             ->join('policies as pol', 'pol.id', '=', 'tr.policy_type_id')
+            ->select('pol.name as type')
             ->whereYear('tr.created_at',$this->year)
-            ->groupBy('pol.name', 'month')
             ->get();
+        
+        $data = [];
+        $label = [];
 
-        //    Transaction 2: Life insurances (no paid column)
-        $transactions2 = DB::table('transactions as tr')
-        ->select(
-            DB::raw('300 as total_paid'), // Default value for life insurance
-            'pol.name as type',
-            DB::raw('DATE_FORMAT(li.created_at, "%m") AS month') // Assuming 'created_at' exists for life insurances
-        )
-        ->join('life_insurances as li', 'li.id', '=', 'tr.life_id')
-        ->join('policies as pol', 'pol.id', '=', 'tr.policy_type_id')
-        ->whereYear('tr.created_at', $this->year)
-        ->groupBy('pol.name', 'month')
-        ->get();
+        $transactions->groupBy('type')->each(function($item) use(&$data,&$label){
+           $data [] = $item->count();
+           $label [] = $item[0]->type;
+        });
+
+        $this->saleChartData = $data;
+        $this->saleChartLabel = $label;
+    }
     
-            // Merge both transaction sets
-            $transactions = $transactions->merge($transactions2);
-                
-            $typeData = [];
-            
-            $transactions->each(function ($item) use (&$typeData) {
-                if (!isset($typeData[$item->type])) {
-                    $typeData[$item->type] = array_fill(0, 12, 0); 
-                }
-            });
-            
-            $transactions->each(function ($item) use (&$typeData) {
-                $monthIndex = (int)$item->month - 1;
-                $typeData[$item->type][$monthIndex] += $item->total_paid;
-            });
-            
-            
-            $this->data = collect($typeData)->map(function($item, $key) {
-                // Function to generate a random RGB color
-                $randomColor = function() {
-                    $r = rand(0, 255);
-                            $g = rand(0, 255);
-                            $b = rand(0, 255);
-                            return "rgba($r, $g, $b, 0.2)";
-                        };
-                        
-                        return [
-                            'type' => 'bar',
-                            'label' => $key,
-                            'data' => $item, 
-                            'backgroundColor' => $randomColor(),
-                            'borderColor' => "rgba(54, 162, 235, 1)", 
-                            'borderWidth' => 1,
-                            'stack' => 'combined',
-                        ];
-                    })->values();
-
-        }
-
     public function selectOptions($year)
     {
-
-        $this->loadData($year); 
-
+        $this->year = $year;
+        $this->loadData(); 
+        
         $this->dispatch('updateChart', [
-            'datasets' => $this->data,
-            'labels' => [
-                "January", "February", "March", "April",
-                "May", "June", "July", "August",
-                "September", "October", "November", "December",
-            ],
+            'datasets' => $this->saleChartData,
+            'labels' => $this->saleChartLabel
+
         ]);
-    
+
     }
 
     public function printSales(){
@@ -199,7 +152,101 @@ class ChartSales extends Component
     public function render()
     {
         return view('livewire.chart-sales',[
-            'chartData' => $this->data,
+            'chartData' => $this->saleChartData,
         ]);
     }
 }
+
+
+
+// public $data = [];
+//     public $year;
+//     public $tableTitle;
+
+//     public function mount() {
+//         $this->year = now()->format('Y');
+//         $this->loadData();
+
+//     }
+
+//     public function loadData()
+//         {
+//             $transactions = DB::table('transactions as tr')
+//             ->select(
+//                 DB::raw('SUM(nI.paid) as total_paid'),
+//                 'pol.name as type',
+//                 DB::raw('DATE_FORMAT(nI.created_at, "%m") AS month')
+//             )
+//             ->join('non_life_insurances as nI', 'nI.id', '=', 'tr.non_life_id')
+//             ->join('policies as pol', 'pol.id', '=', 'tr.policy_type_id')
+//             ->whereYear('tr.created_at',$this->year)
+//             ->groupBy('pol.name', 'month')
+//             ->get();
+
+//         //    Transaction 2: Life insurances (no paid column)
+//         $transactions2 = DB::table('transactions as tr')
+//         ->select(
+//             DB::raw('300 as total_paid'), // Default value for life insurance
+//             'pol.name as type',
+//             DB::raw('DATE_FORMAT(li.created_at, "%m") AS month') // Assuming 'created_at' exists for life insurances
+//         )
+//         ->join('life_insurances as li', 'li.id', '=', 'tr.life_id')
+//         ->join('policies as pol', 'pol.id', '=', 'tr.policy_type_id')
+//         ->whereYear('tr.created_at', $this->year)
+//         ->groupBy('pol.name', 'month')
+//         ->get();
+    
+//             // Merge both transaction sets
+//             $transactions = $transactions->merge($transactions2);
+                
+//             $typeData = [];
+            
+//             $transactions->each(function ($item) use (&$typeData) {
+//                 if (!isset($typeData[$item->type])) {
+//                     $typeData[$item->type] = array_fill(0, 12, 0); 
+//                 }
+//             });
+            
+//             $transactions->each(function ($item) use (&$typeData) {
+//                 $monthIndex = (int)$item->month - 1;
+//                 $typeData[$item->type][$monthIndex] += $item->total_paid;
+//             });
+            
+            
+//             $this->data = collect($typeData)->map(function($item, $key) {
+//                 // Function to generate a random RGB color
+//                 $randomColor = function() {
+//                     $r = rand(0, 255);
+//                             $g = rand(0, 255);
+//                             $b = rand(0, 255);
+//                             return "rgba($r, $g, $b, 0.2)";
+//                         };
+                        
+//                         return [
+//                             'type' => 'bar',
+//                             'label' => $key,
+//                             'data' => $item, 
+//                             'backgroundColor' => $randomColor(),
+//                             'borderColor' => "rgba(54, 162, 235, 1)", 
+//                             'borderWidth' => 1,
+//                             'stack' => 'combined',
+//                         ];
+//                     })->values();
+
+//         }
+
+//     public function selectOptions($year)
+//     {
+
+//         $this->loadData($year); 
+
+//         $this->dispatch('updateChart', [
+//             'datasets' => $this->data,
+//             'labels' => [
+//                 "January", "February", "March", "April",
+//                 "May", "June", "July", "August",
+//                 "September", "October", "November", "December",
+//             ],
+//         ]);
+    
+//     }

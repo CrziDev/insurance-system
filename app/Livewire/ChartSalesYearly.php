@@ -100,6 +100,8 @@ class ChartSalesYearly extends Component
             'datasets' => $this->dataYearly,
             'labels' => $this->yearSet, 
         ]);
+
+
     }
 
 

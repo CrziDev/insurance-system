@@ -36,7 +36,7 @@
                     x: {
                         title: {
                             display: true,
-                            text: "Years",
+                            text: "Status",
                         },
                         stacked: true,
                     },

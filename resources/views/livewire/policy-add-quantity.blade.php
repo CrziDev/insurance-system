@@ -25,8 +25,7 @@
 
                     <div
                     class="basis-1/5  bg-gray-700 flex justify-center items-center h-full text-white rounded-tl-md rounded-bl-md text-xs px-2">
-                    Quantity</div>
-                    
+                    Add Quantity</div>
                     
                     <input wire:model="quantity" name="policy_quantity" type="text"
                     class="basis-4/5  h-full border-2 px-3 py-2 rounded-tr-md rounded-br-md active:outline-none focus:outline-none">
