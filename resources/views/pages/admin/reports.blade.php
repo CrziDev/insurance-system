@@ -21,7 +21,7 @@
                 <livewire:customer-reports tableTitle="Approved Insurance"/>
             </section>   
             <section class="w-[50%]  bg-white rounded-lg p-5 overflow-hidden max-h-full">
-                <livewire:sales-monitoring tableTitle="Sales Count"/>
+                <livewire:sales-monitoring tableTitle="Insurance Count"/>
             </section>  
         </div>
 

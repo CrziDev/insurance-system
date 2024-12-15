@@ -29,7 +29,7 @@
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: "Status Count",
+                            text: "Number of Insurance",
                         },
                         stacked: true,
                     },

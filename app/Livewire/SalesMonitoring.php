@@ -52,7 +52,7 @@ class SalesMonitoring extends Component
         $this->saleLabel = $labels;
         // Here, you can modify the data format to match your requirements.
         $this->salesData = [
-            'label' => 'Status Count',
+            'label' => 'Insurance Count',
             'data' => $data,
             'borderColor' => "rgba(54, 162, 235, 1)", 
             'fill' => false,
