@@ -10,9 +10,9 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\customer;
 use App\Models\NonLifeInsurance;
 use App\Models\LifeInsurance;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 

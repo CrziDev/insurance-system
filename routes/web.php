@@ -15,12 +15,14 @@ use App\Http\Controllers\Customer\CustomerDashboardontroller;
 use App\Http\Controllers\Customer\CustomerInsuranceController;
 use App\Http\Controllers\Customer\CustomerRenewedController;
 use App\Http\Controllers\ReportsController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
 
 
-Route::middleware(['auth'])->group(function () 
+Route::middleware(['auth','verified'])->group(function () 
 {
     Route::group((['prefix'=>'admin','middleware'=>'role:admin']),function ()
         {
@@ -72,8 +74,26 @@ Route::middleware(['auth'])->group(function ()
 Route::get('/',[LoginController::class,'create'])->name('login')->middleware('checkAuth');
 Route::get('/login',[LoginController::class,'create'])->name('login')->middleware('checkAuth');
 Route::post('/login',[LoginController::class,'store']);
-Route::post('/logout',[LoginController::class,'destroy']);
+Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 
 Route::get('/register',[RegisterController::class,'create'])->middleware('checkAuth');;
 Route::post('/register',[RegisterController::class,'store']);
 
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+ 
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');

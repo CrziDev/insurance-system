@@ -4,12 +4,13 @@ namespace App\Livewire;
 
 use App\Models\customer;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class CustomerAdd extends Component
 {
-    #[Validate('required|min:3')]
+    #[Validate('required|min:3|unique:users')]
     public $username;
     #[Validate('required|confirmed|min:3')]
     public $password;
@@ -40,6 +41,9 @@ class CustomerAdd extends Component
         $validated['user_id'] = $user->id;
         customer::create($this->mapedUserInformation($validated));
 
+        event(new Registered($user));
+
+        // $user->sendEmailVerificationNotification();
         toastr()->success('Customer Added Successfuly!');
         $this->redirect('/admin/customers');
     }
