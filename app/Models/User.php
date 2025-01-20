@@ -73,4 +73,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function lifeInsurance(){
         return $this->hasMany(LifeInsurance::class,'user_id');
     }
+    public function staff(){
+        return $this->belongsTo(Staff::class,'id','user_id');
+    }
+
 }
