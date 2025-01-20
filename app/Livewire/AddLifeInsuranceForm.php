@@ -16,7 +16,6 @@ class AddLifeInsuranceForm extends Component
     public $userId;
     public $modal;
 
-
     public function mount()
     {
         $user = User::with('customer')->find($this->userId);
@@ -24,7 +23,6 @@ class AddLifeInsuranceForm extends Component
         $this->form->full_name = $user->customer[0]->full_name;
         $this->form->mobile_number = $user->customer[0]->phone_number;
         $this->form->email_address = $user->email;
-
     }
 
     public function selectPackage($value) {
@@ -35,10 +33,8 @@ class AddLifeInsuranceForm extends Component
                 return $val !== $value;
             });
         }
-
         $this->form->protection_package  = array_values($this->form->protection_package );
     }
-
 
     public function allowancePackage($value) {
         if (!in_array($value, $this->form->protection_package )) {
@@ -48,7 +44,6 @@ class AddLifeInsuranceForm extends Component
                 return $val !== $value;
             });
         }
-
         $this->form->allowance_package = array_values($this->form->allowance_package);
     }
 

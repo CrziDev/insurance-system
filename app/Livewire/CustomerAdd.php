@@ -42,7 +42,7 @@ class CustomerAdd extends Component
         customer::create($this->mapedUserInformation($validated));
 
         event(new Registered($user));
-
+        
         // $user->sendEmailVerificationNotification();
         toastr()->success('Customer Added Successfuly!');
         $this->redirect('/admin/customers');

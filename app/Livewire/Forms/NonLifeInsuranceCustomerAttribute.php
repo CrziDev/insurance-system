@@ -52,6 +52,6 @@ class NonLifeInsuranceCustomerAttribute extends Form
     public $premiumPaidOnlimit;
     public $limitLiabity;
 
-    public $form_endorsement;
+    public $form_endorsement = "NOTE FOR TPL ONLY...";
 
 }
