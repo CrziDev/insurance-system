@@ -80,15 +80,15 @@
                 </div>             
             </div>
           
-            <div class="grid grid-cols-2 space-x-2">
-                <div class="mb-2 flex flex-col">
+            <div class="grid grid-cols-2 gap-2">
+                <div class="mb-2 flex flex-col justify-between">
                     <x-form-input-label>Phone Number (format +69XXXXXXXX)</x-form-input-label>
-                    <x-form-input wire:model="phoneNumber"  ></x-form-input>
+                    <x-form-input wire:model="phoneNumber" class="w-full" />
                     <x-error error="phoneNumber"/>
                 </div>     
-                <div class="mb-2  flex flex-col">
+                <div class="mb-2 flex flex-col justify-between">
                     <x-form-input-label>Profession</x-form-input-label>
-                    <x-form-input wire:model="profession"  ></x-form-input>
+                    <x-form-input wire:model="profession" class="w-full" />
                     <x-error error="profession"/>
                 </div>
             </div>
