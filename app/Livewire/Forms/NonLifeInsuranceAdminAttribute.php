@@ -69,5 +69,5 @@ class NonLifeInsuranceAdminAttribute extends Form
 
 
     public $premiumPaidOnlimit = 'test';
-    public $form_endorsement;
+    public $form_endorsement = "NOTE FOR TPL ONLY...";
 }
