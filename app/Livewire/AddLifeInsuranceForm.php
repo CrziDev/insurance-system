@@ -15,6 +15,8 @@ class AddLifeInsuranceForm extends Component
     public LifeInsuranceCustomerAttribute $form;
     public $userId;
     public $modal;
+    public $policyLists = [];
+
 
     public function mount()
     {
@@ -23,6 +25,9 @@ class AddLifeInsuranceForm extends Component
         $this->form->full_name = $user->customer[0]->full_name;
         $this->form->mobile_number = $user->customer[0]->phone_number;
         $this->form->email_address = $user->email;
+
+        $this->policyLists = Policy::where('type','Life Policy')->get();
+
     }
 
     public function selectPackage($value) {
@@ -56,21 +61,19 @@ class AddLifeInsuranceForm extends Component
         
         $record = LifeInsurance::create( $data );
 
-        $policy= Policy::where('type','Life policy')->first();
+        // $policy= Policy::where('type','Life policy')->first();
 
         $user = User::find($this->userId);
         $transaction = Transaction::create([
             'life_id' => $record->id,
-            'policy_type_id' => $policy->id,
+            'policy_type_id' => $this->form->policyId,
             'user_id' => $this->userId,
         ]);
-
 
         $policy = $transaction->policy; 
         $policy->update([
             'quantity' => (intval($policy->quantity)-1)
         ]);
-
 
         toastr()->success('Request was successfully submitted!');
 

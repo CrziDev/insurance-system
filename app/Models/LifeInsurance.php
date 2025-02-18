@@ -13,7 +13,7 @@ class LifeInsurance extends Model
     use HasFactory;
 
 
-    protected $guarded = [];
+    protected $guarded = ['policyId'];
 
     protected function getCreatedAtFormatAttribute()
     {

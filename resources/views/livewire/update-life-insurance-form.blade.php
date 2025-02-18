@@ -79,6 +79,24 @@
 
             </x-form-card>
         </div>
+
+
+        <x-form-card>
+                <x-slot:title>
+                    Policy Type
+                </x-slot:title>   
+                <div class="flex flex-col space-y-1">
+                    <label class="text-xs font-sm">Select a Policy Type</label>
+                    <select  error='form.policyId' wire:model='form.policyId' class="px-2 py-1 text-xs  border rounded text-gray-500" name="" id="">
+                        <option value="">Select Here</option>  
+                        @foreach($policyLists as $policy)
+                            <option  wire:key="{{$policy->id}}" value="{{$policy->id}}" {{($policy->id == $form->policyId)?'selected':''}}>{{$policy->name}}</option>
+                        @endforeach
+                    </select>
+                    @error('form.policyId')<span class="text-xs text-red-500">Field is required</span>@enderror
+                </div>
+        </x-form-card>
+        
         <x-form-card>
             <x-slot:title>
                 Personal Information

@@ -45,4 +45,6 @@ class LifeInsuranceAdminAttribute extends Form
     #[Validate('required')]
     public $source_of_funds;
 
+    #[Validate('required')]
+    public $policyId;
 }

@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Events\InsuranceApproved;
 use App\Livewire\Forms\LifeInsuranceAdminAttribute;
 use App\Models\LifeInsurance;
+use App\Models\Policy;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
@@ -21,6 +22,7 @@ class UpdateLifeInsuranceForm extends Component
     #[Validate('required')]
     public $dateEffective;
     #[Validate('required')]
+    public $policyLists = [];
     public $expiration;
     public $status;
 
@@ -45,6 +47,10 @@ class UpdateLifeInsuranceForm extends Component
             }
             
         }
+
+        $this->form->policyId = $this->selectedRow->policy_type_id;
+        $this->policyLists = Policy::where('type','Life Policy')->get();
+
     }
 
 

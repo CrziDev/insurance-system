@@ -44,5 +44,8 @@ class LifeInsuranceCustomerAttribute extends Form
     #[Validate('required')]
     public $source_of_funds = 'test';
 
+    #[Validate('required')]
+    public $policyId;
+
     
 }

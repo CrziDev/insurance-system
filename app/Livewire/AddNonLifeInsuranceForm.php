@@ -27,6 +27,7 @@ class AddNonLifeInsuranceForm extends Component
     public $userId;
     public $modal;
 
+
     public function save(){
         $this->validate();  
 
