@@ -14,6 +14,7 @@ use App\Http\Controllers\Customer\CustomerClaimsController;
 use App\Http\Controllers\Customer\CustomerDashboardontroller;
 use App\Http\Controllers\Customer\CustomerInsuranceController;
 use App\Http\Controllers\Customer\CustomerRenewedController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ReportsController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -97,3 +98,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
  
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+Route::get('/preview-pdf', [PdfController::class, 'previewPdf']);

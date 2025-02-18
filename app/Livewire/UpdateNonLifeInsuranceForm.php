@@ -168,7 +168,9 @@ class UpdateNonLifeInsuranceForm extends Component
     
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
         } 
-        return response()->download( 'pdfs/generatedForm.pdf');
+
+        $this->redirect('/preview-pdf'); 
+        // return response()->download( 'pdfs/generatedForm.pdf');
 
         
     }
