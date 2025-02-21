@@ -46,8 +46,8 @@ class PolicyAdd extends Component
                 'others' => $this->others,
                 'quantity' => $this->quantity,
                 'type' => $this->policyType,
-                'limit_liability' => $this->premiumPaid,
-                'premium_paid' => $this->limitLiability,
+                'limit_liability' => $this->limitLiability,
+                'premium_paid' => $this->premiumPaid,
             ]);
         } else {
             // Custom validation for the else case

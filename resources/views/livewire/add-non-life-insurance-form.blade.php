@@ -78,8 +78,8 @@
 
                 <div>
                     <div class="mb-2">
-                        <x-form-input-label class="w-[100px]">Premium Paid</x-form-input-label>
-                        <x-form-input readonly value="{{$premiumPaid}}"></x-form-input>
+                        <x-form-input-label class="w-[100px]">Premium</x-form-input-label>
+                        <x-form-input readonly value="{{$premium}}"></x-form-input>
                     </div>
                     <div class="mb-2">
                         <x-form-input-label class="w-[100px]">Doc. Stamps</x-form-input-label>

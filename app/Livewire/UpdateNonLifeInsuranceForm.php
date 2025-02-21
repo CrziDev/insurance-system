@@ -102,7 +102,7 @@ class UpdateNonLifeInsuranceForm extends Component
         $this->docstamp = $type->docstamp;
         $this->localGovTax = $type->govtax;
         $this->others = $type->others;
-        $this->total = (int)$type->premium + (int)$type->docsStamp + (int)$type->govtax + (int)$type->others;
+        $this->total = (int)$type->premium + (int)$type->docstamp + (int)$type->govtax + (int)$type->others;
     }
 
     public function update(){
