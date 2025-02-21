@@ -86,7 +86,7 @@ class PrintForm extends Fpdf
         $this->vehicle_docstamp = $data->transaction->policy->docstamp ?? '';  // Assuming this is not in the migration
         $this->vehicle_govtax = $data->transaction->policy->govtax??'';  // Assuming this is not in the migration
         $this->vehicle_others = $data->transaction->policy->others??'';  // Assuming other charges are not present in the migration
-        $this->vehicle_totalpaid =  (int) $data->transaction->policy->premium + (int) $data->transaction->policy->docsStamp + (int) $data->transaction->policy->govtax + (int) $data->transaction->policy->others;  // 'paid' field from database
+        $this->vehicle_totalpaid =  (int) $data->transaction->policy->premium + (int) $data->transaction->policy->docstamp + (int) $data->transaction->policy->govtax + (int) $data->transaction->policy->others;  // 'paid' field from database
 
         $this->limitLiability = $data->limit_liabilty ?? '';  // 'limit_liabilty' field from database
         $this->vehicle_paid = $data->premium_paid ?? '';  // 'paid' field from database
