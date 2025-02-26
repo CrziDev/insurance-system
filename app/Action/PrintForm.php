@@ -58,7 +58,7 @@ class PrintForm extends Fpdf
         $this->conf_cover = $data->confirmation_cover_no ?? '';  // 'endorsement' field from database
         $this->official_receipt = $data->official_receipt_no??'';  // Assuming this is not stored in the migration
 
-        $this->date_issue = strtotime(date("Y/m/d"));  // 'date_effective' field from database
+        $this->date_issue = now()->toDateString();  // 'date_effective' field from database
         $this->period_issuance_from = $data->transaction->date_effective ?? null; // Assuming effective date is the start date
         $this->period_issuance_to = $data->transaction->expiration ?? null;  // 'expiration' field from database
 
@@ -82,11 +82,11 @@ class PrintForm extends Fpdf
         $this->capacity = $data->authorize_capacity ?? '';  // 'authorize_capacity' field from database
         
         // Vehicle financials
-        $this->vehicle_premium = $data->transaction->policy->premium ?? '';  // 'premium_paid' field from database
-        $this->vehicle_docstamp = $data->transaction->policy->docstamp ?? '';  // Assuming this is not in the migration
-        $this->vehicle_govtax = $data->transaction->policy->govtax??'';  // Assuming this is not in the migration
-        $this->vehicle_others = $data->transaction->policy->others??'';  // Assuming other charges are not present in the migration
-        $this->vehicle_totalpaid =  (int) $data->transaction->policy->premium + (int) $data->transaction->policy->docstamp + (int) $data->transaction->policy->govtax + (int) $data->transaction->policy->others;  // 'paid' field from database
+        $this->vehicle_premium = round($data->transaction->policy->premium,2)?? '';  // 'premium_paid' field from database
+        $this->vehicle_docstamp = round($data->transaction->policy->docstamp,2) ?? '';  // Assuming this is not in the migration
+        $this->vehicle_govtax = round($data->transaction->policy->govtax,2)??'';  // Assuming this is not in the migration
+        $this->vehicle_others = round($data->transaction->policy->others,2)??'';  // Assuming other charges are not present in the migration
+        $this->vehicle_totalpaid =  (float) $data->transaction->policy->premium + (float) $data->transaction->policy->docstamp + (float) $data->transaction->policy->govtax + (float) $data->transaction->policy->others;  // 'paid' field from database
 
         $this->limitLiability = $data->limit_liabilty ?? '';  // 'limit_liabilty' field from database
         $this->vehicle_paid = $data->premium_paid ?? '';  // 'paid' field from database
@@ -521,7 +521,7 @@ class PrintForm extends Fpdf
         
         $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 210));
         $this->SetFont("Arial", "B", 12);
-        $this->Cell($rectWidth*.30,12,$this->vehicle_totalpaid,0,0,'C');
+        $this->Cell($rectWidth*.30,12,(float) $this->vehicle_totalpaid,0,0,'C');
         
         
         $this->SetXY(($rectX),($marginTop + 234));

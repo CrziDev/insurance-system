@@ -21,6 +21,11 @@
     </div>
     <div class="h-full overflow-x-auto">
         <div class="w-full flex justify-between flex-col">
+        @if($data->count() == 0)
+            <div class="flex justify-center items-center h-48">
+                <p class="text-lg font-semibold text-gray-500">No Pending Request</p>
+            </div>
+        @else
             @foreach($data as $row)
                 <div wire:key="$row->id" wire:click="selectRow({{$row->id}})" class="flex items-center border px-3 rounded-md mb-2 py-3 hover:bg-slate-200 cursor-pointer">
                     <div class="w-full">
@@ -63,7 +68,7 @@
                     </div>
                 </div>  
             @endforeach         
-      
+            @endif
         </div>    
 
         <x-modal name="pending-details">

@@ -20,6 +20,11 @@
 
     <div class="h-full overflow-x-auto">
         <div class="w-full flex justify-between flex-col">
+        @if($data->count() == 0)
+            <div class="flex justify-center items-center h-48">
+                <p class="text-lg font-semibold text-gray-500">No Customer Claims</p>
+            </div>
+        @else
             @foreach($data as $row)
                 <div wire:key="$row->id" class="w-full overflow-x-auto flex justify-between flex-col">
                     <div class="flex flex-col border px-3 rounded-md mb-2 pb-3 ">
@@ -66,7 +71,8 @@
                         </div>
                     </div>  
                 </div>   
-            @endforeach         
+            @endforeach  
+            @endif       
         </div>    
     </div>
 

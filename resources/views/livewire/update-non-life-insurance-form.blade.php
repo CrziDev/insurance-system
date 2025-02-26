@@ -140,3 +140,11 @@
 
     </form>
 </div>
+
+@script
+<script>
+    $wire.on('openPdfInNewTab', pdfUrl => {
+        window.open(pdfUrl, '_blank'); // This opens the PDF in a new tab
+    });
+</script>
+@endscript

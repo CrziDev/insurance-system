@@ -16,6 +16,11 @@
         </div>
     </div>
     <div class="grid grid-cols-4 text-white gap-4">
+        @if($customers->count() == 0)
+            <div class="flex justify-center items-center h-48">
+                <p class="text-lg font-semibold text-gray-500">No Customers</p>
+            </div>
+        @else
         @foreach($customers as $customer)
             <div wire:key="$row->id"  class="bg-gray-600 px-4  rounded shadow-md">
                 <div class="flex border-b border-gray-200 pt-1 pb-2 items-center">
@@ -56,6 +61,7 @@
             </div>
             
         @endforeach
+        @endif
     </div>
 
     

@@ -62,12 +62,12 @@
           
             <div class="grid grid-cols-2 space-x-2">
                 <div class="mb-2 flex flex-col">
-                    <x-form-input-label>Phone Number (format +69XXXXXXXX)</x-form-input-label>
+                    <x-form-input-label>Phone Number (+639xxxxxxxxx)</x-form-input-label>
                     <x-form-input wire:model="phoneNumber"  ></x-form-input>
                     <x-error error="phoneNumber"/>
                 </div>     
                 <div class="mb-2  flex flex-col">
-                    <x-form-input-label>Profession</x-form-input-label>
+                    <x-form-input-label>Position</x-form-input-label>
                     <x-form-input wire:model="profession"  ></x-form-input>
                     <x-error error="profession"/>
                 </div>

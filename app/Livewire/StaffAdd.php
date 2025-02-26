@@ -11,7 +11,7 @@ use Livewire\Component;
 class StaffAdd extends Component
 {
 
-    #[Validate('required|min:3')]
+    #[Validate('required|unique:users|min:3')]
     public $username;
     #[Validate('required|confirmed|min:3')]
     public $password;

@@ -102,7 +102,7 @@ class UpdateNonLifeInsuranceForm extends Component
         $this->docstamp = $type->docstamp;
         $this->localGovTax = $type->govtax;
         $this->others = $type->others;
-        $this->total = (int)$type->premium + (int)$type->docstamp + (int)$type->govtax + (int)$type->others;
+        $this->total = (float)$type->premium + (float)$type->docstamp + (float)$type->govtax + (float)$type->others;
     }
 
     public function update(){
@@ -169,7 +169,7 @@ class UpdateNonLifeInsuranceForm extends Component
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
         } 
 
-        $this->redirect('/preview-pdf'); 
+        $this->dispatch('openPdfInNewTab', asset('pdfs/zilkaPdf.pdf'));
         // return response()->download( 'pdfs/generatedForm.pdf');
 
         

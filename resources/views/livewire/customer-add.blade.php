@@ -82,7 +82,7 @@
           
             <div class="grid grid-cols-2 gap-2">
                 <div class="mb-2 flex flex-col justify-between">
-                    <x-form-input-label>Phone Number (format +69XXXXXXXX)</x-form-input-label>
+                    <x-form-input-label>Phone Number (+639xxxxxxxxx)</x-form-input-label>
                     <x-form-input wire:model="phoneNumber" class="w-full" />
                     <x-error error="phoneNumber"/>
                 </div>     
