@@ -1,0 +1,105 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-8GVQjAmg.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/images/Customer.png": {
+    "file": "assets/Customer-Dcu75psT.png",
+    "src": "resources/images/Customer.png"
+  },
+  "resources/images/Search.png": {
+    "file": "assets/Search-CmcdKHSh.png",
+    "src": "resources/images/Search.png"
+  },
+  "resources/images/System administrator male.png": {
+    "file": "assets/System administrator male-CqPaWHT8.png",
+    "src": "resources/images/System administrator male.png"
+  },
+  "resources/images/Us Dollar Circled.png": {
+    "file": "assets/Us Dollar Circled-D1CRkonI.png",
+    "src": "resources/images/Us Dollar Circled.png"
+  },
+  "resources/images/account.png": {
+    "file": "assets/account-59mRx1HT.png",
+    "src": "resources/images/account.png"
+  },
+  "resources/images/bell.png": {
+    "file": "assets/bell-DxFjEW-G.png",
+    "src": "resources/images/bell.png"
+  },
+  "resources/images/dashboard.png": {
+    "file": "assets/dashboard-Bjg46IXw.png",
+    "src": "resources/images/dashboard.png"
+  },
+  "resources/images/expiring policy.png": {
+    "file": "assets/expiring policy-BykSAKAI.png",
+    "src": "resources/images/expiring policy.png"
+  },
+  "resources/images/insurance-vector.jpg": {
+    "file": "assets/insurance-vector-B-a8Cj7b.jpg",
+    "src": "resources/images/insurance-vector.jpg"
+  },
+  "resources/images/insurance-vector.png": {
+    "file": "assets/insurance-vector-CI7AcyqB.png",
+    "src": "resources/images/insurance-vector.png"
+  },
+  "resources/images/insurance1.png": {
+    "file": "assets/insurance1-bTyIPKgU.png",
+    "src": "resources/images/insurance1.png"
+  },
+  "resources/images/logo.png": {
+    "file": "assets/logo-3MobppBA.png",
+    "src": "resources/images/logo.png"
+  },
+  "resources/images/logout.png": {
+    "file": "assets/logout-C67WoioP.png",
+    "src": "resources/images/logout.png"
+  },
+  "resources/images/peso.png": {
+    "file": "assets/peso-Br6icpjH.png",
+    "src": "resources/images/peso.png"
+  },
+  "resources/images/pol.png": {
+    "file": "assets/pol-COUWixEG.png",
+    "src": "resources/images/pol.png"
+  },
+  "resources/images/policy holder.png": {
+    "file": "assets/policy holder-BvyLUIgC.png",
+    "src": "resources/images/policy holder.png"
+  },
+  "resources/images/policy.png": {
+    "file": "assets/policy-YuTAsFyq.png",
+    "src": "resources/images/policy.png"
+  },
+  "resources/images/profile.png": {
+    "file": "assets/profile-Ci1GeHlm.png",
+    "src": "resources/images/profile.png"
+  },
+  "resources/images/remaining policy.png": {
+    "file": "assets/remaining policy--V_mYe9i.png",
+    "src": "resources/images/remaining policy.png"
+  },
+  "resources/images/reports.png": {
+    "file": "assets/reports-ClndFYDL.png",
+    "src": "resources/images/reports.png"
+  },
+  "resources/images/sms.png": {
+    "file": "assets/sms-BiepSQr1.png",
+    "src": "resources/images/sms.png"
+  },
+  "resources/images/staff.png": {
+    "file": "assets/staff-Bgk0KBQ3.png",
+    "src": "resources/images/staff.png"
+  },
+  "resources/images/staff2.png": {
+    "file": "assets/staff2-D5CVgo1p.png",
+    "src": "resources/images/staff2.png"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-H1p8gvK4.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
