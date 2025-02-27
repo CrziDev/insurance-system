@@ -1,7 +1,7 @@
 <div x-data="{ open: false, imageUrl: '' }" class="absolute px-4 py-3 inset-x-0 mx-auto mt-[50px] max-w-2xl border bg-white rounded-lg">
     <div class="h-full flex flex-col items-center justify-between text-center">
         <div>
-            <p class="text-[28px] text-gray-500">Provide Scanned Proofs</p>
+            <p class="text-[28px] text-gray-500">Upload Scanned Police report</p>
             <p class="italic text-sm text-gray-500">(example: Police Report)</p>
         </div>
         <div class="border-dashed border-4 w-full h-[330px] flex flex-col justify-center space-y-2 items-center">

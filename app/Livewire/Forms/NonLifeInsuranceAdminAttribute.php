@@ -64,9 +64,9 @@ class NonLifeInsuranceAdminAttribute extends Form
 
     public $limitLiabity = '' ;
     
-    #[Validate('required')]
-    public $formNumber = '' ;
-
+    #[Validate('required', 'unique:non_life_insurances')]
+    public $formNumber = '';
+    
 
     public $premiumPaidOnlimit = 'test';
     public $form_endorsement = "NOTE FOR TPL ONLY...";
