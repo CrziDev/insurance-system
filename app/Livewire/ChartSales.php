@@ -16,7 +16,7 @@ class ChartSales extends Component
     public $year;
     
     public function mount() {
-        $this->year = 2024;
+        $this->year = 2025;
         $this->loadData();
     }
         
@@ -138,7 +138,7 @@ class ChartSales extends Component
             }
                 $pdf->Rect($rectX + $rectWidth*.90, $marginTop+$margin, $rectWidth*.10, 12);
                 $pdf->SetXY($rectX,$marginTop+ $margin +2);
-                $pdf->Cell($rectWidth + $rectWidth*.90,8,number_format($total,2),0,0,'C');
+                $pdf->Cell($rectWidth + $rectWidth*.90,8,'₱ '.number_format($total,2),0,0,'C');
 
                 // 
             if($index == count($this->salePdfData) - 1 ){
@@ -162,7 +162,7 @@ class ChartSales extends Component
                 
                 $pdf->Rect($rectX + $rectWidth*.90, $marginTop+$margin, $rectWidth*.10, 12);
                 $pdf->SetXY($rectX,$marginTop+ $margin +2);
-                $pdf->Cell($rectWidth + $rectWidth*.90,8,number_format(array_sum($value),2),0,0,'C');
+                $pdf->Cell($rectWidth + $rectWidth*.90,8,'₱ '.number_format(array_sum($value),2),0,0,'C');
             }
 
         }
