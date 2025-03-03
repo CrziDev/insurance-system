@@ -140,9 +140,11 @@ class UpdateNonLifeInsuranceForm extends Component
       
         $pdf = new PrintForm($this->selectedRow->non_life_id);
         
+        $uniquePdfName = 'zilkaPdf_' . time() . '.pdf'; 
+
         $pdf->generatePdf();
         $pdf->SetTitle('Zilka Life Insurance Form');
-        $pdf->output('f','pdfs/zilkaPdf.pdf');
+        $pdf->output('f', 'pdfs/' . $uniquePdfName); //
 
         $this->dispatch('close-modal', name:'pending-form');
         $user =  $this->selectedRow->user()->with('customer')->first();
@@ -174,7 +176,7 @@ class UpdateNonLifeInsuranceForm extends Component
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
         } 
 
-        $this->dispatch('openPdfInNewTab', asset('pdfs/zilkaPdf.pdf'));
+        $this->dispatch('openPdfInNewTab', asset('pdfs/' . $uniquePdfName)); 
         // return response()->download( 'pdfs/generatedForm.pdf');
 
         
