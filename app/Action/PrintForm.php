@@ -524,7 +524,7 @@ class PrintForm extends Fpdf
         
         $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 210));
         $this->SetFont("Arial", "B", 12);
-        $this->Cell($rectWidth*.30,12,(float) $this->vehicle_totalpaid,0,0,'C');
+        $this->Cell($rectWidth*.30,12,$this->vehicle_totalpaid,0,0,'C');
         
         
         $this->SetXY(($rectX),($marginTop + 234));
