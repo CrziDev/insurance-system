@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class=" flex justify-center mb-[12px]">
-                                <button type="submit" class="w-[200px] py-2 m-auto rounded-[6px] bg-[#90EC48] hover:bg-[#75C138] transition ease-in-out duration-300 font-poppins shadow-[3px_4px_4px_rgba(0,0,0,0.3)]">Login</button>
+                                <button type="submit" class="w-[200px] py-2 m-auto rounded-[6px] bg-orange hover:bg-[#75C138] text-white transition ease-in-out duration-300 font-poppins shadow-[3px_4px_4px_rgba(0,0,0,0.3)]">Login</button>
                             </div>
                         </div>
             
