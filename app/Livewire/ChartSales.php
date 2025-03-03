@@ -140,6 +140,7 @@ class ChartSales extends Component
                 $pdf->SetXY($rectX,$marginTop+ $margin +2);
                 $pdf->Cell($rectWidth + $rectWidth*.90,8,number_format($total,2),0,0,'C');
 
+                // 
             if($index == count($this->salePdfData) - 1 ){
                 $value = array_fill(0,12,0);
                 collect($this->salePdfData)->pluck('data')->each(function ( $item) use (&$value) {
