@@ -81,22 +81,25 @@ class PrintForm extends Fpdf
 
         $this->capacity = $data->authorize_capacity ?? '';  // 'authorize_capacity' field from database
         
-        // Vehicle financials
-        $this->vehicle_premium = round($data->transaction->policy->premium,2)?? '';  // 'premium_paid' field from database
-        $this->vehicle_docstamp = round($data->transaction->policy->docstamp,2) ?? '';  // Assuming this is not in the migration
-        $this->vehicle_govtax = round($data->transaction->policy->govtax,2)??'';  // Assuming this is not in the migration
-        $this->vehicle_others = round($data->transaction->policy->others,2)??'';  // Assuming other charges are not present in the migration
-        $this->vehicle_totalpaid =  (float) $data->transaction->policy->premium + (float) $data->transaction->policy->docstamp + (float) $data->transaction->policy->govtax + (float) $data->transaction->policy->others;  // 'paid' field from database
-
+        $this->vehicle_premium = number_format((float) $data->transaction->policy->premium, 2, '.', '') ?? '';  
+        $this->vehicle_docstamp = number_format((float) $data->transaction->policy->docstamp, 2, '.', '') ?? '';  
+        $this->vehicle_govtax = number_format((float) $data->transaction->policy->govtax, 2, '.', '') ?? '';  
+        $this->vehicle_others = number_format((float) $data->transaction->policy->others, 2, '.', '') ?? '';  
+        $this->vehicle_totalpaid = number_format(
+            (float) $data->transaction->policy->premium 
+            + (float) $data->transaction->policy->docstamp 
+            + (float) $data->transaction->policy->govtax 
+            + (float) $data->transaction->policy->others, 
+            2
+        );  
         $this->limitLiability = $data->limit_liabilty ?? '';  // 'limit_liabilty' field from database
         $this->vehicle_paid = $data->premium_paid ?? '';  // 'paid' field from database
         $this->formID = $data->form_id??'';  // Assuming form ID is not stored
 
         // Date-related properties
         $yrdata = strtotime(date("Y/m/d"));
-        $this->dateDay = date('d', $yrdata);  // Day part of current date
-        $this->dateYear = date('M, Y', $yrdata);
-        
+        $this->dateDay = date('d', $yrdata);
+        $this->dateYear = date('M, Y', $yrdata);    
      }
 
     function Footer()
