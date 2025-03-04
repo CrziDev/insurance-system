@@ -8,7 +8,7 @@
         <span class="mb-5 font-2lg text-xl block text-center ">Non-life Insurance Policy Applications</span>
         <x-close-modal-icon :modal="$modal" class="absolute right-0 top-0"/>
         <x-form-card>
-            <x-slot:title>
+            <x-slot:title> 
                 Personal Information
             </x-slot:title>
 
@@ -28,21 +28,21 @@
                 Scheduled Vehicle
             </x-slot:title>
             <div class="grid grid-cols-3 gap-5">
-                <x-form-input-w-label error='form.model' wire:model="form.model">Model</x-form-input-w-label>
-                <x-form-input-w-label error='form.plateNo' wire:model="form.plateNo">Plate No.</x-form-input-w-label>
+                <x-form-input-w-label error='form.model' wire:model="form.model" placeholder="Input Model">Model</x-form-input-w-label>
+                <x-form-input-w-label error='form.plateNo' wire:model="form.plateNo" placeholder="Input Plate No.">Plate No.</x-form-input-w-label>
                 <x-form-input-w-label error='form.make' wire:model="form.make">Make</x-form-input-w-label>
             </div>
 
             <div class="grid grid-cols-3 gap-5">
-                <x-form-input-w-label error='form.serialChassis' wire:model="form.serialChassis">Serial/Chassis No</x-form-input-w-label>
-                <x-form-input-w-label error='form.typeBody' wire:model="form.typeBody">Type of Body</x-form-input-w-label>
-                <x-form-input-w-label error='form.color' wire:model="form.color">Color</x-form-input-w-label>
+                <x-form-input-w-label error='form.serialChassis' wire:model="form.serialChassis" placeholder="Input Serial/Chassis No">Serial/Chassis No</x-form-input-w-label>
+                <x-form-input-w-label error='form.typeBody' wire:model="form.typeBody" placeholder="Type of Body">Type of Body</x-form-input-w-label>
+                <x-form-input-w-label error='form.color' wire:model="form.color" placeholder="Input Color">Color</x-form-input-w-label>
             </div>
 
             <div class="grid grid-cols-3 gap-5">
-                <x-form-input-w-label error='form.authorizedCapacity' wire:model="form.authorizedCapacity">Authorized Capacity</x-form-input-w-label>
-                <x-form-input-w-label error='form.bltFileNo' wire:model="form.bltFileNo">Blt File No.y</x-form-input-w-label>
-                <x-form-input-w-label error='form.weightCapacity'  wire:model="form.weightCapacity">Unladen Weight (kgs.)</x-form-input-w-label>
+                <x-form-input-w-label error='form.authorizedCapacity' wire:model="form.authorizedCapacity" placeholder="Input Authorized Capacity">Authorized Capacity</x-form-input-w-label>
+                <x-form-input-w-label error='form.bltFileNo' wire:model="form.bltFileNo" placeholder="Input Blt File No.y">Blt File No.y</x-form-input-w-label>
+                <x-form-input-w-label error='form.weightCapacity'  wire:model="form.weightCapacity" placeholder="Unladen Weight (kgs.)">Unladen Weight (kgs.)</x-form-input-w-label>
             </div>
         </x-form-card>
 
@@ -68,11 +68,11 @@
                 <div>
                     <div class="mb-2">
                         <x-form-input-label  class="w-[100px]">Limit of Liability</x-form-input-label>
-                        <x-form-input readonly value="{{$limitLiability}}"></x-form-input>
+                        <x-form-input readonly value="{{$limitLiability}}" placeholder="Input Value"></x-form-input>
                     </div>
                     <div class="mb-2">
                         <x-form-input-label class="w-[100px]">Premium Paid</x-form-input-label>
-                        <x-form-input readonly value="{{$premiumPaid}}"></x-form-input>
+                        <x-form-input readonly value="{{$premiumPaid}} " placeholder="Input Value"></x-form-input>
                     </div>
                 </div>
 

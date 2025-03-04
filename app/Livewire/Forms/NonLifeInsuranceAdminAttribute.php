@@ -20,31 +20,31 @@ class NonLifeInsuranceAdminAttribute extends Form
     public $businessProfession;
 
     #[Validate('required')]
-    public $model = 'test' ;
+    public $model = '' ;
 
     #[Validate('required')]
-    public $plateNo = 'test' ;
+    public $plateNo = '' ;
 
     #[Validate('required')]
-    public $make = 'test' ;
+    public $make = '' ;
 
     #[Validate('required')]
-    public $serialChassis = 'test' ;
+    public $serialChassis = '' ;
 
     #[Validate('required')]
-    public $typeBody = 'test';
+    public $typeBody = '';
 
     #[Validate('required')]
-    public $color = 'test';
+    public $color = '';
 
     #[Validate('required')]
-    public $authorizedCapacity = 'test';
+    public $authorizedCapacity = '';
 
     #[Validate('required')]
-    public $bltFileNo = 'test' ;
+    public $bltFileNo = '' ;
 
     #[Validate('required')]
-    public $weightCapacity = 'test' ;
+    public $weightCapacity = '' ;
 
     #[Validate('required')]
     public $policyId;
@@ -68,6 +68,6 @@ class NonLifeInsuranceAdminAttribute extends Form
     public $formNumber = '';
     
 
-    public $premiumPaidOnlimit = 'test';
+    public $premiumPaidOnlimit = '';
     public $form_endorsement = "NOTE FOR TPL ONLY...";
 }

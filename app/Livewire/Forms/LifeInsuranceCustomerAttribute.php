@@ -12,37 +12,37 @@ class LifeInsuranceCustomerAttribute extends Form
     #[Validate('required')]
     public $allowance_package = [];
     #[Validate('required')]
-    public $full_name = 'test';
+    public $full_name = '';
     #[Validate('required')]
-    public $mobile_number = 'test';
+    public $mobile_number = '';
     #[Validate('required')]
-    public $telephone_number = 'test';
+    public $telephone_number = '';
     #[Validate('required|date')]
-    public $date_of_birth = 'test';
+    public $date_of_birth = '';
     #[Validate('required')]
-    public $place_of_birth = 'test';
+    public $place_of_birth = '';
     #[Validate('required')]
-    public $nationality = 'test';
+    public $nationality = '';
     #[Validate('required')]
-    public $email_address = 'test';
+    public $email_address = '';
     #[Validate('required')]
-    public $name_of_trustee = 'test';
+    public $name_of_trustee = '';
     #[Validate('required')]
-    public $name_of_beneficiary = 'test';
+    public $name_of_beneficiary = '';
     #[Validate('required')]
-    public $tin = 'test';
+    public $tin = '';
     #[Validate('required')]
-    public $other_id = 'test';
+    public $other_id = '';
     #[Validate('required')]
     public $gender = 'Male';
     #[Validate('required')]
     public $civil_status = 'Widowed';
     #[Validate('required')]
-    public $permanent_official_mail_address = 'test';
+    public $permanent_official_mail_address = '';
     #[Validate('required')]
-    public $occupation = 'test';
+    public $occupation = '';
     #[Validate('required')]
-    public $source_of_funds = 'test';
+    public $source_of_funds = '';
 
     #[Validate('required')]
     public $policyId;
