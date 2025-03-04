@@ -6,7 +6,7 @@
 
         >
         <span class="mb-5 font-2lg text-xl block text-center ">Life Insurance Policy Application</span>
-        <x-close-modal-icon class="absolute right-0 top-0"/>
+        <x-close-modal-icon  :modal="$modal" class="absolute right-0 top-0"/>
 
         <div class="grid grid-cols-2 gap-5">
             <x-form-card>
