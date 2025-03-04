@@ -28,7 +28,7 @@
                 Scheduled Vehicle
             </x-slot:title>
             <div class="grid grid-cols-3 gap-5">
-                <x-form-input-w-label error='form.model' wire:model="form.model" placeholder="Input Model">Model</x-form-input-w-label>
+                <x-form-input-w-label error='form.model' wire:model="form.model" placeholder="Input Model" oninput="this.value=this.value.replace(/[^0-9]/g,'')">Model</x-form-input-w-label>
                 <x-form-input-w-label error='form.plateNo' wire:model="form.plateNo" placeholder="Input Plate No.">Plate No.</x-form-input-w-label>
                 <x-form-input-w-label error='form.make' wire:model="form.make">Make</x-form-input-w-label>
             </div>
@@ -41,7 +41,7 @@
 
             <div class="grid grid-cols-3 gap-5">
                 <x-form-input-w-label error='form.authorizedCapacity' wire:model="form.authorizedCapacity" placeholder="Input Authorized Capacity">Authorized Capacity</x-form-input-w-label>
-                <x-form-input-w-label error='form.bltFileNo' wire:model="form.bltFileNo" placeholder="Input Blt File No.y">Blt File No.y</x-form-input-w-label>
+                <x-form-input-w-label error='form.bltFileNo' wire:model="form.bltFileNo" placeholder="Input Blt File No.y" oninput="this.value=this.value.replace(/[^0-9]/g,'')" >Blt File No.y</x-form-input-w-label>
                 <x-form-input-w-label error='form.weightCapacity'  wire:model="form.weightCapacity" placeholder="Unladen Weight (kgs.)">Unladen Weight (kgs.)</x-form-input-w-label>
             </div>
         </x-form-card>

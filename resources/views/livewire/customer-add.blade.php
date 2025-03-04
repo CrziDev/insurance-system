@@ -83,12 +83,12 @@
             <div class="grid grid-cols-2 gap-2">
                 <div class="mb-2 flex flex-col justify-between">
                     <x-form-input-label>Phone Number (09xxxxxxxxx)</x-form-input-label>
-                    <x-form-input wire:model="phoneNumber" placeholder="Input Phone Number" class="w-full" />
+                    <x-form-input wire:model="phoneNumber" placeholder="Input Phone Number" oninput="this.value=this.value.replace(/[^0-9]/g,'')"  inputmode="numeric" class="w-full" />
                     <x-error error="phoneNumber"/>
                 </div>     
                 <div class="mb-2 flex flex-col justify-between">
                     <x-form-input-label>Profession</x-form-input-label>
-                    <x-form-input wire:model="profession" placeholder="Input Profession" class="w-full" />
+                    <x-form-input wire:model="profession" placeholder="Input Profession" class="w-full" oninput="this.value=this.value.replace(/[^A-Za-z]/g,'')"  />
                     <x-error error="profession"/>
                 </div>
             </div>
