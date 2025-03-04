@@ -62,7 +62,7 @@
           
             <div class="grid grid-cols-2 space-x-2">
                 <div class="mb-2 flex flex-col">
-                    <x-form-input-label>Phone Number (09xxxxxxxxx)</x-form-input-label>
+                    <x-form-input-label>Phone Number (+63xxxxxxxxx)</x-form-input-label>
                     <x-form-input 
                         wire:model="phoneNumber" 
                         placeholder="Input Phone Number" 
