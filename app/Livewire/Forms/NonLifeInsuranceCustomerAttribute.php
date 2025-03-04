@@ -19,13 +19,13 @@ class NonLifeInsuranceCustomerAttribute extends Form
     #[Validate('required')]
     public $businessProfession = '' ;
 
-    #[Validate('required')]
+    #[Validate('required|numeric')]
     public $model = '' ;
 
     #[Validate('required')]
     public $plateNo = '' ;
 
-    #[Validate('required')]
+    #[Validate('required|alpha')]
     public $make = '' ;
 
     #[Validate('required')]
@@ -34,13 +34,13 @@ class NonLifeInsuranceCustomerAttribute extends Form
     #[Validate('required')]
     public $typeBody = '';
 
-    #[Validate('required')]
+    #[Validate('required|alpha')]
     public $color = '';
 
     #[Validate('required')]
     public $authorizedCapacity = '';
 
-    #[Validate('required')]
+    #[Validate('required|numeric')]
     public $bltFileNo = '' ;
 
     #[Validate('required')]
