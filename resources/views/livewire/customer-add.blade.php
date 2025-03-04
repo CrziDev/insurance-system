@@ -82,9 +82,21 @@
           
             <div class="grid grid-cols-2 gap-2">
                 <div class="mb-2 flex flex-col justify-between">
-                    <x-form-input-label>Phone Number (09xxxxxxxxx)</x-form-input-label>
-                    <x-form-input wire:model="phoneNumber" placeholder="Input Phone Number" oninput="this.value=this.value.replace(/[^0-9]/g,'')"  inputmode="numeric" class="w-full" />
+                <x-form-input-label>Phone Number (+63xxxxxxxxx)</x-form-input-label>
+                    <x-form-input 
+                        wire:model="phoneNumber" 
+                        placeholder="Input Phone Number" 
+                        value="+63" 
+                        oninput="if (!this.value.startsWith('+63')) { 
+                                    this.value = '+63' + this.value.replace(/[^0-9]/g, '').slice(0, 9); 
+                                } else { 
+                                    this.value = '+63' + this.value.slice(3).replace(/[^0-9]/g, '').slice(0, 9); 
+                                } 
+                                if(this.value.length > 12) this.value = this.value.slice(0, 12);" 
+                        inputmode="numeric" 
+                        class="w-full" />
                     <x-error error="phoneNumber"/>
+
                 </div>     
                 <div class="mb-2 flex flex-col justify-between">
                     <x-form-input-label>Profession</x-form-input-label>

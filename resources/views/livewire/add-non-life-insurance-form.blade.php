@@ -68,11 +68,11 @@
                 <div>
                     <div class="mb-2">
                         <x-form-input-label  class="w-[100px]">Limit of Liability</x-form-input-label>
-                        <x-form-input readonly value="{{$limitLiability}}" placeholder="Input Value"></x-form-input>
+                        <x-form-input readonly value="{{$limitLiability}}" ></x-form-input>
                     </div>
                     <div class="mb-2">
                         <x-form-input-label class="w-[100px]">Premium Paid</x-form-input-label>
-                        <x-form-input readonly value="{{$premiumPaid}} " placeholder="Input Value"></x-form-input>
+                        <x-form-input readonly value="{{$premiumPaid}} "></x-form-input>
                     </div>
                 </div>
 

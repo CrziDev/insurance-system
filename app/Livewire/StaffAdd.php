@@ -28,7 +28,7 @@ class StaffAdd extends Component
     #[Validate('required')]
     public $nameExtention = "N/A";
     #[Validate('required')]
-    public $phoneNumber;
+    public $phoneNumber = "+63";
     #[Validate('required|min:3')]
     public $address;
     #[Validate('required|alpha')]

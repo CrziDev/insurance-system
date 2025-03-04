@@ -25,7 +25,7 @@ class CustomerAdd extends Component
     #[Validate('required')]
     public $nameExtention = "N/A";
     #[Validate('required|numeric')]
-    public $phoneNumber;
+    public $phoneNumber = "+63";
     #[Validate('required|email|max:255|unique:users')]
     public $email;
     #[Validate('required|min:3')]
