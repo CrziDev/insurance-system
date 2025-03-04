@@ -21,7 +21,7 @@
                                     </div>
                                 @enderror
                             <div class="mb-[15px] space-y-4">
-                                <x-form-input-w-label error="username" class="border-2 rounded-md px-2 py-1 " name="username">Username</x-form-input-w-label>
+                                <x-form-input-w-label error="username" class="text-xs border-2 px-2 py-2 rounded-md px-2 py-1 " placeholder="Input Username" name="username">Username</x-form-input-w-label>
 
                                 <div x-data="{ passwordShow: false }" class="mb-4 flex flex-col">
                                     <!-- Password Input -->

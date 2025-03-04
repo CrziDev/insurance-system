@@ -11,22 +11,22 @@
             <div class="flex flex-col mt-3">
                 <div class="mb-2 flex flex-col">
                     <x-form-input-label class="text-sm">Username</x-form-input-label>
-                    <x-form-input wire:model="username" ></x-form-input>
+                    <x-form-input wire:model="username" placeholder="Input Username"></x-form-input>
                     <x-error error="username"/>
                 </div>      
                 <div class="mb-2 flex flex-col">
                     <x-form-input-label>Email</x-form-input-label>
-                    <x-form-input wire:model="email"  ></x-form-input>
+                    <x-form-input wire:model="email" placeholder="Input Email"></x-form-input>
                     <x-error error="email"/>
                 </div>       
                 <div class="mb-2 flex flex-col">
                     <x-form-input-label>Password</x-form-input-label>
-                    <x-form-input type="password" wire:model="password" ></x-form-input>
+                    <x-form-input type="password" wire:model="password" placeholder="Input Password"></x-form-input>
                     <x-error type="password" error="password"/>
                 </div>
                 <div class="mb-2 flex flex-col" >
                     <x-form-input-label>Confirm Password</x-form-input-label>
-                    <x-form-input type="password" wire:model="password_confirmation" ></x-form-input>
+                    <x-form-input type="password" wire:model="password_confirmation" placeholder="Confirm Password"></x-form-input>
                     <x-error error="password_confirmation"/>
                 </div>
             </div>
@@ -37,12 +37,12 @@
             <div class="grid grid-cols-3 space-x-2 mt-3">
                 <div class="mb-2  flex flex-col">
                     <x-form-input-label>First Name</x-form-input-label>
-                    <x-form-input wire:model="firstName"></x-form-input>
+                    <x-form-input wire:model="firstName" placeholder="Input First Name"></x-form-input>
                     <x-error error="firstName"/>
                 </div>           
                 <div class="mb-2  flex flex-col">
                     <x-form-input-label>Last Name</x-form-input-label>
-                    <x-form-input wire:model="lastName" ></x-form-input>
+                    <x-form-input wire:model="lastName" placeholder="Input Last Name"></x-form-input>
                     <x-error error="lastName"/>
                 </div>
 
@@ -54,7 +54,7 @@
                     </div>
                     <div class="mb-2 w-[47%] flex flex-col">
                         <x-form-input-label >Ext</x-form-input-label>
-                        <x-form-input wire:model="nameExtention"  ></x-form-input>
+                        <x-form-input wire:model="nameExtention" ></x-form-input>
                         <x-error error="nameExtention"/>
                     </div> 
                 </div>             
@@ -62,13 +62,13 @@
           
             <div class="grid grid-cols-2 space-x-2">
                 <div class="mb-2 flex flex-col">
-                    <x-form-input-label>Phone Number (+639xxxxxxxxx)</x-form-input-label>
-                    <x-form-input wire:model="phoneNumber"  ></x-form-input>
+                    <x-form-input-label>Phone Number (09xxxxxxxxx)</x-form-input-label>
+                    <x-form-input wire:model="phoneNumber" placeholder="Input Phone Number" ></x-form-input>
                     <x-error error="phoneNumber"/>
                 </div>     
                 <div class="mb-2  flex flex-col">
                     <x-form-input-label>Position</x-form-input-label>
-                    <x-form-input wire:model="profession"  ></x-form-input>
+                    <x-form-input wire:model="profession" placeholder="Input Profession"></x-form-input>
                     <x-error error="profession"/>
                 </div>
             </div>
@@ -76,7 +76,7 @@
             <div class="flex space-x-5">
                 <div class="mb-2 w-[100%] flex flex-col" >
                     <x-form-input-label>Address</x-form-input-label>
-                    <x-form-input wire:model="address"  ></x-form-input>
+                    <x-form-input wire:model="address" placeholder="Input Address"></x-form-input>
                     <x-error error="address"/>
                 </div>
             </div>           

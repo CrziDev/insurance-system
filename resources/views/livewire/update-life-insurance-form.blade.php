@@ -183,14 +183,14 @@
 
 
         
-        @if($status == 2)
+        @if($status == 2 && request()->user()->role != 3)
         <div class="flex justify-center">
             <x-button>Renew Insurance</x-button>
         </div>
         @endif
 
 
-        @if($status == 4)
+        @if($status == 4 && request()->user()->role != 3)
         <div class="flex justify-center">
             <x-button>Approve Insurance</x-button>
         </div>

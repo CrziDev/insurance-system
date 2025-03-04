@@ -24,13 +24,13 @@ class CustomerAdd extends Component
     public $middleInitial = 'N/A';
     #[Validate('required')]
     public $nameExtention = "N/A";
-    #[Validate('required|regex:/^\+63\d{10}$/')]
+    #[Validate('required|numeric')]
     public $phoneNumber;
     #[Validate('required|email|max:255|unique:users')]
     public $email;
     #[Validate('required|min:3')]
     public $address;
-    #[Validate('required')]
+    #[Validate('required|alpha')]
     public $profession;
     
 
