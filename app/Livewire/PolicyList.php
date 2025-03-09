@@ -16,7 +16,7 @@ class PolicyList extends Component
     }
 
     public function addQuantity(){
-        $this->dispatch("open-modal",name:"policy-add-quantity");
+        $this->dispatch("open-modal",name:"policy-edit");
     }
     public function render()
     {

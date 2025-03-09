@@ -21,4 +21,11 @@ class Policy extends Model
     public function getyearlyCostAttribute(){
         return ($this->premium + $this->docstamp + $this->govtax + $this->others);
     }
+
+    protected function casts(): array
+    {
+        return [
+            'created_at' => 'date',
+        ];
+    }
 }
