@@ -11,7 +11,7 @@
                 Add Policy
             </x-button> 
             <x-button wire:click="addQuantity()" icon="add">
-                Add Quantity
+                Edit Policy
             </x-button>
         </div>
     </div>
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <x-modal name="policy-">
+    <x-modal name="policy-add">
         <livewire:policy-add></livewire:policy-add>
     </x-modal>
     <x-modal name="policy-edit">

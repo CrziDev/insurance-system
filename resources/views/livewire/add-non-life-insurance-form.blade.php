@@ -30,18 +30,18 @@
             <div class="grid grid-cols-3 gap-5">
                 <x-form-input-w-label error='form.model' wire:model="form.model" placeholder="Input Model" oninput="this.value=this.value.replace(/[^0-9]/g,'')">Model</x-form-input-w-label>
                 <x-form-input-w-label error='form.plateNo' wire:model="form.plateNo" placeholder="Input Plate No.">Plate No.</x-form-input-w-label>
-                <x-form-input-w-label error='form.make' wire:model="form.make">Make</x-form-input-w-label>
+                <x-form-input-w-label error='form.make' wire:model="form.make" placeholder="Input Make">Make</x-form-input-w-label>
             </div>
 
             <div class="grid grid-cols-3 gap-5">
-                <x-form-input-w-label error='form.serialChassis' wire:model="form.serialChassis" placeholder="Input Serial/Chassis No">Serial/Chassis No</x-form-input-w-label>
+                <x-form-input-w-label error='form.serialChassis' wire:model="form.serialChassis" placeholder="Input Serial/Chassis No" oninput="this.value=this.value.replace(/[^0-9\-_\.]/g,'')">Serial/Chassis No</x-form-input-w-label>
                 <x-form-input-w-label error='form.typeBody' wire:model="form.typeBody" placeholder="Type of Body">Type of Body</x-form-input-w-label>
                 <x-form-input-w-label error='form.color' wire:model="form.color" placeholder="Input Color">Color</x-form-input-w-label>
             </div>
 
             <div class="grid grid-cols-3 gap-5">
                 <x-form-input-w-label error='form.authorizedCapacity' wire:model="form.authorizedCapacity" placeholder="Input Authorized Capacity">Authorized Capacity</x-form-input-w-label>
-                <x-form-input-w-label error='form.bltFileNo' wire:model="form.bltFileNo" placeholder="Input Blt File No.y" oninput="this.value=this.value.replace(/[^0-9]/g,'')" >Blt File No.y</x-form-input-w-label>
+                <x-form-input-w-label error='form.bltFileNo' wire:model="form.bltFileNo" placeholder="Input Blt File No.y" oninput="this.value=this.value.replace(/[^0-9\-_\.]/g,'')" >Blt File No.y</x-form-input-w-label>
                 <x-form-input-w-label error='form.weightCapacity'  wire:model="form.weightCapacity" placeholder="Unladen Weight (kgs.)">Unladen Weight (kgs.)</x-form-input-w-label>
             </div>
         </x-form-card>
@@ -105,7 +105,12 @@
                 <div>
                     <div class="mb-2">
                         <x-form-input-label  class="mr-1">Forms and Endorsements Made Part of this Policy at time of Issue</x-form-input-label>
-                        <x-form-input error='form.form_endorsement' wire:model="form.form_endorsement"></x-form-input>
+
+                        <select  error='form.form_endorsement' wire:model='form_endorsement' class="px-2 py-1 text-xs  border rounded text-gray-500" name="" id="">
+                            <option value="">Select Here</option>  
+                                <option value="NOTE FOR TPL ONLY...">NOTE FOR TPL ONLY... </option>
+                                <option value="NOTE FOR CTPL ONLY...">NOTE FOR CTPL ONLY... </option>
+                        </select>
                     </div>
                 </div>
         </div>

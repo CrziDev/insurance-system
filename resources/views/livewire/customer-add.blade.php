@@ -88,11 +88,11 @@
                         placeholder="Input Phone Number" 
                         value="+63" 
                         oninput="if (!this.value.startsWith('+63')) { 
-                                    this.value = '+63' + this.value.replace(/[^0-9]/g, '').slice(0, 9); 
+                                    this.value = '+63' + this.value.replace(/[^0-9]/g, '').slice(0, 10); 
                                 } else { 
-                                    this.value = '+63' + this.value.slice(3).replace(/[^0-9]/g, '').slice(0, 9); 
+                                    this.value = '+63' + this.value.slice(3).replace(/[^0-9]/g, '').slice(0, 10); 
                                 } 
-                                if(this.value.length > 12) this.value = this.value.slice(0, 12);" 
+                                if(this.value.length > 13) this.value = this.value.slice(0, 13);" 
                         inputmode="numeric" 
                         class="w-full" />
                     <x-error error="phoneNumber"/>
