@@ -97,6 +97,10 @@
                 <div class="flex justify-center items-center pt-4">
                     <x-button wire:click="showForm()" class="text-sm">Proccess Application</x-button>
                 </div>
+
+                <div class="flex justify-center items-center pt-4">
+                    <x-button wire:click="showPreview()" class="text-sm">Review Application</x-button>
+                </div>
             @endif
 
             

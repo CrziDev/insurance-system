@@ -9,6 +9,7 @@ class ShowPending extends Component
 {
 
     public Transaction $client;
+    public $previewForm = false;
     
 
     public function mount(){
@@ -17,6 +18,11 @@ class ShowPending extends Component
     public function showForm(){
         $this->dispatch('close-modal',name:"pending-details");
         $this->dispatch('open-modal', name:'pending-form');
+    }
+
+    public function showPreview(){
+        $this->dispatch('close-modal',name:"pending-details");
+        $this->dispatch('open-modal', name:'preview-form');
     }
 
     public function render()
