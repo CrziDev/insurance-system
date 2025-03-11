@@ -92,14 +92,11 @@
                     
                 </div>
             </div>
-
-            @if(request()->user()->role != 3  && $client->status == 4)
-                <div class="flex justify-center items-center pt-4">
+            @if(request()->user()->role != 3 && $client->status == 4)
+                <div class="flex justify-center items-center space-x-4 pt-4">
                     <x-button wire:click="showForm()" class="text-sm">Proccess Application</x-button>
-                </div>
 
-                <div class="flex justify-center items-center pt-4">
-                    <x-button wire:click="showPreview()" class="text-sm">Review Application</x-button>
+                    <x-button wire:click="showPreview()" class="text-sm bg-orange hover:bg-orange-600">Review Application</x-button>
                 </div>
             @endif
 
