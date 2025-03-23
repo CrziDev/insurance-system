@@ -52,7 +52,9 @@ class UpdateNonLifeInsuranceForm extends Component
         $this->form->color = $nonLifeType->nonLifeInsurance->color; 
         $this->form->authorizedCapacity = $nonLifeType->nonLifeInsurance->authorize_capacity; 
         $this->form->bltFileNo = $nonLifeType->nonLifeInsurance->blt_num; 
-        $this->form->weightCapacity = $nonLifeType->nonLifeInsurance->weight_capacity; 
+        $this->form->weightCapacity = $nonLifeType->nonLifeInsurance->weight_capacity;
+        $this->form->motoNum = $nonLifeType->nonLifeInsurance->motor_num;
+
        
         if (!isset($nonLifeType->date_effective)) {
             $this->form->dateEffective = date('Y-m-d'); // Current date
@@ -104,87 +106,85 @@ class UpdateNonLifeInsuranceForm extends Component
         $this->docstamp = $type->docstamp;
         $this->localGovTax = $type->govtax;
         $this->others = $type->others;
-        $this->total = number_format((float)$type->premium + (float)$type->docsStamp + (float)$type->govtax + (float)$type->others,2);
+        $this->total = number_format((float)$type->premium + (float)$type->docsStamp + (float)$type->govtax + (float)$type->others + (float)$type->premium_paid,2);
 
     }
 
     public function update(){
-        // $this->validate();
-        // $transaction = Transaction::findOrFail($this->selectedRow->id);
+        $this->validate();
+        $transaction = Transaction::findOrFail($this->selectedRow->id);
 
-        // $this->oldExpiration = $transaction->expiration;
-        // Transaction::findOrFail($this->selectedRow->id)->update([
-        //     "date_effective"=>$this->form->dateEffective,
-        //     "expiration"=>$this->form->expiration,
-        //     "status"=>1,
-        // ]);
+        $this->oldExpiration = $transaction->expiration;
+        Transaction::findOrFail($this->selectedRow->id)->update([
+            "date_effective"=>$this->form->dateEffective,
+            "expiration"=>$this->form->expiration,
+            "status"=>1,
+        ]);
 
-        // NonLifeInsurance::findOrFail($this->selectedRow->non_life_id)->update([
-        //     "model"=> $this->form->model,
-        //     "body_type"=> $this->form->typeBody,
-        //     "plate"=> $this->form->plateNo,
-        //     "serial_chassis"=> $this->form->serialChassis,
-        //     // "motor_num"=> $this->form->policyId,
-        //     "color"=> $this->form->color,
-        //     "blt_num"=> $this->form->bltFileNo,
-        //     "weight_capacity"=>$this->form->weightCapacity,
-        //     "authorize_capacity"=>$this->form->authorizedCapacity,
-        //     "make"=>$this->form->make,
-        //     "limit_liabilty"=>$this->limitLiability,
-        //     "premium_paid"=>$this->premiumPaid,
-        //     "official_receipt_no"=>$this->form->official_receipt,
-        //     "confirmation_cover_no"=>$this->form->confirmation_no,
-        //     "forms_and_indorsement"=>$this->form->form_endorsement,
-        //     "form_id"=>$this->form->formNumber,
-        //     "paid"=>$this->total,
-        // ]);
+        NonLifeInsurance::findOrFail($this->selectedRow->non_life_id)->update([
+            "model"=> $this->form->model,
+            "body_type"=> $this->form->typeBody,
+            "plate"=> $this->form->plateNo,
+            "serial_chassis"=> $this->form->serialChassis,
+            // "motor_num"=> $this->form->policyId,
+            "color"=> $this->form->color,
+            "blt_num"=> $this->form->bltFileNo,
+            "weight_capacity"=>$this->form->weightCapacity,
+            "authorize_capacity"=>$this->form->authorizedCapacity,
+            "make"=>$this->form->make,
+            "limit_liabilty"=>$this->limitLiability,
+            "premium_paid"=>$this->premiumPaid,
+            "official_receipt_no"=>$this->form->official_receipt,
+            "confirmation_cover_no"=>$this->form->confirmation_no,
+            "forms_and_indorsement"=>$this->form->form_endorsement,
+            "form_id"=>$this->form->formNumber,
+            "paid"=>$this->total,
+            "motor_num"=>$this->form->motoNum,
 
-        $fpdi = new PrintActionFpdi();
-        $pdf = $fpdi->generatePdf();
-        
-        // Output the generated PDF
-        return $pdf->Output('pdfs/test.pdf', 'D');
+        ]);
+
       
-        // $pdf = new PrintForm($this->selectedRow->non_life_id);
+      
+        $pdf = new PrintForm($this->selectedRow->non_life_id);
         
-        // $uniquePdfName = 'zilkaPdf_' . time() . '.pdf'; 
+        $uniquePdfName = 'zilkaPdf_' . time() . '.pdf'; 
 
-        // $pdf->generatePdf();
-        // $pdf->SetTitle('Zilka Life Insurance Form');
-        // $pdf->output('f', 'pdfs/' . $uniquePdfName); //
+        $pdf->generatePdf();
+        $pdf->SetTitle('Zilka Life Insurance Form');
+        $pdf->output('f', 'pdfs/' . $uniquePdfName); //
 
-        // $this->dispatch('close-modal', name:'pending-form');
-        // $user =  $this->selectedRow->user()->with('customer')->first();
-        // if ($this->status == 2) {
-        //     toastr()->success('Insurance Renewed Successfully!');
+        $this->dispatch('close-modal', name:'pending-form');
+        $user =  $this->selectedRow->user()->with('customer')->first();
+        if ($this->status == 2) {
+            toastr()->success('Insurance Renewed Successfully!');
 
-        //     RenewedHistory::create([
-        //         'transaction_id' => $this->selectedRow->id,
-        //         'date_expired' =>   $this->oldExpiration,
-        //         'date_renewed' => now()
-        //     ]);
+            RenewedHistory::create([
+                'transaction_id' => $this->selectedRow->id,
+                'date_expired' =>   $this->oldExpiration,
+                'date_renewed' => now()
+            ]);
 
-        //     $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been Renewed . Please review your policy documents for full details. Thank you for trusting us!";
+            $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been Renewed . Please review your policy documents for full details. Thank you for trusting us!";
 
-        //     $this->sendMessage($message,$user->customer[0]->phone_number);
+            $this->sendMessage($message,$user->customer[0]->phone_number);
     
-        //     InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first(),true);
-        // } elseif ($this->status == 4) {
-        //     toastr()->success('Insurance Approved Successfully!');
+            InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first(),true);
+        } elseif ($this->status == 4) {
+            toastr()->success('Insurance Approved Successfully!');
 
-        //     // $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been successfully approved . Please review your policy documents for full details. Thank you for trusting us!";
-        //     $message = "For application approval \n\n";
+            // $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been successfully approved . Please review your policy documents for full details. Thank you for trusting us!";
+            $message = "For application approval \n\n";
 
-        //     $message = "Your nonlife insurance application with Zika Insurance is now approved.\n\n";
-        //     $message .= "Application number: " . $this->form->formNumber;
+            $message = "Your nonlife insurance application with Zika Insurance is now approved.\n\n";
+            $message .= "Application number: " . $this->form->formNumber;
             
-        //     $this->sendMessage($message,$user->customer[0]->phone_number);
+            $this->sendMessage($message,$user->customer[0]->phone_number);
     
-        //     InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
-        // } 
+            InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
+        } 
 
-        // $this->dispatch('openPdfInNewTab', asset('pdfs/' . $uniquePdfName)); 
-        // // return response()->download( 'pdfs/generatedForm.pdf');
+        $this->dispatch('openPdfInNewTab', asset('pdfs/' . $uniquePdfName)); 
+        // return response()->download('pdfs/generatedForm.pdf');
 
         
     }
@@ -212,3 +212,8 @@ class UpdateNonLifeInsuranceForm extends Component
             }
         }
 }
+  // $fpdi = new PrintActionFpdi();
+        // $pdf = $fpdi->generatePdf();
+        
+        // // Output the generated PDF
+        // return $pdf->Output('pdfs/test.pdf', 'D');

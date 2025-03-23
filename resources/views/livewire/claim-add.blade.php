@@ -2,7 +2,7 @@
     <div class="h-full flex flex-col items-center justify-between text-center">
         <div>
             <p class="text-[28px] text-gray-500">Upload Scanned Police report</p>
-            <p class="italic text-sm text-gray-500">(example: Police Report)</p>
+            <p class="italic text-sm text-gray-500 pb-5">(example: valid id, driver's license, valid ID sa nabanggaan, police report, OR/CR, Policy)</p>
         </div>
         <div class="border-dashed border-4 w-full h-[330px] flex flex-col justify-center space-y-2 items-center">
             @if ($photos) 
@@ -28,7 +28,8 @@
                     :disabled="!@this.photos.length">
                 Submit
             </button>
-            <button class="px-3 py-1 mt-2 rounded-md bg-red-500 text-white border">Cancel</button>
+            <button wire:click="cancelClaim()" class="px-3 py-1 mt-2 rounded-md bg-red-500 text-white border">Cancel</button>
+
         </div>
     </div>
 

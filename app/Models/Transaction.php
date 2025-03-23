@@ -28,7 +28,7 @@ class Transaction extends Model
     {
 
         return !is_null($this->date_effective) ? 
-        Carbon::createFromFormat('Y-m-d', $this->date_effective)->format('M d, Y') : 
+        Carbon::createFromFormat('Y-m-d', $this->date_effective)->timezone(config('app.timezone'))->format('M d, Y') : 
         null;
        
     }
@@ -65,14 +65,16 @@ class Transaction extends Model
     protected function getDateExpirationFormatAttribute()
     {
         return !is_null($this->expiration) ? 
-        Carbon::createFromFormat('Y-m-d', $this->expiration)->format('M d, Y') : 
+        Carbon::createFromFormat('Y-m-d', $this->expiration)->timezone(config('app.timezone'))->format('M d, Y') : 
         null;
        
     }
 
     protected function getUpdatedFormatAttribute()
     {
-        return  Carbon::createFromFormat('Y-m-d H:m:s',$this->updated_at)->format('M d, Y');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->updated_at)
+            ->timezone(config('app.timezone'))  
+            ->format('M d, Y');
        
     }
 

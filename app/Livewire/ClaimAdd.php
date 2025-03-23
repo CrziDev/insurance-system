@@ -37,6 +37,11 @@ class ClaimAdd extends Component
         
     }
     
+    public function cancelClaim()
+    {
+        $this->dispatch('close-modal', name: 'claim-add');
+    }
+    
     public function render()
     {
         return view('livewire.claim-add');

@@ -58,6 +58,10 @@ class NonLifeInsuranceAdminAttribute extends Form
     #[Validate('required')]
     public $confirmation_no = '' ;
 
+    
+    #[Validate('required')]
+    public $motoNum = '' ;
+
     #[Validate('required')]
     public $official_receipt = '' ;
 

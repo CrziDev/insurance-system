@@ -42,6 +42,9 @@
                 <x-form-input-w-label error='form.bltFileNo' wire:model="form.bltFileNo">Blt File No.y</x-form-input-w-label>
                 <x-form-input-w-label error='form.weightCapacity'  wire:model="form.weightCapacity">Unladen Weight (kgs.)</x-form-input-w-label>
             </div>
+            <div class="grid grid-cols-3 gap-5">
+                <x-form-input-w-label error='form.motoNum' wire:model="form.motoNum" placeholder="Input Motor No.">Moto No.</x-form-input-w-label>
+            </div>
         </x-form-card>
 
         

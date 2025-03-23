@@ -39,7 +39,7 @@ class PendingList extends Component
         $searchTerm = '%'.$this->search.'%';
 
         $transactions = Transaction::whereIn('status',[4])->with('policy', 'nonLifeInsurance','lifeInsurance','user')
-        ->orderByDesc('status');
+        ->orderByDesc('created_at');
         
 
         if ($user->role == 3) {

@@ -40,8 +40,11 @@ class NonLifeInsuranceCustomerAttribute extends Form
     #[Validate('required')]
     public $authorizedCapacity = '';
 
-    #[Validate('required|numeric')]
+    #[Validate('required')]
     public $bltFileNo = '' ;
+
+    #[Validate('required')]
+    public $motoNum = '' ;
 
     #[Validate('required')]
     public $weightCapacity = '' ;

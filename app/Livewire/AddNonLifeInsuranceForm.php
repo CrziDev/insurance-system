@@ -31,8 +31,6 @@ class AddNonLifeInsuranceForm extends Component
     public function save(){
         $this->validate();  
 
-
-    
         $record = NonLifeInsurance::create([
             'user_id' => $this->userId,
             'model' => $this->form->model,
@@ -47,9 +45,9 @@ class AddNonLifeInsuranceForm extends Component
             'limit_premium_paid' => $this->premiumPaid,
             'limit_liabilty' => $this->limitLiability,      
             'forms_and_indorsement' => $this->form->form_endorsement,
+            'motor_num' => $this->form->motoNum,
+
         ]);
-
-
 
         $user = User::find($this->userId);
         $transaction = Transaction::create([
@@ -111,7 +109,7 @@ class AddNonLifeInsuranceForm extends Component
         $this->docstamp = $type->docstamp;
         $this->localGovTax = $type->govtax;
         $this->others = $type->others;
-        $this->total = number_format((float)$type->premium + (float)$type->docsStamp + (float)$type->govtax + (float)$type->others,2);
+        $this->total = number_format((float)$type->premium + (float)$type->docsStamp + (float)$type->govtax + (float)$type->others + (float)$type->premium_paid,2);
     }
 
     public function render()

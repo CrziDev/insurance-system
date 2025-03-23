@@ -22,19 +22,19 @@ class LifeInsurance extends Model
 
     protected function getDateEffectFormatAttribute()
     {
-        return  Carbon::createFromFormat('Y-m-d',$this->date_effective)->format('M d, Y');
+        return  Carbon::createFromFormat('Y-m-d',$this->date_effective)->timezone(config('app.timezone'))->format('M d, Y');
        
     }
 
     protected function getDateExpirationFormatAttribute()
     {
-        return  Carbon::createFromFormat('Y-m-d',$this->date_effective)->format('M d, Y');
+        return  Carbon::createFromFormat('Y-m-d',$this->date_effective)->timezone(config('app.timezone'))->format('M d, Y');
        
     }
 
     protected function getUpdatedFormatAttribute()
     {
-        return  Carbon::createFromFormat('Y-m-d H:m:s',$this->updated_at)->format('M d, Y');
+        return  Carbon::createFromFormat('Y-m-d H:m:s',$this->updated_at)->timezone(config('app.timezone'))->format('M d, Y');
        
     }
 

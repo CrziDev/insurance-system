@@ -36,7 +36,7 @@ class ClaimList extends Component
         
         
         $claims = Transaction::with('policy', 'nonLifeInsurance','lifeInsurance','user')
-        ->orderByDesc('status');
+        ->orderByDesc('created_at');
 
         if ($user->role == 3) {
             $claims->whereIn('status',[1,3,5,6])->where('user_id', $user->id);
