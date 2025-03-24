@@ -15,6 +15,11 @@ class StaffList extends Component
         $this->selectedStaff = $staff;
         $this->dispatch("open-modal",name:"staff-update");
     }
+
+    public function updatePassword(User $staff){
+        $this->selectedStaff = $staff;
+        $this->dispatch("open-modal",name:"update-password");
+    }
     
     public function addStaff(){
         $this->dispatch("open-modal",name:"staff-add");

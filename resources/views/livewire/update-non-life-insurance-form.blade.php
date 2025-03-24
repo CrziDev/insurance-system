@@ -110,8 +110,8 @@
                 <div class="grid grid-cols-2 gap-5">
                     <x-form-input-w-label type="date" error='form.dateEffective' wire:model="form.dateEffective">Period of Issuance</x-form-input-w-label>
                     <x-form-input-w-label type="date" error='form.expiration' wire:model="form.expiration">Effective Until</x-form-input-w-label>
-                    <x-form-input-w-label error='form.confirmation_no' wire:model="form.confirmation_no">Confirmation of Cover No.</x-form-input-w-label>
-                    <x-form-input-w-label error='form.official_receipt' wire:model="form.official_receipt">Official Receipt No.</x-form-input-w-label>            
+                    <x-form-input-w-label error='form.confirmation_no' wire:model="form.confirmation_no" oninput="this.value=this.value.replace(/[^0-9]/g,'')">Confirmation of Cover No.</x-form-input-w-label>
+                    <x-form-input-w-label error='form.official_receipt' wire:model="form.official_receipt" oninput="this.value=this.value.replace(/[^0-9]/g,'')">Official Receipt No.</x-form-input-w-label>            
                 </div>
                 <div class="grid grid-cols-1">
                     <x-form-input-w-label type="text" error='form.formNumber' wire:model="form.formNumber">Policy NO.</x-form-input-w-label>

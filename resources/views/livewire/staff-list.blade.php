@@ -34,7 +34,7 @@
                                 <p class="hover:text-green-400 cursor-pointer text-[10px] " wire:click="selectStaff({{$row}})" >Edit</p>
                             </div>
                             
-                            <p class="hover:text-green-400 text-[10px] cursor-pointer">Change Pass</p>
+                            <p class="hover:text-green-400 text-[10px] cursor-pointer" wire:click="updatePassword({{$row}})" >Change Pass</p>
                         </div>
                     </div>
 
@@ -48,6 +48,12 @@
 
     <x-modal name="staff-add">
         <livewire:staff-add></livewire:staff-add>
+    </x-modal>
+
+    <x-modal name="update-password">
+        @if($selectedStaff)
+            <livewire:change-password :user="$selectedStaff" key="{{ $selectedStaff->id }}"/>
+        @endif
     </x-modal>
 
     <x-modal name="staff-update">

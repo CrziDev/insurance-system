@@ -43,6 +43,10 @@ class CustomersList extends Component
     public function addCustomer(){
         $this->dispatch("open-modal",name:"customer-add");
     }
+    public function updatePassword(customer $customer){
+        $this->selectedCustomer = $customer;
+        $this->dispatch("open-modal",name:"update-password");
+    }
     
     public function showPolicy(customer $customer){
         $this->fullName = $customer->full_name;

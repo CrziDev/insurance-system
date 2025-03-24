@@ -44,7 +44,7 @@ class PendingList extends Component
 
         if ($user->role == 3) {
             $transactions = Transaction::whereIn('status',[1,2,3,4])->with('policy', 'nonLifeInsurance','lifeInsurance','user')
-            ->orderByDesc('status');
+            ->orderByDesc('created_at');
             
             $transactions->where('user_id', $user->id);
         }
