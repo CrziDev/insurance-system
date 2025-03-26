@@ -90,6 +90,9 @@ class PrintForm extends Fpdf
             + (float) $data->transaction->policy->docstamp 
             + (float) $data->transaction->policy->govtax 
             + (float) $data->transaction->policy->others, 
+            + (float) $data->transaction->policy->others, 
+            + (float) $data->limit_liabilty, 
+            + (float) $data->premium_paid, 
             2
         );  
         $this->limitLiability = $data->limit_liabilty ?? '';  // 'limit_liabilty' field from database
