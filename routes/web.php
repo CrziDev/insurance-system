@@ -19,9 +19,7 @@ use App\Http\Controllers\ReportsController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-
-
+use setasign\Fpdi\Fpdi;
 
 Route::middleware(['auth','verified'])->group(function () 
 {

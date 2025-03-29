@@ -86,7 +86,7 @@ class PrintForm extends Fpdf
         $this->vehicle_govtax = number_format((float) $data->transaction->policy->govtax, 2, '.', '') ?? '';  
         $this->vehicle_others = number_format((float) $data->transaction->policy->others, 2, '.', '') ?? '';  
         $this->vehicle_totalpaid = number_format(
-            (float) $data->transaction->policy->premium 
+              (float) $data->transaction->policy->premium 
             + (float) $data->transaction->policy->docstamp 
             + (float) $data->transaction->policy->govtax 
             + (float) $data->transaction->policy->others

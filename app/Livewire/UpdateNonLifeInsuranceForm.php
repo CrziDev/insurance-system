@@ -143,10 +143,11 @@ class UpdateNonLifeInsuranceForm extends Component
 
         ]);
 
-      
-      
-        $pdf = new PrintForm($this->selectedRow->non_life_id);
-        
+        // $pdf = new PrintForm($this->selectedRow->non_life_id);
+
+
+        $pdf = new PrintActionFpdi($this->selectedRow->non_life_id); 
+    
         $uniquePdfName = 'zilkaPdf_' . time() . '.pdf'; 
 
         $pdf->generatePdf();
@@ -184,9 +185,6 @@ class UpdateNonLifeInsuranceForm extends Component
         } 
 
         $this->dispatch('openPdfInNewTab', asset('pdfs/' . $uniquePdfName)); 
-        // return response()->download('pdfs/generatedForm.pdf');
-
-        
     }
     
     public function render()
