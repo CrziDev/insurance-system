@@ -89,9 +89,9 @@ class PrintForm extends Fpdf
             (float) $data->transaction->policy->premium 
             + (float) $data->transaction->policy->docstamp 
             + (float) $data->transaction->policy->govtax 
-            + (float) $data->transaction->policy->others, 
-            + (float) $data->transaction->policy->others, 
-            + (float) $data->limit_liabilty, 
+            + (float) $data->transaction->policy->others
+            + (float) $data->transaction->policy->others
+            + (float) $data->limit_liabilty
             + (float) $data->premium_paid, 
             2
         );  
