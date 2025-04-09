@@ -2,7 +2,6 @@
    <div class="flex justify-between items-center mb-4">
         <x-table-title class="text-sm">{{$tableTitle}}</x-table-title>
         <div class="flex items-center space-x-2">
-          <x-table-link link="{{$tableLink}}">See more</x-table-link>            
         </div>
    </div>
 

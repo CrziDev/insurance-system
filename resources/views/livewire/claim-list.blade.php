@@ -32,12 +32,12 @@
                             <div class="flex space-x-2">
                                 <img class="w-[28px] h-[23px]" src="{{Vite::asset('resources/images/insurance1.png')}}" alt="">
                                 <div class="flex flex-col space-y-1">
-                                    <p class="text-sm font-bold">Motorcycle Policy</p>
+                                    <p class="text-sm font-bold">{{$row->policy->name}}</p>
                                 </div>   
                             </div>
                             <div class="flex space-x-2 align-center ">
                                 <p class="text-xs">Effective:</p>
-                                <p class="text-xs font-semibold">July 5, 2024</p>
+                                <p class="text-xs font-semibold">{{$row->date_effect_format}}</p>
                             </div>                         
                         </div>
                         <div class="flex align-center text-center space-x-2 justify-evenly py-4">
