@@ -104,6 +104,8 @@
             </div>
         </x-form-card>
         <x-form-input hidden wire:model="userId"></x-form-input>
+
+        @if(request()->user()->role != 3)
         <div class="grid grid-cols-1">
                 <div>
                     <div class="mb-2">
@@ -117,6 +119,8 @@
                     </div>
                 </div>
         </div>
+        @endif
+
             
         <div class="flex justify-center">
             <x-button>Submit Request</x-button>

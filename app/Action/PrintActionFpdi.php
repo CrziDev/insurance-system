@@ -92,9 +92,7 @@ class PrintActionFpdi extends Fpdi
             + (float) $data->transaction->policy->docstamp 
             + (float) $data->transaction->policy->govtax 
             + (float) $data->transaction->policy->others
-            + (float) $data->transaction->policy->others
-            + (float) $data->limit_liabilty
-            + (float) $data->premium_paid, 
+            + (float) $data->limit_liabilty, 
             2
         );  
         $this->limitLiability = $data->limit_liabilty ?? '';  // 'limit_liabilty' field from database
@@ -131,11 +129,14 @@ class PrintActionFpdi extends Fpdi
 
         // $this->useTemplate($tplId, 0, 0, 210, 297);
         
-        $this->SetFont("Arial", "", 12);
-        $this->SetXY(($rectX+ $rectWidth-($rectWidth*.25)) , ($marginTop)-12);
-        $this->Cell(50,15,$this->formID,0,0,'C');
+            $this->SetFont("Arial", "", 12);
+            // $this->SetXY(($rectX+ $rectWidth-($rectWidth*.25)) , ($marginTop)-12);
+            // $this->Cell(50,15,$this->formID,0,0,'C');
 
         // NAME AND ADDRESS OF INSURED
+        $this->SetXY(($rectX),($marginTop + 4));
+        $this->MultiCell(($rectWidth*.50),4,$this->fullName ,0,'C',false);
+
         $this->SetXY(($rectX),($marginTop + 10));
         $this->MultiCell(($rectWidth*.50),4,$this->address ,0,'C',false);
 
@@ -231,13 +232,13 @@ class PrintActionFpdi extends Fpdi
          
       
          $this->SetFont( "Arial", "B", 10);
-         $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 68));
-         $this->Cell(50,12,$this->limitLiability,0,0,'l');
+        //  $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 68));
+        //  $this->Cell(50,12,$this->limitLiability,0,0,'l');
          
     
          $this->Cell(50,12,'P.',0,0,'l');
          $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 78));
-         $this->Cell(50,12,$this->vehicle_paid,0,0,'l');
+         $this->Cell(50,12,$this->limitLiability,0,0,'l');
         
     
          $this->SetXY(($rectX+30),($marginTop + 188));
