@@ -5,7 +5,7 @@
         </div>
    </div>
 
-   <div class="h-[200px] overflow-x-auto">
+   <div class="h-[400px] overflow-x-auto">
     <x-table-recent-event :data="$data"/>
    </div>
 </div>
