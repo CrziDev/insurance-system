@@ -32,7 +32,7 @@
             </div>
 
             <div class="grid grid-cols-3 gap-5">
-                <x-form-input-w-label error='form.serialChassis' wire:model="form.serialChassis">Serial/Chassis No</x-form-input-w-label>
+                <x-form-input-w-label error='form.serialChassis' wire:model="form.serialChassis" oninput="this.value=this.value.replace(/[^0-9\-_\.]/g,'')">Serial/Chassis No</x-form-input-w-label>
                 <x-form-input-w-label error='form.typeBody' wire:model="form.typeBody">Type of Body</x-form-input-w-label>
                 <x-form-input-w-label error='form.color' wire:model="form.color">Color</x-form-input-w-label>
             </div>
