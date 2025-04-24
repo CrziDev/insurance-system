@@ -104,7 +104,7 @@ class PrintActionFpdi extends Fpdi
         $this->dateYear = date('M, Y', $yrdata); 
     }
 
-    public function generatePdf()
+    public function generatePdf($short = false)
     {
 
 
@@ -236,7 +236,7 @@ class PrintActionFpdi extends Fpdi
         //  $this->Cell(50,12,$this->limitLiability,0,0,'l');
          
     
-         $this->Cell(50,12,'P.',0,0,'l');
+        //  $this->Cell(50,12,'P.',0,0,'l');
          $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 78));
          $this->Cell(50,12,$this->limitLiability,0,0,'l');
         
@@ -263,19 +263,21 @@ class PrintActionFpdi extends Fpdi
                
         //  //PREMIUM 
          
-        $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 100));
-        $this->SetFont("Arial", "B", 12);
-        $this->Cell(($rectWidth*.30),15,$this->vehicle_premium,0,0,'C');
-        $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 115));
-        $this->SetFont("Arial", "B", 12);
-        $this->Cell(($rectWidth*.30),15,$this->vehicle_docstamp,0,0,'C');
-        
-        $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 130));
-        $this->SetFont("Arial", "B", 12);
-        $this->Cell(($rectWidth*.30),15,$this->vehicle_govtax,0,0,'C');
-        $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 145));
-        $this->SetFont("Arial", "B", 12);
-        $this->Cell(($rectWidth*.30),15,$this->vehicle_others,0,0,'C');
+        if(!$short){
+            $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 100));
+            $this->SetFont("Arial", "B", 12);
+            $this->Cell(($rectWidth*.30),15,$this->vehicle_premium,0,0,'C');
+            $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 115));
+            $this->SetFont("Arial", "B", 12);
+            $this->Cell(($rectWidth*.30),15,$this->vehicle_docstamp,0,0,'C');
+            
+            $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 130));
+            $this->SetFont("Arial", "B", 12);
+            $this->Cell(($rectWidth*.30),15,$this->vehicle_govtax,0,0,'C');
+            $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 145));
+            $this->SetFont("Arial", "B", 12);
+            $this->Cell(($rectWidth*.30),15,$this->vehicle_others,0,0,'C');
+        }
 
     }
 }

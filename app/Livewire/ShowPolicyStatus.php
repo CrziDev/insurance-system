@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Action\PrintActionFpdi;
 use App\Models\customer;
 use App\Models\NonLifeInsurance;
 use App\Models\Transaction;
@@ -28,6 +29,21 @@ class ShowPolicyStatus extends Component
         if($type == 'life'){
             $this->dispatch('open-modal-child',name:'add-life-insurance');
         }   
+    }
+
+    public function printShortForm($selectedRow)
+    {
+
+        $pdf = new PrintActionFpdi($selectedRow["non_life_id"]); 
+    
+        $uniquePdfName = 'zilkaPdf_short_form' . time() . '.pdf'; 
+
+        $pdf->generatePdf(true);
+        $pdf->SetTitle('Zilka Life Insurance Form');
+        $pdf->output('f', 'pdfs/' . $uniquePdfName); 
+
+        $this->dispatch('openPdfInNewTab', asset('pdfs/' . $uniquePdfName)); 
+
     }
 
     public function boot(){

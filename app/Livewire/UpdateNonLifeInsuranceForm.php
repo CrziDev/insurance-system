@@ -34,6 +34,7 @@ class UpdateNonLifeInsuranceForm extends Component
     public $modal;
     public $status;
     public $oldExpiration;
+    public $editable = true;
 
     public function mount()
     {

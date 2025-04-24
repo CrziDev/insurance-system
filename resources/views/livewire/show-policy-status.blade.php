@@ -1,3 +1,5 @@
+
+
 <div  class="absolute px-4 py-3 inset-x-0 mx-auto mt-[50px] max-w-6xl min-h-[400px] border bg-white rounded-lg">
    
 <div class="flex justify-between">
@@ -36,7 +38,9 @@
 
                     @if($row->status != 2)
                         <button class="w-[100px] bg-lime-600 text-white  p-1 font-semibold rounded-md" wire:click="selectRow({{$row}})" >View</button>
+                        <button class="w-[100px] bg-blue-400 text-white  p-1 font-semibold rounded-md" wire:click="printShortForm({{$row}})" >Print</button>
                     @endif
+
                 </td>
             </tr>
             @endforeach
@@ -60,11 +64,11 @@
         @if($selectedRow)
         
             @if($this->selectedRow->policy->type == "Non-life-type")
-                    <livewire:update-non-life-insurance-form modal="-child" :selectedRow="$selectedRow" :policyId="$selectedRow->type_id" key="{{ $selectedRow->id }}"/>  
+                    <livewire:update-non-life-insurance-form modal="-child" :editable="false"  :selectedRow="$selectedRow" :policyId="$selectedRow->type_id" key="{{ $selectedRow->id }}"/>  
             @endif
 
             @if($this->selectedRow->policy->type == "Life Policy")
-                <livewire:update-life-insurance-form modal="-child" :selectedRow="$selectedRow" key="{{ $selectedRow->id }}"/>   
+                <livewire:update-life-insurance-form modal="-child" :editable="false" :selectedRow="$selectedRow" key="{{ $selectedRow->id }}"/>   
             @endif
 
         @endif
@@ -77,3 +81,12 @@
             <livewire:add-life-insurance-form modal="-child" :userId="$selectedCustomer->user->id"/>    
     </x-modal-child>
 </div>
+
+
+@script
+<script>
+    $wire.on('openPdfInNewTab', pdfUrl => {
+        window.open(pdfUrl, '_blank'); // This opens the PDF in a new tab
+    });
+</script>
+@endscript

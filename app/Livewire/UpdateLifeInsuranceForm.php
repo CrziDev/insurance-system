@@ -25,6 +25,7 @@ class UpdateLifeInsuranceForm extends Component
     public $policyLists = [];
     public $expiration;
     public $status;
+    public $editable = true;
 
 
     public function mount()
