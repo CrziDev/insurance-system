@@ -30,7 +30,7 @@ class CustomerAdd extends Component
     public $email;
     #[Validate('required|min:3')]
     public $address;
-    #[Validate('required|alpha')]
+    #[Validate('required')]
     public $profession;
     
 

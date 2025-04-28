@@ -100,7 +100,7 @@
                 </div>     
                 <div class="mb-2 flex flex-col justify-between">
                     <x-form-input-label>Profession</x-form-input-label>
-                    <x-form-input wire:model="profession" placeholder="Input Profession" class="w-full" oninput="this.value=this.value.replace(/[^A-Za-z]/g,'')"  />
+                    <x-form-input wire:model="profession" placeholder="Input Profession" class="w-full"   oninput="this.value=this.value.replace(/[^A-Za-z0-9\/\-\_\.\s]/g,'')"  />
                     <x-error error="profession"/>
                 </div>
             </div>

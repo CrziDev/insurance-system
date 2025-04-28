@@ -34,7 +34,7 @@
             </div>
 
             <div class="grid grid-cols-3 gap-5">
-                <x-form-input-w-label error='form.serialChassis' wire:model="form.serialChassis" placeholder="Input Serial/Chassis No" oninput="this.value=this.value.replace(/[^0-9\-_\.]/g,'')">Serial/Chassis No</x-form-input-w-label>
+                <x-form-input-w-label error='form.serialChassis' wire:model="form.serialChassis" placeholder="Input Serial/Chassis No"   oninput="this.value=this.value.replace(/[^A-Za-z0-9\/\-\_\.\s]/g,'')">Serial/Chassis No</x-form-input-w-label>
                 <x-form-input-w-label error='form.typeBody' wire:model="form.typeBody" placeholder="Type of Body">Type of Body</x-form-input-w-label>
                 <x-form-input-w-label error='form.color' wire:model="form.color" placeholder="Input Color">Color</x-form-input-w-label>
             </div>
