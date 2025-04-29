@@ -54,6 +54,11 @@ class SalesMonitoring extends Component
         $this->salesData = [
             'label' => 'Insurance Count',
             'data' => $data,
+            'backgroundColor' => [ 
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+            ],
             'borderColor' => "rgba(54, 162, 235, 1)", 
             'fill' => false,
             'tension' => 0.1, // Removed quotes from the numeric value

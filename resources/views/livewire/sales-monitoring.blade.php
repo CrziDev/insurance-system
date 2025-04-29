@@ -16,10 +16,10 @@
 <script>
     let chart = new Chart(
         document.getElementById('salesMonitoring'), {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: @json($saleLabel), // This will be updated to show years
-                datasets: [@json($salesData)]
+                datasets: [@json($salesData)],
             },
             options: {
                 responsive: true,
