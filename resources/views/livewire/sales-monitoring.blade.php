@@ -18,7 +18,7 @@
         document.getElementById('salesMonitoring'), {
             type: 'bar',
             data: {
-                labels: @json($saleLabel), // This will be updated to show years
+                labels: @json($saleLabel), 
                 datasets: [@json($salesData)],
             },
             options: {
