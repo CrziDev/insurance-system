@@ -28,12 +28,12 @@ class PolicyEdit extends Component
         'quantity' => 'required|numeric|min:1',
     ];
     public function selectedPolicy($policyId){
+
     
         $policy = Policy::find($policyId);
-
         $this->quantity = $policy->quantity;
         $this->selectedType = $policy->type;
-        $this->policyId = $policy;
+        $this->policyId = $policy->id;
         $this->limitLiability = $policy->limit_liability;
         $this->premiumPaid = $policy->premium_paid;
         $this->docstamp = $policy->docstamp;

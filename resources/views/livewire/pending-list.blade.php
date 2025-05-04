@@ -78,7 +78,7 @@
                     @endif
 
                     @if($this->selectedRow->policy->type == "Life Policy")
-                        <livewire:update-life-insurance-form :selectedRow="$selectedRow" key="{{ $selectedRow->id }}"/>
+                        <livewire:update-life-insurance-form :editable="true" :selectedRow="$selectedRow" key="{{ $selectedRow->id }}"/>
                     @endif
                 @endif
         </x-modal> 
