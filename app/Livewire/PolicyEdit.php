@@ -14,7 +14,7 @@ class PolicyEdit extends Component
     public $policyType;
     public $selectedType;
 
-
+    public $name = '';
     public $limitLiability = '';
     public $premiumPaid = '';
     public $premium = '';
@@ -40,6 +40,8 @@ class PolicyEdit extends Component
         $this->premium = $policy->premium;
         $this->govtax = $policy->govtax;
         $this->others = $policy->others;
+        $this->name = $policy->name;
+
     }       
 
     public function save(){
@@ -54,6 +56,7 @@ class PolicyEdit extends Component
             'docstamp' => $this->docstamp,
             'premium' => $this->premium,
             'govtax' => $this->govtax,
+            'name' => $this->name,
             'others' => $this->others,
         ]);
 

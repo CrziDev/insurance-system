@@ -21,7 +21,7 @@
             <div wire:key="$row->id" class="bg-white text-xs  rounded-md drop-shadow-lg p-5 flex justify-between items-center border-t shadow-md border-gray-200">
                 <div class="flex flex-col justify-center items-center ">
                     <p class="text-xs font-medium text-gray-400 normal-case">Date Added</p>
-                    <p class=" font-medium text-gray-600 normal-case">{{$row->created_at->format('F J, Y')}}</>
+                    <p class=" font-medium text-gray-600 normal-case">{{$row->created_at->format('F j, Y')}}</>
                 </div>
                 <div class="flex flex-col justify-center items-center ">
                     <p class="text-xs font-medium text-gray-400 normal-case">Name.</p>

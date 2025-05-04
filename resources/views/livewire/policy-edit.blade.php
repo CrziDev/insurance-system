@@ -3,14 +3,18 @@
     <form 
         wire:submit="save" 
         class="overflow-x-auto"
-        >
+        x-data="{policy:'',show:false}"
+        x-effect="show = policy !== ''">
         <div class="text-sm">
             <div class="border-b border-gray-300 w-full pb-2 mb-5">
                     <span class="text-md">Policy Information</span>
             </div>
-            <div class="mb-3 flex flex-col space-y-1">
+                <div 
+                    class="mb-3 flex flex-col space-y-1">
                     <label class="text-xs font-sm">Policy </label>
-                    <select   wire:model='policy'  wire:change="selectedPolicy($event.target.value)"  class="rounded-md bg-white border-[3px] px-3 py-3 text-xs   text-gray-500 border-gray-300" name="" id="">
+                    <select   
+                        x-model="policy"
+                        wire:model='policy'  wire:change="selectedPolicy($event.target.value)"  class="rounded-md bg-white border-[3px] px-3 py-3 text-xs   text-gray-500 border-gray-300" name="" id="">
                         <option value="">Select Here</option>  
                         @foreach($policies as $row)
                         <option wire:key="$row->id" value="{{$row->id}}">{{$row->name}}</option> 
@@ -33,9 +37,16 @@
                 <x-error error="policy"/>    
              </div>
 
+             <div 
+                x-show="show"
+                class="mb-2 flex flex-col">
+                <x-form-input-label class="text-sm mb-1">Name</x-form-input-label>
+                <x-form-input wire:model="name"  ></x-form-input>
+                <x-error error="name"/>
+            </div> 
+ 
              @if($selectedType == 'Non-life-type')
             <div>
-
                 <div class="grid grid-cols-2 space-x-2">
                     <div class="mb-2 flex flex-col">
                         <x-form-input-label class="text-sm mb-1">Limit Liability</x-form-input-label>
