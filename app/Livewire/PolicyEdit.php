@@ -47,7 +47,7 @@ class PolicyEdit extends Component
     public function save(){
         $this->validate();
     
-        $policy = Policy::find($this->policyId)->first();
+        $policy = Policy::find($this->policyId);
         
         $policy->update([
             'quantity' => $this->quantity,
