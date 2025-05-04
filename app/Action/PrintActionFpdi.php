@@ -240,30 +240,30 @@ class PrintActionFpdi extends Fpdi
          $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 78));
          $this->Cell(50,12,$this->limitLiability,0,0,'l');
         
-    
-         $this->SetXY(($rectX+30),($marginTop + 188));
-         $this->SetFont( "Arial", "B", 10);
-         $this->Cell(50,2,'NOTE FOR TPL ONLY..',0,0,'l');
-          
+         
+         
+         //  //PREMIUM 
+         
+         if(!$short){
+            
+            $this->SetXY(($rectX+30),($marginTop + 188));
+            $this->SetFont( "Arial", "B", 10);
+            $this->Cell(50,2,'NOTE FOR TPL ONLY..',0,0,'l');
+            
 
-         
-         $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 165));
-         $this->SetFont("Arial", "B", 12);
-         $this->Cell($rectWidth*.30,12,$this->vehicle_totalpaid,0,0,'C');
-         
-         
-         $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 196));
-         $this->SetFont("Arial", "B", 10);
-         $this->Cell(20,12,$this->dateDay,0,0,'C');
-         
-         $this->SetXY(($rectX+$rectWidth*.05),($marginTop + 200));
-         $this->SetFont("Arial", "B", 10);
-         $this->Cell(20,12,$this->dateYear,0,0,'C');
-         
-               
-        //  //PREMIUM 
-         
-        if(!$short){
+            $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 165));
+            $this->SetFont("Arial", "B", 12);
+            $this->Cell($rectWidth*.30,12,$this->vehicle_totalpaid,0,0,'C');
+            
+            
+            $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 196));
+            $this->SetFont("Arial", "B", 10);
+            $this->Cell(20,12,$this->dateDay,0,0,'C');
+            
+            $this->SetXY(($rectX+$rectWidth*.05),($marginTop + 200));
+            $this->SetFont("Arial", "B", 10);
+            $this->Cell(20,12,$this->dateYear,0,0,'C');
+            
             $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 100));
             $this->SetFont("Arial", "B", 12);
             $this->Cell(($rectWidth*.30),15,$this->vehicle_premium,0,0,'C');
