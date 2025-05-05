@@ -55,6 +55,7 @@ class UpdateNonLifeInsuranceForm extends Component
         $this->form->bltFileNo = $nonLifeType->nonLifeInsurance->blt_num; 
         $this->form->weightCapacity = $nonLifeType->nonLifeInsurance->weight_capacity;
         $this->form->motoNum = $nonLifeType->nonLifeInsurance->motor_num;
+        $this->form->form_endorsement = $nonLifeType->nonLifeInsurance->forms_and_indorsement;
 
        
         if (!isset($nonLifeType->date_effective)) {

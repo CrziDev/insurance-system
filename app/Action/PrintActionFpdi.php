@@ -76,7 +76,7 @@ class PrintActionFpdi extends Fpdi
         $this->vehicle_weight = $data->weight_capacity ?? '';  // 'weight_capacity' field from database
         $this->vehicle_total = $data->paid ?? '';  // 'paid' field from database
 
-        $this->form_endorsement = $data->form_endorsement ?? '';  // 'endorsement' field from database
+        $this->form_endorsement = $data->forms_and_indorsement ?? '';  // 'endorsement' field from database
         $this->status = $data->transaction->status ?? 1;  // Default status is 1 if not provided
         $this->transaction_number = 1;  // Default transaction number, adjust if needed
         $this->transaction_id = '';  // Assuming this is not in the migration
@@ -91,8 +91,7 @@ class PrintActionFpdi extends Fpdi
               (float) $data->transaction->policy->premium 
             + (float) $data->transaction->policy->docstamp 
             + (float) $data->transaction->policy->govtax 
-            + (float) $data->transaction->policy->others
-            + (float) $data->limit_liabilty, 
+            + (float) $data->transaction->policy->others,
             2
         );  
         $this->limitLiability = $data->limit_liabilty ?? '';  // 'limit_liabilty' field from database
@@ -237,18 +236,18 @@ class PrintActionFpdi extends Fpdi
          
     
         //  $this->Cell(50,12,'P.',0,0,'l');
-         $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 78));
-         $this->Cell(50,12,$this->limitLiability,0,0,'l');
+        //  $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 78));
+        //  $this->Cell(50,12,$this->limitLiability,0,0,'l');
         
          
          
          //  //PREMIUM 
          
-         if(!$short){
+        //  if(!$short){
             
             $this->SetXY(($rectX+30),($marginTop + 188));
             $this->SetFont( "Arial", "B", 10);
-            $this->Cell(50,2,'NOTE FOR TPL ONLY..',0,0,'l');
+            $this->Cell(50,2,$this->form_endorsement,0,0,'l');
             
 
             $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 165));
@@ -277,7 +276,7 @@ class PrintActionFpdi extends Fpdi
             $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 145));
             $this->SetFont("Arial", "B", 12);
             $this->Cell(($rectWidth*.30),15,$this->vehicle_others,0,0,'C');
-        }
+        // }
 
     }
 }

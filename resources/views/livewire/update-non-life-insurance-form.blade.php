@@ -118,7 +118,7 @@
         <div class="grid grid-cols-1 mb-5">
             <div class="mb-2">
                 <x-form-input-label class="mr-1">Forms and Endorsements Made Part of this Policy at time of Issue</x-form-input-label>
-                <select editable="{{$editable}}" error='form.form_endorsement' wire:model='form_endorsement' class="px-2 py-1 text-xs border rounded text-gray-500">
+                <select editable="{{$editable}}" error='form.form_endorsement' wire:model='form.form_endorsement' class="px-2 py-1 text-xs border rounded text-gray-500">
                     <option value="">Select Here</option>  
                     <option value="NOTE FOR TPL ONLY...">NOTE FOR TPL ONLY...</option>
                     <option value="NOTE FOR CTPL ONLY...">NOTE FOR CTPL ONLY...</option>
