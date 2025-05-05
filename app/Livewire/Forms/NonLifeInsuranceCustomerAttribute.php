@@ -25,7 +25,7 @@ class NonLifeInsuranceCustomerAttribute extends Form
     #[Validate('required')]
     public $plateNo = '' ;
 
-    #[Validate('required|alpha')]
+    #[Validate('required')]
     public $make = '' ;
 
     #[Validate('required')]
