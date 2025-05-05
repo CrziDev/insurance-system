@@ -41,7 +41,7 @@ class PrintActionFpdi extends Fpdi
     public $vehicle_totalpaid;
 
     public $limitLiability;
-    public $vehicle_paid;
+    public $premium_paid;
     public $formID;
 
     public $dateDay;
@@ -95,7 +95,7 @@ class PrintActionFpdi extends Fpdi
             2
         );  
         $this->limitLiability = $data->limit_liabilty ?? '';  // 'limit_liabilty' field from database
-        $this->vehicle_paid = $data->premium_paid ?? '';  // 'paid' field from database
+        $this->premium_paid = $data->premium_paid ?? '';  // 'paid' field from database
         $this->formID = $data->form_id??'';  // Assuming form ID is not stored
 
         $yrdata = strtotime(date("Y/m/d"));
@@ -235,9 +235,9 @@ class PrintActionFpdi extends Fpdi
         //  $this->Cell(50,12,$this->limitLiability,0,0,'l');
          
     
-        //  $this->Cell(50,12,'P.',0,0,'l');
-        //  $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 78));
-        //  $this->Cell(50,12,$this->limitLiability,0,0,'l');
+         $this->Cell(50,12,'P.',0,0,'l');
+         $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 78));
+         $this->Cell(50,12,$this->premium_paid,0,0,'l');
         
          
          
