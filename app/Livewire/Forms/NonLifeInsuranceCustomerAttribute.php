@@ -34,10 +34,10 @@ class NonLifeInsuranceCustomerAttribute extends Form
     #[Validate('required')]
     public $typeBody = '';
 
-    #[Validate('required|alpha')]
+    #[Validate('required')]
     public $color = '';
 
-    #[Validate('required')]
+    // #[Validate('required')]
     public $authorizedCapacity = '';
 
     #[Validate('required')]
@@ -46,7 +46,7 @@ class NonLifeInsuranceCustomerAttribute extends Form
     #[Validate('required')]
     public $motoNum = '' ;
 
-    #[Validate('required')]
+    // #[Validate('required')]
     public $weightCapacity = '' ;
 
     #[Validate('required')]

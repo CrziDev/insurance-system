@@ -37,13 +37,13 @@ class NonLifeInsuranceAdminAttribute extends Form
     #[Validate('required')]
     public $color = '';
 
-    #[Validate('required')]
+    // #[Validate('required')]
     public $authorizedCapacity = '';
 
     #[Validate('required')]
     public $bltFileNo = '' ;
 
-    #[Validate('required')]
+    // #[Validate('required')]
     public $weightCapacity = '' ;
 
     #[Validate('required')]
@@ -55,14 +55,14 @@ class NonLifeInsuranceAdminAttribute extends Form
     #[Validate('required')]
     public $expiration = '' ;
     
-    #[Validate('required')]
+    // #[Validate('required')]
     public $confirmation_no = '' ;
 
     
     #[Validate('required')]
     public $motoNum = '' ;
 
-    #[Validate('required')]
+    // #[Validate('required')]
     public $official_receipt = '' ;
 
 
