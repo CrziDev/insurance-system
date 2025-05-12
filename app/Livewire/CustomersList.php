@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\customer;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -31,7 +32,7 @@ class CustomersList extends Component
 
     public $search;
     protected $queryString = ['search'];
-
+    public $dateFilter;
 
     public customer $selectedCustomer;
 
@@ -58,10 +59,19 @@ class CustomersList extends Component
     {
         $searchTerm = '%'.$this->search.'%';
 
-        $customers = customer::where('first_name', 'like', $searchTerm)
-        ->orWhere('last_name', 'like', $searchTerm)
-        ->orderBy('created_at','desc')
-        ->get();
+         logger($this->dateFilter);
+       $customers = customer::query()
+            ->when($this->search, function ($query) use ($searchTerm) {
+                $query->where(function ($subQuery) use ($searchTerm) {
+                    $subQuery->where('first_name', 'like', $searchTerm)
+                            ->orWhere('last_name', 'like', $searchTerm);
+                });
+            })
+            ->when($this->dateFilter, function ($query) {
+                $query->whereDate('created_at', '=', $this->dateFilter);
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('livewire.customers-list',['customers'=>$customers]);
 
     }

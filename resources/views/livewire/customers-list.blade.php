@@ -1,10 +1,13 @@
 
 <div>
     <div class="flex justify-between items-center mb-4 border-b pb-3">
-        <x-table-title class="text-lime-600 ">Customers</x-table-title>
-
+        <x-table-title class="text-lime-600 ">Customers: ({{$customers->count()}})</x-table-title>
         <div class="flex gap-4 text-xs">
-        <div class="border-2 border-lime-600 rounded-md flex justify-between items-center pr-2">         
+             <div class="border-2 border-lime-600 rounded-md flex justify-between items-center pr-2">         
+                <input  wire:model.live="dateFilter"  type="date" 
+                    class="px-2 py-2 rounded-md focus:outline-none">
+            </div>
+            <div class="border-2 border-lime-600 rounded-md flex justify-between items-center pr-2">         
                 <input  wire:model.live="search" id="searchBar" type="text" placeholder="Search here.."
                     class="px-2 py-2 rounded-md focus:outline-none">
                 <span><i class="fa-solid fa-magnifying-glass text-lime-600"></i></span>
