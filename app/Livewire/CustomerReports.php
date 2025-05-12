@@ -46,100 +46,106 @@ class CustomerReports extends Component
         $this->data = Transaction::with('user','policy')->whereIn('status',[3,1])->whereYear('created_at',$this->year)->get();
     }
 
-    public function printSales(){
-        $pdf = new FPDF();
-        $path = base_path('/resources/images/logo.png');
+   public function printSales()
+{
+    $pdf = new FPDF();
+    $path = base_path('/resources/images/logo.png');
 
-        // dd($path);
-        
-        $pdf->AddPage();
-        $pdf->SetFont('Times','B',14);
-        $pdf->ln(25);
-        $pdf->cell(0,0,'Approved Applicants',0,0, 'C');
-        $pdf->ln(5);
-        
-        
-        $marginLeft = 5;  
-        $marginRight = 5;
-        $marginTop = 60;
-        $marginBottom = 216;
-        $pageWidth = $pdf->GetPageWidth();
-        $pageHeight = $pdf->GetPageHeight();
-        
-        $imageWidth = 30;
-        $pdf->Image($path, ($pageWidth/2)-17, 0,$imageWidth,30);
+    $pdf->AddPage();
+    $pdf->SetFont('Times', 'B', 14);
+    $pdf->Ln(25);
+    $pdf->Cell(0, 0, 'Approved Applicants', 0, 0, 'C');
+    $pdf->Ln(5);
 
+    $pageWidth = $pdf->GetPageWidth();
+    $pageHeight = $pdf->GetPageHeight();
 
-        $rectWidth = $pageWidth - $marginLeft - $marginRight;
-        $rectHeight = $pageHeight - $marginTop - $marginBottom;
-        $rectX = $marginLeft;
-        $rectY = $marginLeft;
+    $marginLeft = 5;
+    $marginRight = 5;
+    $marginTop = 60;
+    $bottomMargin = 20;
+    $rowHeight = 8;
 
+    $imageWidth = 30;
+    $pdf->Image($path, ($pageWidth / 2) - 17, 0, $imageWidth, 30);
 
-        // $pdf->Rect($rectX, $marginTop , $rectWidth, $rectHeight);
+    $rectWidth = $pageWidth - $marginLeft - $marginRight;
+    $rectX = $marginLeft;
 
-        
-        $pdf->SetFont( "Arial", "b", 10 );
-        $month = $this->month; // Example month (could be 'all')
-        $year = $this->year; // Example year
-        
-        if ($month === 'all') {
-            // When month is 'all', just display the year
-            $monthDisplay = 'All Months';
-            $yearDisplay = $year; // Display the selected year
-        } else {
-            // When month is specified, create a DateTime object for that month and year
-            $date = new DateTime("$year-$month-01");
-        
-            // Format the month and year separately
-            $monthDisplay = $date->format('F'); // Get the full month name (e.g., "May")
-            $yearDisplay = $year; // Display the selected year
-        }
-        
-        // Update the PDF output
-        $pdf->SetXY($rectX, $marginTop - 15);  // Adjust vertical position for the year display
-        $pdf->Cell($rectWidth * 0.30, 8, 'Year: ' . $yearDisplay, 0, 0, 'l');
-        $pdf->SetXY($rectX, $marginTop - 10);
-        $pdf->Cell($rectWidth * 0.30, 8, 'Month: ' . $monthDisplay, 0, 0, 'l');
+    // Month/Year display
+    $pdf->SetFont("Arial", "b", 10);
+    $month = $this->month;
+    $year = $this->year;
 
-        $pdf->SetFont( "Arial", "b", 7 );
-        $pdf->Rect($rectX, $marginTop , $rectWidth*.30, 8);
-        $pdf->SetXY($rectX,$marginTop);
-        $pdf->Cell($rectWidth*.30,8,'Applicant',0,0,'C');
-
-        $pdf->Rect($rectX + $rectWidth*.30, $marginTop , $rectWidth*.20, 8);
-        $pdf->SetXY($rectX + $rectWidth*.30,$marginTop);
-        $pdf->Cell($rectWidth*.20,8,'Date Requested ',0,0,'C');
-
-        $pdf->Rect($rectX + $rectWidth*.50, $marginTop , $rectWidth*.50, 8);
-        $pdf->SetXY($rectX + $rectWidth*.50,$marginTop);
-        $pdf->Cell($rectWidth*.50,8,'Policy',0,0,'C');
-
-        $i = 1;
-        foreach ($this->data as $row){
-            $pdf->Rect($rectX, $marginTop + (8*$i) , $rectWidth*.30, 8);
-            $pdf->SetXY($rectX,$marginTop + (8*$i));
-            $pdf->Cell($rectWidth*.30,8,$row->user->customer[0]?->full_name,0,0,'C');
-            
-            $pdf->Rect($rectX + $rectWidth*.30, $marginTop +(8*$i) , $rectWidth*.20, 8);
-            $pdf->SetXY($rectX + $rectWidth*.30,$marginTop +(8*$i));
-            $pdf->Cell($rectWidth*.20,8,$row->created_at_format,0,0,'C');
-            
-            
-            $pdf->Rect($rectX + $rectWidth*.50, $marginTop +(8*$i) , $rectWidth*.50, 8);
-            $pdf->SetXY($rectX + $rectWidth*.50,$marginTop +(8*$i));
-            $pdf->Cell($rectWidth*.50,8,$row->policy->name,0,0,'C');
-
-            $i++;
-        }
-
-        $pdf->SetFont( "Arial", "b", 12 );
-        $pdf->SetXY(($rectX+$rectWidth*.65),($marginTop + 200));
-        $pdf->Cell($rectWidth*.30,8,'Prepared by: '.request()->user()->username,0,0,'l');
-
-        $pdf->output('F','pdfs/approveInsurance.pdf');
-        return response()->download( 'pdfs/approveInsurance.pdf');
+    if ($month === 'all') {
+        $monthDisplay = 'All Months';
+        $yearDisplay = $year;
+    } else {
+        $date = new DateTime("$year-$month-01");
+        $monthDisplay = $date->format('F');
+        $yearDisplay = $year;
     }
+
+    $pdf->SetXY($rectX, $marginTop - 15);
+    $pdf->Cell($rectWidth * 0.30, 8, 'Year: ' . $yearDisplay, 0, 0, 'L');
+    $pdf->SetXY($rectX, $marginTop - 10);
+    $pdf->Cell($rectWidth * 0.30, 8, 'Month: ' . $monthDisplay, 0, 0, 'L');
+
+    // Draw table header
+    $drawHeader = function () use ($pdf, $rectX, $marginTop, $rowHeight, $rectWidth) {
+        $pdf->SetFont("Arial", "b", 7);
+        $pdf->Rect($rectX, $marginTop, $rectWidth * 0.30, $rowHeight);
+        $pdf->SetXY($rectX, $marginTop);
+        $pdf->Cell($rectWidth * 0.30, $rowHeight, 'Applicant', 0, 0, 'C');
+
+        $pdf->Rect($rectX + $rectWidth * 0.30, $marginTop, $rectWidth * 0.20, $rowHeight);
+        $pdf->SetXY($rectX + $rectWidth * 0.30, $marginTop);
+        $pdf->Cell($rectWidth * 0.20, $rowHeight, 'Date Requested', 0, 0, 'C');
+
+        $pdf->Rect($rectX + $rectWidth * 0.50, $marginTop, $rectWidth * 0.50, $rowHeight);
+        $pdf->SetXY($rectX + $rectWidth * 0.50, $marginTop);
+        $pdf->Cell($rectWidth * 0.50, $rowHeight, 'Policy', 0, 0, 'C');
+    };
+
+    $drawHeader();
+
+    $i = 1;
+    foreach ($this->data as $row) {
+        $y = $marginTop + ($i * $rowHeight);
+
+        // If next row goes beyond the printable area, add page and redraw header
+        if ($y + $rowHeight > $pageHeight - $bottomMargin) {
+            $pdf->AddPage();
+            $pdf->Image($path, ($pageWidth / 2) - 17, 0, $imageWidth, 30);
+            $drawHeader();
+            $i = 1; // reset row count on new page
+            $y = $marginTop + ($i * $rowHeight);
+        }
+
+        $pdf->Rect($rectX, $y, $rectWidth * 0.30, $rowHeight);
+        $pdf->SetXY($rectX, $y);
+        $pdf->Cell($rectWidth * 0.30, $rowHeight, $row->user->customer[0]?->full_name ?? '', 0, 0, 'C');
+
+        $pdf->Rect($rectX + $rectWidth * 0.30, $y, $rectWidth * 0.20, $rowHeight);
+        $pdf->SetXY($rectX + $rectWidth * 0.30, $y);
+        $pdf->Cell($rectWidth * 0.20, $rowHeight, $row->created_at_format ?? '', 0, 0, 'C');
+
+        $pdf->Rect($rectX + $rectWidth * 0.50, $y, $rectWidth * 0.50, $rowHeight);
+        $pdf->SetXY($rectX + $rectWidth * 0.50, $y);
+        $pdf->Cell($rectWidth * 0.50, $rowHeight, $row->policy->name ?? '', 0, 0, 'C');
+
+        $i++;
+    }
+
+    // Prepared by
+    $pdf->SetFont("Arial", "b", 12);
+    $pdf->SetXY(($rectX + $rectWidth * 0.65), ($pageHeight - $bottomMargin));
+    $pdf->Cell($rectWidth * 0.30, 8, 'Prepared by: ' . request()->user()->username, 0, 0, 'L');
+
+    $pdf->Output('F', 'pdfs/approveInsurance.pdf');
+    return response()->download('pdfs/approveInsurance.pdf');
+}
+
 
     public function render()
     {

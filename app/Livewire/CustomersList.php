@@ -60,6 +60,7 @@ class CustomersList extends Component
 
         $customers = customer::where('first_name', 'like', $searchTerm)
         ->orWhere('last_name', 'like', $searchTerm)
+        ->orderBy('created_at','desc')
         ->get();
         return view('livewire.customers-list',['customers'=>$customers]);
 

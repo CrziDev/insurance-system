@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="w-[60%]">   
-            <div class="text-center border-b py-3">Private Car Policy</div>
+            <div class="text-center border-b py-3">{{$client->policy->name}}</div>
             <div class="px-5 py-2 flex border-b">
                 <div class="space-y-5 flex-1">
                     <div>

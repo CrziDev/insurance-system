@@ -47,6 +47,7 @@ class PreviewNonLifeForm extends Component
         $this->form->authorizedCapacity = $nonLifeType->nonLifeInsurance->authorize_capacity; 
         $this->form->bltFileNo = $nonLifeType->nonLifeInsurance->blt_num; 
         $this->form->weightCapacity = $nonLifeType->nonLifeInsurance->weight_capacity; 
+        $this->form->motoNum = $nonLifeType->nonLifeInsurance->motor_num;
        
         $this->form->premiumPaidOnlimit = $nonLifeType->nonLifeInsurance->limit_premium_paid; 
         $this->status = $nonLifeType->status;
@@ -99,6 +100,7 @@ class PreviewNonLifeForm extends Component
             "limit_liabilty"=>$this->limitLiability,
             "premium_paid"=>$this->premiumPaid,
             "paid"=>$this->total,
+            "motor_num"=>$this->form->motoNum,
         ]);
 
         toastr()->success('Insurance Updated Successfully!');

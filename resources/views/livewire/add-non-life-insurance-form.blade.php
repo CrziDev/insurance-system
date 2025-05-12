@@ -45,7 +45,7 @@
                 <x-form-input-w-label error='form.weightCapacity'  wire:model="form.weightCapacity" placeholder="Unladen Weight (kgs.)">Unladen Weight (kgs.)</x-form-input-w-label>
             </div>
             <div class="grid grid-cols-3 gap-5">
-                <x-form-input-w-label error='form.motoNum' wire:model="form.motoNum" placeholder="Input Motor No.">Moto No.</x-form-input-w-label>
+                <x-form-input-w-label error='form.motoNum' wire:model="form.motoNum" placeholder="Input Motor No.">Motor No.</x-form-input-w-label>
             </div>
         </x-form-card>
 

@@ -15,7 +15,10 @@ class customer extends Model
     protected $guarded = [];
 
     public function getFullNameAttribute(){
-        return $this->first_name ." ".$this->middle_initial. ". ". $this->last_name ." ".$this->name_extention. ".";
+        return $this->first_name . ' ' . ($this->middle_initial == '' ?'': $this->middle_initial . '. ') . 
+                               $this->last_name . 
+                               ($this->name_extention == '' ? '' :' ' . $this->name_extention);
+
     }
 
  

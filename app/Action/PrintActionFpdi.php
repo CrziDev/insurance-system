@@ -209,7 +209,7 @@ class PrintActionFpdi extends Fpdi
          
          
          //SERIAL/ChASSIS NO.
-         $this->SetXY(($rectX+$rectWidth*.15),($marginTop + 50));
+         $this->SetXY(($rectX+$rectWidth*.12),($marginTop + 50));
          $this->SetFont("Arial", "B", 10);
          $this->Cell(($rectWidth*.25),15,$this->vehicle_chassis,0,0,'C');
          
@@ -233,17 +233,11 @@ class PrintActionFpdi extends Fpdi
          $this->SetFont( "Arial", "B", 10);
         //  $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 68));
         //  $this->Cell(50,12,$this->limitLiability,0,0,'l');
-         
-    
-         $this->Cell(50,12,'P.',0,0,'l');
          $this->SetXY(($rectX+$rectWidth*.75),($marginTop + 78));
          $this->Cell(50,12,$this->premium_paid,0,0,'l');
-        
-         
-         
          //  //PREMIUM 
          
-        //  if(!$short){
+         if(!$short){
             
             $this->SetXY(($rectX+30),($marginTop + 188));
             $this->SetFont( "Arial", "B", 10);
@@ -276,7 +270,7 @@ class PrintActionFpdi extends Fpdi
             $this->SetXY(($rectX+$rectWidth*.70),($marginTop + 145));
             $this->SetFont("Arial", "B", 12);
             $this->Cell(($rectWidth*.30),15,$this->vehicle_others,0,0,'C');
-        // }
+        }
 
     }
 }

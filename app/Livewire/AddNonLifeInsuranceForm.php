@@ -109,7 +109,7 @@ class AddNonLifeInsuranceForm extends Component
         $this->docstamp = $type->docstamp;
         $this->localGovTax = $type->govtax;
         $this->others = $type->others;
-        $this->total = number_format((float)$type->premium + (float)$type->docsStamp + (float)$type->govtax + (float)$type->others + (float)$type->premium_paid,2);
+        $this->total = number_format((float)$type->premium + (float)$type->docstamp + (float)$type->govtax + (float)$type->others,2);
     }
 
     public function render()

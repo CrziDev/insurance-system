@@ -20,9 +20,9 @@ class CustomerAdd extends Component
     public $firstName;
     #[Validate('required|min:3')]
     public $lastName;
-    #[Validate('required')]
+   
     public $middleInitial = 'N/A';
-    #[Validate('required')]
+   
     public $nameExtention = "N/A";
     #[Validate('required')]
     public $phoneNumber = "+63";
@@ -68,8 +68,8 @@ class CustomerAdd extends Component
         return [
             'first_name'=>$data['firstName'],
             'last_name'=>$data['lastName'],
-            'middle_initial'=>$data['middleInitial'],
-            'name_extention'=>$data['nameExtention'],
+            'middle_initial'=>$this->middleInitial,
+            'name_extention'=>$this->nameExtention,
             'phone_number'=>$data['phoneNumber'],
             'address'=>$data['address'],
             'profession'=>$data['profession'],
