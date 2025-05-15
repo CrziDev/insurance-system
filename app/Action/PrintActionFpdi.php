@@ -3,6 +3,7 @@
 namespace App\Action;
 
 use App\Models\NonLifeInsurance;
+use Illuminate\Support\Carbon;
 use setasign\Fpdi\Fpdi;
 
 class PrintActionFpdi extends Fpdi
@@ -60,10 +61,17 @@ class PrintActionFpdi extends Fpdi
         $this->conf_cover = $data->confirmation_cover_no ?? '';  // 'endorsement' field from database
         $this->official_receipt = $data->official_receipt_no??'';  // Assuming this is not stored in the migration
 
-        $this->date_issue = now()->toDateString();  // 'date_effective' field from database
-        $this->period_issuance_from = $data->transaction->date_effective ?? null; // Assuming effective date is the start date
-        $this->period_issuance_to = $data->transaction->expiration ?? null;  // 'expiration' field from database
+      $this->date_issue = $data->transaction->date_effective 
+    ? Carbon::parse($data->transaction->date_effective)->format('M j, Y') 
+    : null;
 
+$this->period_issuance_from = $data->transaction->date_effective 
+    ? Carbon::parse($data->transaction->date_effective)->format('M j, Y') 
+    : null;
+
+$this->period_issuance_to = $data->transaction->expiration 
+    ? Carbon::parse($data->transaction->expiration)->format('M j, Y') 
+    : null;
         // Vehicle details (based on migration fields)
         $this->vehicle_model = $data->model ?? '';  // 'model' field from database
         $this->vehicle_platenum = $data->plate ?? '';  // 'plate' field from database
