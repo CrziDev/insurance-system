@@ -100,13 +100,13 @@ class ChartSales extends Component
             "December",
         ];
 
-        $pdf->SetFont( "Arial", "b", 12 );
+        $pdf->SetFont( "Arial", "b", 10 );
 
 
         $pdf->SetXY($rectX,$marginTop-8);
         $pdf->Cell($rectWidth*.30,8,'Year: '.$this->year,0,0,'l');
 
-        $pdf->SetFont( "Arial", "b", 7 );
+        $pdf->SetFont( "Arial", "b", 5 );
 
         $pdf->Rect($rectX, $marginTop , $rectWidth*.10, 8);
         $pdf->SetXY($rectX,$marginTop);
@@ -133,12 +133,12 @@ class ChartSales extends Component
             for ($i=0; $i < count($data['data']); $i++) { 
                 $pdf->Rect($rectX+$rectWidth*.10 + (($rectWidth*(.0666666666667*$i))), $marginTop+$margin  , ($rectWidth*.0666666666667), 12);
                 $pdf->SetXY($rectX+$rectWidth*.10 + (($rectWidth*(.0666666666667*$i))),$marginTop+ $margin +5);
-                $pdf->Multicell(($rectWidth*.0666666666667),3,number_format($data['data'][$i],2),0,'C');
+                $pdf->Multicell(($rectWidth*.0666666666667),3,'P '.number_format($data['data'][$i],2),0,'C');
                 $total += $data['data'][$i];
             }
                 $pdf->Rect($rectX + $rectWidth*.90, $marginTop+$margin, $rectWidth*.10, 12);
                 $pdf->SetXY($rectX,$marginTop+ $margin +2);
-                $pdf->Cell($rectWidth + $rectWidth*.90,8,'₱ '.number_format($total,2),0,0,'C');
+                $pdf->Cell($rectWidth + $rectWidth*.90,8,'P '.number_format($total,2),0,0,'C');
 
                 // 
             if($index == count($this->salePdfData) - 1 ){
@@ -162,7 +162,7 @@ class ChartSales extends Component
                 
                 $pdf->Rect($rectX + $rectWidth*.90, $marginTop+$margin, $rectWidth*.10, 12);
                 $pdf->SetXY($rectX,$marginTop+ $margin +2);
-                $pdf->Cell($rectWidth + $rectWidth*.90,8,'₱ '.number_format(array_sum($value),2),0,0,'C');
+                $pdf->Cell($rectWidth + $rectWidth*.90,8,'P '.number_format(array_sum($value),2),0,0,'C');
             }
 
         }
