@@ -3,28 +3,29 @@
         <x-nav></x-nav>
     </section>
 
-    <div class="px-5 min-w-[500px] max-w-[2000px] mx-auto h-[calc(100%-93px)] space-y-3">
+    <div class="px-5 min-w-[500px] max-w-[2000px] mx-auto space-y-5">
 
-        <div class="h-[calc(100%-28px)] flex">
-
-            <section class="w-[50%]  mr-4 bg-white rounded-lg p-5 overflow-hidden max-h-full">
-                <livewire:chart-sales-yearly tableTitle="Yearly Sales"/>
+        <!-- First Grid Row: Sales Charts -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <section class="bg-white rounded-lg p-5 overflow-hidden">
+                <livewire:chart-sales-yearly tableTitle="Yearly Sales" />
             </section>       
-     
-            <section class="w-[50%]  bg-white rounded-lg p-5 overflow-hidden max-h-full">
-                <livewire:chart-sales tableTitle="Monthly Sales (Per year)"/>
+
+            <section class="bg-white rounded-lg p-5 overflow-hidden">
+                <livewire:chart-sales tableTitle="Monthly Sales (Per year)" />
             </section>  
         </div>
 
-        <div class="h-[calc(100%-28px)] flex">
-            <section class="w-[50%] mr-4 bg-white rounded-lg p-5 overflow-hidden max-h-full">
-                <livewire:customer-reports tableTitle="Approved Insurance"/>
+        <!-- Second Grid Row: Insurance Reports -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <section class="bg-white rounded-lg p-5 overflow-hidden">
+                <livewire:customer-reports tableTitle="Approved Insurance" />
             </section>   
-            <section class="w-[50%]  bg-white rounded-lg p-5 overflow-hidden max-h-full">
-                <livewire:sales-monitoring tableTitle="Insurance Count"/>
+
+            <section class="bg-white rounded-lg p-5 overflow-hidden">
+                <livewire:sales-monitoring tableTitle="Insurance Count" />
             </section>  
         </div>
 
     </div>
-
 </x-layout>

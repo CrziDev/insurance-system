@@ -12,6 +12,7 @@ use App\Models\Policy;
 use App\Models\RenewedHistory;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\SmsService;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Twilio\Rest\Client;
@@ -167,21 +168,18 @@ class UpdateNonLifeInsuranceForm extends Component
                 'date_renewed' => now()
             ]);
 
-            $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been Renewed . Please review your policy documents for full details. Thank you for trusting us!";
+            // $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been Renewed . Please review your policy documents for full details. Thank you for trusting us!";
 
-            $this->sendMessage($message,$user->customer[0]->phone_number);
+            // $smsService = new SmsService();       
+            // $smsService->approvedInsurance($user->customer[0]->full_name,$this->form->formNumber,$user->customer[0]->phone_number);
     
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first(),true);
+            
         } elseif ($this->status == 4) {
             toastr()->success('Insurance Approved Successfully!');
 
-            // $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been successfully approved . Please review your policy documents for full details. Thank you for trusting us!";
-            $message = "For application approval \n\n";
-
-            $message = "Your nonlife insurance application with Zika Insurance is now approved.\n\n";
-            $message .= "Application number: " . $this->form->formNumber;
-            
-            $this->sendMessage($message,$user->customer[0]->phone_number);
+            // $smsService = new SmsService();       
+            // $smsService->approvedInsurance($user->customer[0]->full_name,$this->form->formNumber,$user->customer[0]->phone_number);
     
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
         } 
