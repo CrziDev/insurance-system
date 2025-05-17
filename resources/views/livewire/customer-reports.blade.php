@@ -1,4 +1,4 @@
-<div class="h-[100%]">
+<div class="h-[500px]">
    <div class="flex justify-between items-center mb-4 border-b pb-2">
         <x-table-title class="text-sm">{{$tableTitle}}</x-table-title>
         <div class="pl-2 bg-white items-center  text-xs">
