@@ -19,12 +19,14 @@ class RecentEvents extends Component
         if (request()->user()->role == 3) {
             $data = Transaction::whereIn('status', [1, 2, 3, 4, 5, 6])
                 ->where('user_id', request()->user()->id)
+                ->where('recent',true)
                 ->with('user.customer')
                 ->orderBy('updated_at', 'desc') // Sort by created_at or any relevant column
                 ->get();
         } else {
             $data = Transaction::whereIn('status', [1, 2, 3, 4, 5, 6])
                 ->with('user.customer')
+                ->where('recent',true)
                 ->orderBy('updated_at', 'desc') // Sort by created_at or any relevant column
                 ->get();
         }

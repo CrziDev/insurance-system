@@ -41,9 +41,9 @@ class CustomerAdd extends Component
         $validated['user_id'] = $user->id;
         customer::create($this->mapedUserInformation($validated));
 
-        // event(new Registered($user));
+        event(new Registered($user));
         
-        // $user->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
         toastr()->success('Customer Added Successfuly!');
         $this->redirect('/admin/customers');
     }

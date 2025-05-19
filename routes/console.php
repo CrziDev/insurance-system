@@ -10,3 +10,5 @@ Artisan::command('inspire', function () {
 
 
 Schedule::command('app:check-transaction')->everyFiveSeconds();
+Schedule::command('app:reset-history')->everySecond();
+
