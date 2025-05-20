@@ -9,7 +9,6 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 Schedule::command('app:check-transaction')->everyFiveSeconds();
-// Schedule::command('app:reset-history')->dailyAt('00:30');
-Schedule::command('app:reset-history')->everySecond();
+Schedule::command('app:reset-history')->dailyAt('00:30');
 
 
