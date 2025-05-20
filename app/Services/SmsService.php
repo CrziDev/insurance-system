@@ -34,25 +34,16 @@ class SmsService
 
     public function approvedInsurance($customerName,$policy,$number){
 
-        $message = "
-            Dear " .$customerName. ", 
-            your insurance claim #".$policy. " 
-            has been approved. You may now proceed to 
-            the next steps as advised by our team. 
-            Thank you for trusting ZILKA Life Insurance Services.
-        ";
+        $message = "Dear {$customerName}, your insurance claim #{$policy} has been approved. You may now proceed to the next steps as advised by our team. Thank you for trusting ZILKA Life Insurance Services.";
+
 
         $this->send($number,$message);
     }
 
         public function renewedInsurance($customerName,$policy,$number){
 
-        $message = "
-            Hello ".$customerName.", your insurance policy
-            #".$policy. "  has been successfully renewed. 
-            Your updated policy is now active. Thank you for 
-            continuing with ZILKA Life Insurance Services.
-        ";
+        $message = "Hello {$customerName}, your insurance policy #{$policy} has been successfully renewed. Your updated policy is now active. Thank you for continuing with ZILKA Life Insurance Services.";
+
 
         $this->send($number,$message);
     }
