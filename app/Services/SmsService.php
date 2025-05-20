@@ -8,7 +8,7 @@ use Twilio\Rest\Client;
 
 class SmsService
 {
-    public function send(string $number, string $message): array
+    public function send(string $number, string $message):void
     {
           try {
                 $account_sid = getenv("TWILIO_SID");
