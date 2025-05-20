@@ -170,16 +170,16 @@ class UpdateNonLifeInsuranceForm extends Component
 
             // $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been Renewed . Please review your policy documents for full details. Thank you for trusting us!";
 
-            // $smsService = new SmsService();       
-            // $smsService->approvedInsurance($user->customer[0]->full_name,$this->form->formNumber,$user->customer[0]->phone_number);
-    
+            $smsService = new SmsService();       
+            $smsService->approvedInsurance($user->customer[0]->full_name,$this->form->formNumber,$user->customer[0]->phone_number);
+            // $this->sendMessage($message,);
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first(),true);
             
         } elseif ($this->status == 4) {
             toastr()->success('Insurance Approved Successfully!');
 
-            // $smsService = new SmsService();       
-            // $smsService->approvedInsurance($user->customer[0]->full_name,$this->form->formNumber,$user->customer[0]->phone_number);
+            $smsService = new SmsService();       
+            $smsService->approvedInsurance($user->customer[0]->full_name,$this->form->formNumber,$user->customer[0]->phone_number);
     
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first());
         } 
@@ -205,7 +205,6 @@ class UpdateNonLifeInsuranceForm extends Component
                     ['from' => $twilio_number, 'body' => $message]);
         
             } catch (\Exception $e) {
-                // Log the error and continue
                 Log::error("Error sending SMS: " . $e->getMessage());
             }
         }

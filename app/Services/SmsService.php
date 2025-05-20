@@ -3,19 +3,33 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Twilio\Rest\Client;
 
 class SmsService
 {
     public function send(string $number, string $message): array
     {
-        $response = Http::asForm()->post(env('SEMPHORE_URL'), [
-            'apikey' => env('SEMAPHOR_ACCESS_KEY'),
-            'number' => $number,
-            'message' => $message,
-            'sendername' => env('SEMPHORE_SENDERNAME'),
-        ]);
+          try {
+                $account_sid = getenv("TWILIO_SID");
+                $auth_token = getenv("TWILIO_AUTH_TOKEN");
+                $twilio_number = getenv("TWILIO_NUMBER");
+        
+                $client = new Client($account_sid, $auth_token);
+                $client->messages->create($number, 
+                    ['from' => $twilio_number, 'body' => $message]);
+        
+            } catch (\Exception $e) {
+                Log::error("Error sending SMS: " . $e->getMessage());
+            }
+        // $response = Http::asForm()->post(env('SEMPHORE_URL'), [
+        //     'apikey' => env('SEMAPHOR_ACCESS_KEY'),
+        //     'number' => $number,
+        //     'message' => $message,
+        //     'sendername' => env('SEMPHORE_SENDERNAME'),
+        // ]);
 
-        return $response->json();
+        // return $response->json();
     }
 
     public function approvedInsurance($customerName,$policy,$number){
