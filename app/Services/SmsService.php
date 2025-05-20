@@ -17,10 +17,10 @@ class SmsService
         
                 $client = new Client($account_sid, $auth_token);
                 $client->messages->create($number, 
-                    ['from' => $twilio_number, 'body' => $message]);
+                    ['from' => $twilio_number, 'body' => $message,'messagingServiceid'=>'MGcb022587840e91370e9388033c0e0980']);
         
             } catch (\Exception $e) {
-                Log::error("Error sending SMS: " . $e->getMessage());
+                Log::error("Error sending SMS: " . $e->getMessage() . $number);
             }
         // $response = Http::asForm()->post(env('SEMPHORE_URL'), [
         //     'apikey' => env('SEMAPHOR_ACCESS_KEY'),
