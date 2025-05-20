@@ -171,7 +171,7 @@ class UpdateNonLifeInsuranceForm extends Component
             // $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been Renewed . Please review your policy documents for full details. Thank you for trusting us!";
 
             $smsService = new SmsService();       
-            $smsService->approvedInsurance($user->customer[0]->full_name,$this->form->formNumber,$user->customer[0]->phone_number);
+            $smsService->renewedInsurance($user->customer[0]->full_name,$this->form->formNumber,$user->customer[0]->phone_number);
             // $this->sendMessage($message,);
             InsuranceApproved::dispatch($this->selectedRow,$this->selectedRow->user()->first(),true);
             
