@@ -37,7 +37,7 @@ class CheckTransaction extends Command
                 $currentDate = Carbon::now();
                 
                // Check if the current date has passed the expiration date
-                if ($currentDate->isAfter($expirationDate)) {
+               if ($currentDate->isSameDay($expirationDate) || $currentDate->isAfter($expirationDate)) {
                     // If the current date has passed the expiration, change status to 2
                     $transaction->status = 2;
                 } 
