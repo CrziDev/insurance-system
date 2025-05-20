@@ -36,7 +36,7 @@ class SmsService
 
         $message = "
             Dear " .$customerName. ", 
-            your insurance claim " .$policy. " 
+            your insurance claim #".$policy. " 
             has been approved. You may now proceed to 
             the next steps as advised by our team. 
             Thank you for trusting ZILKA Life Insurance Services.
@@ -48,8 +48,8 @@ class SmsService
         public function renewedInsurance($customerName,$policy,$number){
 
         $message = "
-            Hello [Customer Name], your insurance policy
-            #[PolicyNumber] has been successfully renewed. 
+            Hello ".$customerName.", your insurance policy
+            #".$policy. "  has been successfully renewed. 
             Your updated policy is now active. Thank you for 
             continuing with ZILKA Life Insurance Services.
         ";
