@@ -14,6 +14,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Services\SmsService;
 use Illuminate\Support\Facades\Log;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Twilio\Rest\Client;
 
@@ -35,6 +36,9 @@ class UpdateNonLifeInsuranceForm extends Component
     public $modal;
     public $status;
     public $oldExpiration;
+    #[Validate('required')]
+    public $paid;
+    public $change;
     public $editable = true;
 
     public function mount()
@@ -113,6 +117,15 @@ class UpdateNonLifeInsuranceForm extends Component
 
     }
 
+    
+    public function recalc($value)
+    {
+        // Ensure the premiumPaid is numeric
+        
+        $this->change = $this->paid - $this->total;
+    }
+
+
     public function update(){
         $this->validate();
         $transaction = Transaction::findOrFail($this->selectedRow->id);
@@ -122,6 +135,9 @@ class UpdateNonLifeInsuranceForm extends Component
             "date_effective"=>$this->form->dateEffective,
             "expiration"=>$this->form->expiration,
             "status"=>1,
+            "total_amount" => $this->total,
+            "paid"         => $this->paid,
+            "change"       => $this->change,
         ]);
 
         NonLifeInsurance::findOrFail($this->selectedRow->non_life_id)->update([
@@ -166,6 +182,7 @@ class UpdateNonLifeInsuranceForm extends Component
                 'transaction_id' => $this->selectedRow->id,
                 'date_expired' =>   $this->oldExpiration,
                 'date_renewed' => now()
+                
             ]);
 
             // $message = "Hello ".$user->customer[0]->full_name.", your insurance policy with ZILKA Life Insurance Services has been Renewed . Please review your policy documents for full details. Thank you for trusting us!";

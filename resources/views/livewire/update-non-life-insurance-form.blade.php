@@ -100,6 +100,18 @@
             </div>
         </x-form-card>
 
+         @if($status == 4)
+            <x-form-card>
+                <x-slot:title>
+                    Payment Amount
+                </x-slot:title>
+                <div class="grid grid-cols-2 gap-5">
+                    <x-form-input-w-label editable="{{$editable}}"  min="{{ $total }}" type="number" error='paid' wire:model="paid" wire:change="recalc(this.value)" >Amount Paid</x-form-input-w-label>
+                    <x-form-input-w-label editable="false" type="number" wire:model="change" error='change'>Change</x-form-input-w-label>
+                </div>
+            </x-form-card>
+        @endif
+
         <x-form-card>
             <x-slot:title>
                 Additional Information
@@ -114,6 +126,7 @@
                 <x-form-input-w-label editable="{{$editable}}" type="text" error='form.formNumber' wire:model="form.formNumber">Policy NO.</x-form-input-w-label>
             </div>
         </x-form-card>
+
 
         <div class="grid grid-cols-1 mb-5">
             <div class="mb-2">

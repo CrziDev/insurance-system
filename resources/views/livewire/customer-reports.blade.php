@@ -55,6 +55,21 @@
                             <p class="text-xs  font-sm text-center">{{$row->policy->name}}</p>
                         </div>   
                     </div>
+
+                    <div class="w-full">
+                        <div class="flex flex-col space-y-1">
+                            <p class="text-xs  text-{{lcfirst($row->status_description)}} font-sm text-center">{{$row->paid}}</p>
+                            <p class="text-xs text-center">Paid</p>   
+                        </div>   
+                    </div>
+
+                     <div class="w-full">
+                        <div class="flex flex-col space-y-1">
+                            <p class="text-xs  text-{{lcfirst($row->status_description)}} font-sm text-center">{{$row->change}}</p>
+                            <p class="text-xs text-center">Change</p>   
+                        </div>   
+                    </div>
+
                 </div>  
                 @endforeach
         </div>
