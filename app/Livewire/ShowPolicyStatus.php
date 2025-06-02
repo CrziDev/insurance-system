@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Action\PrintActionFpdi;
+use App\Action\PrintForm;
 use App\Models\customer;
 use App\Models\NonLifeInsurance;
 use App\Models\Transaction;
@@ -34,7 +35,7 @@ class ShowPolicyStatus extends Component
     public function printShortForm($selectedRow)
     {
 
-        $pdf = new PrintActionFpdi($selectedRow["non_life_id"]); 
+        $pdf = new PrintForm($selectedRow["non_life_id"]); 
     
         $uniquePdfName = 'zilkaPdf_short_form' . time() . '.pdf'; 
 

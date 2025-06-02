@@ -5,7 +5,7 @@
 
         {{-- Primary --}}
         <div class="w-full">
-            <h3 class="text-left font-semibold text-gray-600 text-md mt-3">Primary Requirements</h3>
+            <h3 class="text-left font-semibold text-gray-600 text-md mt-3">Primary Requirements (e.g., Valid IDs)</h3>
             <div class="flex justify-start space-x-5 overflow-x-scroll w-[95%] border-dashed border-4 p-4">
                 @forelse ($primaryAttachments as $photo)
                     <img class="rounded w-[150px] h-[150px] cursor-pointer"
@@ -19,7 +19,7 @@
 
         {{-- Secondary --}}
         <div class="w-full mt-6">
-            <h3 class="text-left font-semibold text-gray-600 text-md mt-3">Secondary Requirements</h3>
+            <h3 class="text-left font-semibold text-gray-600 text-md mt-3">Secondary Requirements (e.g., OR/CR, Policy, Police Report)</h3>
             <div class="flex justify-start space-x-5 overflow-x-scroll w-[95%] border-dashed border-4 p-4">
                 @forelse ($secondaryAttachments as $photo)
                     <img class="rounded w-[150px] h-[150px] cursor-pointer"
