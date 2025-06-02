@@ -37,7 +37,7 @@
                     @endif
 
                     @if($row->status != 2)
-                        <button class="w-[100px] bg-lime-600 text-white  p-1 font-semibold rounded-md" wire:click="selectRow({{$row}})" >View</button>
+                        <button class="w-[100px] bg-lime-600 text-white  p-1 font-semibold rounded-md" wire:click="viewPrint({{$row}})" >View</button>
                         <button class="w-[100px] bg-blue-400 text-white  p-1 font-semibold rounded-md" wire:click="printShortForm({{$row}})" >Print</button>
                     @endif
 
