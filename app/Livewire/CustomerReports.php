@@ -91,6 +91,9 @@ class CustomerReports extends Component
     $pdf->SetXY($rectX, $marginTop - 10);
     $pdf->Cell($rectWidth * 0.30, 8, 'Month: ' . $monthDisplay, 0, 0, 'L');
 
+    $totalPaid = 0;
+    $totalChange = 0;
+
     // Draw table header
     $drawHeader = function () use ($pdf, $rectX, $marginTop, $rowHeight, $rectWidth) {
         $pdf->SetFont("Arial", "b", 7);
@@ -102,40 +105,77 @@ class CustomerReports extends Component
         $pdf->SetXY($rectX + $rectWidth * 0.30, $marginTop);
         $pdf->Cell($rectWidth * 0.20, $rowHeight, 'Date Requested', 0, 0, 'C');
 
-        $pdf->Rect($rectX + $rectWidth * 0.50, $marginTop, $rectWidth * 0.50, $rowHeight);
+        $pdf->Rect($rectX + $rectWidth * 0.50, $marginTop, $rectWidth * 0.20, $rowHeight);
         $pdf->SetXY($rectX + $rectWidth * 0.50, $marginTop);
-        $pdf->Cell($rectWidth * 0.50, $rowHeight, 'Policy', 0, 0, 'C');
+        $pdf->Cell($rectWidth * 0.20, $rowHeight, 'Policy', 0, 0, 'C');
+
+        $pdf->Rect($rectX + $rectWidth * 0.70, $marginTop, $rectWidth * 0.15, $rowHeight);
+        $pdf->SetXY($rectX + $rectWidth * 0.70, $marginTop);
+        $pdf->Cell($rectWidth * 0.15, $rowHeight, 'Paid', 0, 0, 'C');
+
+        $pdf->Rect($rectX + $rectWidth * 0.85, $marginTop, $rectWidth * 0.15, $rowHeight);
+        $pdf->SetXY($rectX + $rectWidth * 0.85, $marginTop);
+        $pdf->Cell($rectWidth * 0.15, $rowHeight, 'Change', 0, 0, 'C');
+
     };
 
     $drawHeader();
 
     $i = 1;
     foreach ($this->data as $row) {
+    $y = $marginTop + ($i * $rowHeight);
+
+    if ($y + $rowHeight > $pageHeight - $bottomMargin) {
+        $pdf->AddPage();
+        $pdf->Image($path, ($pageWidth / 2) - 17, 0, $imageWidth, 30);
+        $drawHeader();
+        $i = 1;
         $y = $marginTop + ($i * $rowHeight);
-
-        // If next row goes beyond the printable area, add page and redraw header
-        if ($y + $rowHeight > $pageHeight - $bottomMargin) {
-            $pdf->AddPage();
-            $pdf->Image($path, ($pageWidth / 2) - 17, 0, $imageWidth, 30);
-            $drawHeader();
-            $i = 1; // reset row count on new page
-            $y = $marginTop + ($i * $rowHeight);
-        }
-
-        $pdf->Rect($rectX, $y, $rectWidth * 0.30, $rowHeight);
-        $pdf->SetXY($rectX, $y);
-        $pdf->Cell($rectWidth * 0.30, $rowHeight, $row->user->customer[0]?->full_name ?? '', 0, 0, 'C');
-
-        $pdf->Rect($rectX + $rectWidth * 0.30, $y, $rectWidth * 0.20, $rowHeight);
-        $pdf->SetXY($rectX + $rectWidth * 0.30, $y);
-        $pdf->Cell($rectWidth * 0.20, $rowHeight, $row->created_at_format ?? '', 0, 0, 'C');
-
-        $pdf->Rect($rectX + $rectWidth * 0.50, $y, $rectWidth * 0.50, $rowHeight);
-        $pdf->SetXY($rectX + $rectWidth * 0.50, $y);
-        $pdf->Cell($rectWidth * 0.50, $rowHeight, $row->policy->name ?? '', 0, 0, 'C');
-
-        $i++;
     }
+
+    $paid = floatval($row->paid ?? 0);
+    $change = floatval($row->change ?? 0);
+    $totalPaid += $paid;
+    $totalChange += $change;
+
+    // Row output
+    $pdf->Rect($rectX, $y, $rectWidth * 0.30, $rowHeight);
+    $pdf->SetXY($rectX, $y);
+    $pdf->Cell($rectWidth * 0.30, $rowHeight, $row->user->customer[0]?->full_name ?? '', 0, 0, 'C');
+
+    $pdf->Rect($rectX + $rectWidth * 0.30, $y, $rectWidth * 0.20, $rowHeight);
+    $pdf->SetXY($rectX + $rectWidth * 0.30, $y);
+    $pdf->Cell($rectWidth * 0.20, $rowHeight, $row->created_at_format ?? '', 0, 0, 'C');
+
+    $pdf->Rect($rectX + $rectWidth * 0.50, $y, $rectWidth * 0.20, $rowHeight);
+    $pdf->SetXY($rectX + $rectWidth * 0.50, $y);
+    $pdf->Cell($rectWidth * 0.20, $rowHeight, $paid, 0, 0, 'C');
+
+    $pdf->Rect($rectX + $rectWidth * 0.70, $y, $rectWidth * 0.15, $rowHeight);
+    $pdf->SetXY($rectX + $rectWidth * 0.70, $y);
+    $pdf->Cell($rectWidth * 0.15, $rowHeight, number_format($paid, 2), 0, 0, 'C');
+
+    $pdf->Rect($rectX + $rectWidth * 0.85, $y, $rectWidth * 0.15, $rowHeight);
+    $pdf->SetXY($rectX + $rectWidth * 0.85, $y);
+    $pdf->Cell($rectWidth * 0.15, $rowHeight, number_format($change, 2), 0, 0, 'C');
+
+    $i++;
+}
+$y = $marginTop + ($i * $rowHeight);
+
+$pdf->SetFont("Arial", "b", 8);
+$pdf->Rect($rectX, $y, $rectWidth * 0.70, $rowHeight);
+$pdf->SetXY($rectX, $y);
+$pdf->Cell($rectWidth * 0.70, $rowHeight, 'TOTAL', 0, 0, 'R');
+
+$pdf->Rect($rectX + $rectWidth * 0.70, $y, $rectWidth * 0.15, $rowHeight);
+$pdf->SetXY($rectX + $rectWidth * 0.70, $y);
+$pdf->Cell($rectWidth * 0.15, $rowHeight, number_format($totalPaid, 2), 0, 0, 'C');
+
+$pdf->Rect($rectX + $rectWidth * 0.85, $y, $rectWidth * 0.15, $rowHeight);
+$pdf->SetXY($rectX + $rectWidth * 0.85, $y);
+$pdf->Cell($rectWidth * 0.15, $rowHeight, number_format($totalChange, 2), 0, 0, 'C');
+
 
     // Prepared by
     $pdf->SetFont("Arial", "b", 12);
