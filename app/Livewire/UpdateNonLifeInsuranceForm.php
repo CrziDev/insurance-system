@@ -121,7 +121,9 @@ class UpdateNonLifeInsuranceForm extends Component
     public function recalc($value)
     {
         
-        $this->change = (float)$this->paid - (float)$this->total;
+        $cleanTotal = str_replace(',', '', $this->total);
+
+        $this->change = (float) $this->paid - (float) $cleanTotal;
     }
 
 
