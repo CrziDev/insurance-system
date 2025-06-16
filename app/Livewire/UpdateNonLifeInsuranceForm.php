@@ -120,9 +120,8 @@ class UpdateNonLifeInsuranceForm extends Component
     
     public function recalc($value)
     {
-        // Ensure the premiumPaid is numeric
         
-        $this->change = $this->paid - $this->total;
+        $this->change = (float)$this->paid - (float)$this->total;
     }
 
 
