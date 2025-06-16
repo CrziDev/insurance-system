@@ -15,10 +15,12 @@ class ShowPolicyStatus extends Component
     public Transaction $selectedRow;
     public $fullName;
     public $data = [];
+    public $renew = false;
 
 
     public function selectRow(Transaction $selectedRow){
         $this->selectedRow = $selectedRow;  
+        $this->$renew = true;
         $this->dispatch('open-modal-child',name:'view-insurance');
     }
     

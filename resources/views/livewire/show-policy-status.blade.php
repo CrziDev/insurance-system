@@ -64,7 +64,11 @@
         @if($selectedRow)
         
             @if($this->selectedRow->policy->type == "Non-life-type")
+                @if($renew)
+                    <livewire:update-non-life-insurance-form modal="-child" :selectedRow="$selectedRow" :policyId="$selectedRow->type_id" key="{{ $selectedRow->id }}"/>  
+                @else
                     <livewire:update-non-life-insurance-form modal="-child" :editable="false"  :selectedRow="$selectedRow" :policyId="$selectedRow->type_id" key="{{ $selectedRow->id }}"/>  
+                @endif
             @endif
 
             @if($this->selectedRow->policy->type == "Life Policy")
