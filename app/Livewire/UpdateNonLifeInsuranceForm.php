@@ -134,9 +134,9 @@ class UpdateNonLifeInsuranceForm extends Component
             "date_effective"=>$this->form->dateEffective,
             "expiration"=>$this->form->expiration,
             "status"=>1,
-            "total_amount" => $this->total,
-            "paid"         => $this->paid,
-            "change"       => $this->change,
+            "total_amount" => (float)$this->total,
+            "paid"         => (float)$this->paid,
+            "change"       => (float)$this->change,
         ]);
 
         NonLifeInsurance::findOrFail($this->selectedRow->non_life_id)->update([
